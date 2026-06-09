@@ -1,0 +1,1314 @@
+﻿<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error-container": "#93000a",
+              "on-secondary-fixed-variant": "#4a4737",
+              "primary-fixed": "#ffddb6",
+              "secondary-container": "#e8e3cd",
+              "tertiary-fixed-dim": "#58d5fe",
+              "primary-fixed-dim": "#ffb95a",
+              error: "#ba1a1a",
+              "primary-container": "#ffb347",
+              outline: "#847463",
+              "on-secondary-fixed": "#1e1c0f",
+              "on-secondary-container": "#686554",
+              "secondary-fixed-dim": "#ccc7b2",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary": "#ffffff",
+              "on-tertiary-container": "#00576d",
+              "inverse-surface": "#372f27",
+              "on-background": "#211a13",
+              "tertiary-fixed": "#b8eaff",
+              "inverse-primary": "#ffb95a",
+              "on-tertiary-fixed": "#001f28",
+              "on-error": "#ffffff",
+              tertiary: "#006780",
+              "surface-container-highest": "#eee0d4",
+              "surface-tint": "#845400",
+              "on-tertiary-fixed-variant": "#004d61",
+              background: "#fff8f4",
+              primary: "#845400",
+              "secondary-fixed": "#e8e3cd",
+              "surface-container-high": "#f3e6da",
+              "on-tertiary": "#ffffff",
+              "inverse-on-surface": "#fceee2",
+              "surface-variant": "#eee0d4",
+              secondary: "#625f4e",
+              "surface-container-low": "#fff1e5",
+              "on-surface": "#211a13",
+              "tertiary-container": "#52d0f9",
+              "on-primary-fixed": "#2a1800",
+              "outline-variant": "#d6c3b0",
+              "on-surface-variant": "#524535",
+              "surface-container": "#f9ecdf",
+              "on-primary-fixed-variant": "#643f00",
+              surface: "#fff8f4",
+              "on-primary-container": "#704700",
+              "surface-dim": "#e5d8cc",
+              "surface-bright": "#fff8f4",
+              "error-container": "#ffdad6",
+              "on-primary": "#ffffff",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              gutter: "24px",
+              md: "16px",
+              lg: "24px",
+              sm: "8px",
+              xl: "40px",
+              unit: "4px",
+              "margin-mobile": "16px",
+              xs: "4px",
+              "container-max": "1200px",
+            },
+            fontFamily: {
+              "headline-lg": ["Quicksand"],
+              "headline-md": ["Quicksand"],
+              "label-md": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Quicksand"],
+              "body-md": ["Plus Jakarta Sans"],
+              "label-sm": ["Plus Jakarta Sans"],
+              "headline-xl": ["Quicksand"],
+            },
+            fontSize: {
+              "headline-lg": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "700" },
+              ],
+              "headline-md": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "headline-lg-mobile": [
+                "28px",
+                { lineHeight: "36px", fontWeight: "700" },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "label-sm": ["12px", { lineHeight: "16px", fontWeight: "700" }],
+              "headline-xl": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      body {
+        background-color: #fff8f4;
+        color: #211a13;
+      }
+
+      /* User dropdown */
+      #userMenu {
+        display: none;
+      }
+      #userMenu.open {
+        display: block;
+      }
+
+      /* ========== ANIMATION SYSTEM ========== */
+
+      /* Keyframes */
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(40px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes fadeInLeft {
+        from { opacity: 0; transform: translateX(-40px); }
+        to   { opacity: 1; transform: translateX(0); }
+      }
+      @keyframes fadeInRight {
+        from { opacity: 0; transform: translateX(40px); }
+        to   { opacity: 1; transform: translateX(0); }
+      }
+      @keyframes scaleIn {
+        from { opacity: 0; transform: scale(0.8); }
+        to   { opacity: 1; transform: scale(1); }
+      }
+      @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        33%       { transform: translateY(-18px) rotate(6deg); }
+        66%       { transform: translateY(-8px) rotate(-4deg); }
+      }
+      @keyframes shimmer {
+        0%   { background-position: -200% 0; }
+        100% { background-position: 200% 0; }
+      }
+      @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(132, 84, 0, 0.4); }
+        50%       { box-shadow: 0 0 0 12px rgba(132, 84, 0, 0); }
+      }
+      @keyframes badge-bounce {
+        0%, 100% { transform: scale(1); }
+        50%       { transform: scale(1.15); }
+      }
+      @keyframes gradient-x {
+        0%   { background-position: 0% 50%; }
+        50%  { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      @keyframes particle-drift {
+        0%   { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.6; }
+        50%  { opacity: 0.3; }
+        100% { transform: translateY(-120vh) translateX(30px) rotate(360deg); opacity: 0; }
+      }
+
+      /* Scroll-reveal base */
+      .reveal {
+        opacity: 0;
+        transform: translateY(32px);
+        transition: opacity 0.65s cubic-bezier(.22,1,.36,1), transform 0.65s cubic-bezier(.22,1,.36,1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-left {
+        opacity: 0;
+        transform: translateX(-32px);
+        transition: opacity 0.65s cubic-bezier(.22,1,.36,1), transform 0.65s cubic-bezier(.22,1,.36,1);
+      }
+      .reveal-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .reveal-scale {
+        opacity: 0;
+        transform: scale(0.88);
+        transition: opacity 0.55s cubic-bezier(.22,1,.36,1), transform 0.55s cubic-bezier(.22,1,.36,1);
+      }
+      .reveal-scale.visible {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* Hero animations */
+      .hero-badge    { animation: fadeInDown 0.7s ease both; }
+      .hero-title    { animation: fadeInUp 0.8s 0.15s ease both; }
+      .hero-subtitle { animation: fadeInUp 0.8s 0.3s ease both; }
+      .hero-cta      { animation: scaleIn 0.6s 0.45s ease both; }
+      .hero-image    { animation: fadeInRight 1s 0.1s ease both; }
+
+      @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Hero image floating effect */
+      .hero-img-float {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      /* Gradient animated heading */
+      .gradient-text {
+        background: linear-gradient(135deg, #845400 0%, #ffb347 40%, #e07b00 70%, #845400 100%);
+        background-size: 300% 300%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: gradient-x 4s ease infinite;
+      }
+
+      /* CTA button pulse */
+      .cta-pulse {
+        animation: pulse-glow 2.5s ease-in-out infinite;
+      }
+
+      /* Category card hover lift */
+      .cat-card {
+        transition: transform 0.3s cubic-bezier(.22,1,.36,1), box-shadow 0.3s ease;
+        cursor: pointer;
+      }
+      .cat-card:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 20px 40px rgba(132,84,0,0.15);
+      }
+      .cat-card:hover .cat-img {
+        animation: float 2.5s ease-in-out infinite;
+      }
+
+      /* Product card hover */
+      .prod-card {
+        transition: transform 0.35s cubic-bezier(.22,1,.36,1), box-shadow 0.35s ease;
+      }
+      .prod-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 24px 48px rgba(132,84,0,0.12);
+      }
+
+      /* Shimmer skeleton */
+      .skeleton {
+        background: linear-gradient(90deg, #f3e6da 25%, #ffddb6 50%, #f3e6da 75%);
+        background-size: 200% 100%;
+        animation: shimmer 1.4s ease-in-out infinite;
+        border-radius: 12px;
+      }
+
+      /* Stagger delays for grid children */
+      .stagger-1 { transition-delay: 0.05s; }
+      .stagger-2 { transition-delay: 0.12s; }
+      .stagger-3 { transition-delay: 0.19s; }
+      .stagger-4 { transition-delay: 0.26s; }
+      .stagger-5 { transition-delay: 0.33s; }
+
+      /* Newsletter animated border */
+      .newsletter-card {
+        position: relative;
+        overflow: hidden;
+      }
+      .newsletter-card::before {
+        content: '';
+        position: absolute;
+        top: -2px; left: -2px; right: -2px; bottom: -2px;
+        background: linear-gradient(135deg, #ffb347, #845400, #ffddb6, #e07b00);
+        background-size: 300% 300%;
+        animation: gradient-x 3s ease infinite;
+        border-radius: 34px;
+        z-index: 0;
+        opacity: 0.4;
+      }
+      .newsletter-inner {
+        position: relative;
+        z-index: 1;
+        border-radius: 32px;
+      }
+
+      /* Particle canvas */
+      #particleCanvas {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      /* Nav link underline animation */
+      nav a {
+        position: relative;
+      }
+      nav a:not(.text-primary)::after {
+        content: '';
+        position: absolute;
+        left: 0; bottom: -2px;
+        width: 0; height: 2px;
+        background: #845400;
+        transition: width 0.25s ease;
+      }
+      nav a:not(.text-primary):hover::after {
+        width: 100%;
+      }
+
+      /* Section heading accent */
+      .section-heading {
+        position: relative;
+        display: inline-block;
+      }
+      .section-heading::after {
+        content: '';
+        position: absolute;
+        left: 0; bottom: -6px;
+        width: 48px; height: 3px;
+        background: linear-gradient(90deg, #845400, #ffb347);
+        border-radius: 9999px;
+      }
+
+      /* Smooth avatar initial */
+
+      #userAvatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 9999px;
+        background: #ffb347;
+        color: #704700;
+        font-weight: 700;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: 2px solid #ffddb6;
+        transition: transform 0.15s;
+        flex-shrink: 0;
+      }
+      #userAvatar:hover {
+        transform: scale(1.08);
+      }
+
+      /* Chatbot UI */
+      #chatWidget {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+
+      #chatWindow {
+        width: 350px;
+        height: 500px;
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        margin-bottom: 16px;
+        border: 1px solid #d6c3b0;
+        transform: scale(0.9);
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        transform-origin: bottom right;
+      }
+
+      #chatWindow.open {
+        display: flex;
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      #chatMessages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        background: #fff8f4;
+      }
+
+      .chat-msg {
+        max-width: 80%;
+        padding: 10px 14px;
+        border-radius: 16px;
+        font-size: 14px;
+        line-height: 1.4;
+      }
+      .chat-msg.user {
+        background: #845400;
+        color: #ffffff;
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+      }
+      .chat-msg.bot {
+        background: #ffffff;
+        color: #211a13;
+        align-self: flex-start;
+        border: 1px solid #d6c3b0;
+        border-bottom-left-radius: 4px;
+      }
+      .typing-indicator {
+        display: flex;
+        gap: 4px;
+        padding: 12px 16px;
+        background: #ffffff;
+        border: 1px solid #d6c3b0;
+        border-radius: 16px;
+        border-bottom-left-radius: 4px;
+        align-self: flex-start;
+        width: fit-content;
+      }
+      .typing-dot {
+        width: 6px;
+        height: 6px;
+        background: #845400;
+        border-radius: 50%;
+        animation: typing 1.4s infinite ease-in-out both;
+      }
+      .typing-dot:nth-child(1) {
+        animation-delay: -0.32s;
+      }
+      .typing-dot:nth-child(2) {
+        animation-delay: -0.16s;
+      }
+
+      @keyframes typing {
+        0%,
+        80%,
+        100% {
+          transform: scale(0);
+        }
+        40% {
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body class="font-body-md text-body-md">
+    <!-- TopNavBar -->
+    <header
+      class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-md shadow-sm"
+    >
+      <div
+        class="flex justify-between items-center px-lg py-md w-full max-w-container-max mx-auto"
+      >
+        <a href="/" class="inline-flex items-center gap-3 font-headline-md text-headline-md font-bold text-primary">
+          <img src="../images/logo.png" alt="Gray Pet Shop logo" class="w-10 h-10 rounded-full object-cover border-2 border-primary-container shadow-sm" />
+          <span>Gray Pet Shop</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-xl">
+          <a
+            class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md"
+            href="#"
+            >Home</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-transform duration-200 hover:scale-105 font-body-md text-body-md"
+            href="/product"
+            >Products</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-transform duration-200 hover:scale-105 font-body-md text-body-md"
+            href="/homepage/categories"
+            >Categories</a
+          >
+        </nav>
+        <div class="flex items-center gap-md">
+          <a
+            href="/cart"
+            class="relative inline-flex items-center justify-center text-primary p-2 transition-transform duration-200 hover:scale-110 active:scale-95"
+            data-icon="shopping_cart"
+          >
+            <span class="material-symbols-outlined">shopping_cart</span>
+            <span
+              id="cartBadge"
+              class="hidden absolute -top-1 -right-1 min-w-[18px] h-[18px] rounded-full bg-primary text-white text-[10px] font-bold flex items-center justify-center px-1"
+            ></span>
+          </a>
+
+          <!-- GUEST: shown when not logged in -->
+          <div id="guestNav" class="hidden sm:flex items-center gap-sm">
+            <a
+              href="/auth/login"
+              class="text-on-surface-variant hover:text-primary font-label-md px-md py-sm transition-colors"
+            >
+              Log in
+            </a>
+            <a
+              href="/auth/register"
+              class="bg-primary-container text-on-primary-container px-lg py-sm rounded-full font-label-md hover:scale-105 transition-all active:scale-95 inline-block"
+            >
+              Sign up
+            </a>
+          </div>
+
+          <!-- USER: shown when logged in -->
+          <div id="userNav" class="hidden items-center gap-sm relative">
+            <!-- Admin badge (only shown for admins) -->
+            <a
+              id="adminLink"
+              href="/admin"
+              class="hidden items-center gap-xs px-md py-1 bg-primary text-on-primary rounded-full font-label-sm hover:opacity-90 transition-opacity"
+            >
+              <span class="material-symbols-outlined text-[14px]"
+                >admin_panel_settings</span
+              >
+              Admin
+            </a>
+
+            <!-- Avatar + name -->
+            <div class="relative">
+              <button id="userAvatarBtn" class="flex items-center gap-sm group">
+                <div id="userAvatar">A</div>
+                <span
+                  id="userName"
+                  class="hidden sm:block font-label-md text-on-surface max-w-[120px] truncate"
+                ></span>
+                <span
+                  class="material-symbols-outlined text-on-surface-variant text-[18px] transition-transform group-hover:text-primary"
+                  id="chevronIcon"
+                  >expand_more</span
+                >
+              </button>
+
+              <!-- Dropdown menu -->
+              <div
+                id="userMenu"
+                class="absolute right-0 top-full mt-2 w-52 bg-surface-container-lowest rounded-2xl shadow-lg border border-outline-variant/30 overflow-hidden z-50"
+              >
+                <div class="px-lg py-md border-b border-outline-variant/20">
+                  <p
+                    class="font-label-md text-on-surface truncate"
+                    id="menuUserName"
+                  ></p>
+                  <p
+                    class="text-label-sm text-on-surface-variant truncate"
+                    id="menuUserEmail"
+                  ></p>
+                </div>
+                <div class="py-sm">
+                  <a
+                    href="/order/detail"
+                    class="flex items-center gap-sm px-lg py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors font-label-md"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >receipt_long</span
+                    >
+                    My Orders
+                  </a>
+                  <a
+                    id="menuAdminLink"
+                    href="/admin"
+                    class="hidden items-center gap-sm px-lg py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors font-label-md"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >admin_panel_settings</span
+                    >
+                    Admin Panel
+                  </a>
+                  <button
+                    id="logoutBtn"
+                    class="w-full flex items-center gap-sm px-lg py-sm text-error hover:bg-error-container/20 transition-colors font-label-md"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >logout</span
+                    >
+                    Log out
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="pt-[72px]">
+      <!-- Hero Banner -->
+      <section
+        class="relative w-full h-[500px] md:h-[600px] flex items-center overflow-hidden"
+      >
+        <!-- Particle canvas -->
+        <canvas id="particleCanvas"></canvas>
+
+        <div class="absolute inset-0 z-0">
+          <img
+            alt="Happy cat"
+            class="w-full h-full object-cover object-center hero-image"
+            src="../images/xam.png"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-background/10"
+          ></div>
+        </div>
+        <div class="relative z-10 w-full max-w-container-max mx-auto px-lg">
+          <div class="max-w-xl">
+            <div class="hero-badge inline-flex items-center gap-2 mb-md rounded-full bg-primary-container/20 text-primary px-sm py-[6px] w-max border border-primary/20 shadow-sm">
+              <img src="../images/logo.png" alt="Gray Pet Shop logo" class="w-8 h-8 rounded-full object-cover border-2 border-primary-container shadow-sm" />
+              <span class="font-label-md text-label-md">Gray Pet Shop ✨</span>
+            </div>
+            <h1 class="hero-title font-headline-xl text-headline-xl mb-md">
+              <span class="gradient-text">Quality pet food</span><br/>
+              <span class="text-on-surface">for your furry boss</span>
+            </h1>
+            <p class="hero-subtitle font-body-lg text-body-lg text-on-surface-variant mb-xl">
+              Care for your pet with nutritious meals from Gray Pet Shop.
+            </p>
+            <a
+              href="/product"
+              class="hero-cta inline-block bg-primary-container text-on-primary-container px-xl py-md rounded-full font-headline-md text-headline-md hover:scale-105 transition-all shadow-md active:scale-95 cta-pulse"
+              >🛒 Shop now</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Categories Section -->
+      <section class="py-xl max-w-container-max mx-auto px-lg">
+        <div class="flex items-center justify-between mb-xl reveal">
+          <h2 class="font-headline-lg text-headline-lg text-on-surface section-heading">
+            Featured categories
+          </h2>
+          <div class="h-[2px] flex-grow mx-lg bg-gradient-to-r from-primary/30 to-transparent"></div>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-lg">
+          <div class="cat-card reveal stagger-1 group bg-white rounded-[24px] p-lg border border-outline-variant/20 shadow-sm text-center">
+            <div class="w-24 h-24 mx-auto mb-md bg-gradient-to-br from-surface-container-low to-primary-container/20 rounded-full flex items-center justify-center p-4 shadow-inner">
+              <img alt="Dry Food" class="cat-img w-full h-full object-contain"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqEESuCo-RmnGSk6VCM0A4bap9JjQwtLIeD3LDUW-NhrJUQmbKu83ehCbxd--QaI-xp3Lf5RoCYaanrOTe5iGZjCFcFPwVqnxBahpC1wD1ulqDDoZncjOuNP_j5YNEezhrRq0HUZTxF0DoNomNYdu7KK0ycmLR9niqOUI8-Vv6FnlhIaa4IZsJA1QmlcV8aIKqFGdpH4drTFRCnD2Lh-IyS6SlR-lK8bNW-yi_qFE_nWVEkbUXeLMb0sCmc9r_N-EOXpUUbh5kfkk" />
+            </div>
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-sm">Dry Food</h3>
+            <a href="/product?category=food" class="text-primary font-label-md hover:underline transition-all group-hover:font-bold">View more →</a>
+          </div>
+          <div class="cat-card reveal stagger-2 group bg-white rounded-[24px] p-lg border border-outline-variant/20 shadow-sm text-center">
+            <div class="w-24 h-24 mx-auto mb-md bg-gradient-to-br from-surface-container-low to-primary-container/20 rounded-full flex items-center justify-center p-4 shadow-inner">
+              <img alt="Wet Food" class="cat-img w-full h-full object-contain"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBbpDoskxV57SOX7_A7_RclqC7LjfY_eZes-G_qXNSZV2FWnhc7NcRXJq6XYT_Vhaek1kn-MfKHPB8jgaej4IbPuLOyHF4dY7NaUhQwXbeTPQjZN6EKOCoEKwK4BZgTJ3TXCCKQsWUhtFk6P4eCxBQdgb6UhrxpR35hwGRPp0Afd0Gu0gLM-uL7zCC3pCXW6O03eefCNiLkUArrS0kQeDTyOtDcKpavXHREn8eQfJTc4XuQ-lujZ9qshZXQRGzEMvxwsOidRArxCE" />
+            </div>
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-sm">Pate</h3>
+            <a href="/product?category=pate" class="text-primary font-label-md hover:underline transition-all group-hover:font-bold">View more →</a>
+          </div>
+          <div class="cat-card reveal stagger-3 group bg-white rounded-[24px] p-lg border border-outline-variant/20 shadow-sm text-center">
+            <div class="w-24 h-24 mx-auto mb-md bg-gradient-to-br from-surface-container-low to-primary-container/20 rounded-full flex items-center justify-center p-4 shadow-inner">
+              <img alt="Treats" class="cat-img w-full h-full object-contain"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7_sM87T81uxy0iQFhjcxoe83OHSdWmN8x39r6iyF-z0OCDkwhs4hNnESZ7kpCfklYRmcy0OJVjiWkuy6sTXIvhB_ibTzgdJ2Xs9JMsXqdq-AdXy1RISG0PiiM2_3rxN2ausiVu9551CbNvRLeZv7L_qJPsiasvi9ddoLsScvj44SlU6rbD5JNRxyRBT8C48_xzaEwEJNc5v9nIpL-wI3WFH0otrUU2VKMocoWVt6b393gmhgAwtqwoMwl62Se4URr5A0x6k4OXmM" />
+            </div>
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-sm">Snack</h3>
+            <a href="/product?category=snack" class="text-primary font-label-md hover:underline transition-all group-hover:font-bold">View more →</a>
+          </div>
+          <div class="cat-card reveal stagger-4 group bg-white rounded-[24px] p-lg border border-outline-variant/20 shadow-sm text-center">
+            <div class="w-24 h-24 mx-auto mb-md bg-gradient-to-br from-surface-container-low to-primary-container/20 rounded-full flex items-center justify-center p-4 shadow-inner">
+              <img alt="Milk" class="cat-img w-full h-full object-contain"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPvMLJXgj4k5st9t5lFZnxra_9H8Grkpprrl_ar_p95jXXK5HNMwL7wjef9WkJQ_htZXBKvc6poYQcSkiLajWqXUjNXwuFYgS7Iv58KUSslnZ8od5Eu9BHwVehfGlzcFGWRu2-aMLaPV5daNSmQunboUeOqqeSdEjTi3GEUF9E3JG4o8gZFVkEfwaHY0jfNYEVqqsPXZ3ySAD4TcS2lNNxh8ebygsZsSL6n-NaSIf4yk62DryJprGQ5XFTw0S7xIiWisL-ruvwqno" />
+            </div>
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-sm">Milk</h3>
+            <a href="/product?category=milk" class="text-primary font-label-md hover:underline transition-all group-hover:font-bold">View more →</a>
+          </div>
+          <div class="cat-card reveal stagger-5 group bg-white rounded-[24px] p-lg border border-outline-variant/20 shadow-sm text-center">
+            <div class="w-24 h-24 mx-auto mb-md bg-gradient-to-br from-surface-container-low to-primary-container/20 rounded-full flex items-center justify-center p-4 shadow-inner">
+              <img alt="Accessories" class="cat-img w-full h-full object-contain"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1qulHfNnMgniPDCQcQY1HGvURPzNXMFW1iU8toDHkTrxMj0tCWT_XAmZkfk2ODIUIYwTwJqW39zbGF0tdPdPlnMc-1htFSXEsOg68qQJ8rHPBl1JsIXoYKrJ2LZqWhqNjI6tUqfBDn_QxJhfLa68IYXMdxEwm_3DcMfuK6w09w5Cpn0v_lFByr-gxCT-VE2yeNI4B-GmdqCkZsRLRzhBnNGQrKUvfCcev5lvkVUgECGytQyWWxrS9mZjhEOuJtCq_7-v1pEiq-os" />
+            </div>
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-sm">Accessories</h3>
+            <a href="/product?category=accessories" class="text-primary font-label-md hover:underline transition-all group-hover:font-bold">View more →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Products -->
+      <section class="py-xl bg-surface-container-low/50">
+        <div class="max-w-container-max mx-auto px-lg">
+          <div class="flex items-center justify-between mb-xl reveal">
+            <h2 class="font-headline-lg text-headline-lg text-on-surface section-heading">
+              Featured products
+            </h2>
+            <a
+              href="/product"
+              class="flex items-center gap-sm text-primary font-label-md hover:translate-x-1 transition-transform"
+            >
+              View all
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+          </div>
+          <div
+            id="productsContainer"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg"
+          >
+            <!-- Products will be rendered here dynamically -->
+            <div class="text-center py-xl col-span-full">
+              <p class="text-on-surface-variant">Loading products...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Newsletter Section -->
+      <section class="py-xl max-w-container-max mx-auto px-lg reveal">
+        <div class="newsletter-card">
+          <div
+            class="newsletter-inner bg-primary-container p-xl flex flex-col md:flex-row items-center gap-xl"
+          >
+            <div class="flex-1 text-on-primary-container">
+              <h2 class="font-headline-lg text-headline-lg mb-md">🐾 Join the cat lovers community</h2>
+              <p class="font-body-lg text-body-lg opacity-90">
+                Get weekly updates on promotions and cat care tips.
+              </p>
+            </div>
+            <div class="flex-1 w-full flex flex-col sm:flex-row gap-md">
+              <input
+                class="flex-grow bg-white border-none rounded-full px-lg py-md focus:ring-2 focus:ring-primary outline-none font-body-md text-on-surface shadow-inner transition-all"
+                placeholder="Enter your email"
+                type="email"
+              />
+              <button
+                class="bg-primary text-on-primary px-xl py-md rounded-full font-label-md shadow-md hover:scale-105 transition-all active:scale-95 cta-pulse"
+              >
+                Sign up now ✉️
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="w-full py-xl px-lg grid grid-cols-1 md:grid-cols-5 gap-lg max-w-container-max mx-auto bg-surface-container-highest dark:bg-surface-container mt-xl rounded-[24px]"
+    >
+      <div class="col-span-1 md:col-span-1">
+        <span class="font-headline-sm text-headline-sm text-on-surface"
+          >Gray Pet Shop</span
+        >
+        <p class="mt-md text-on-surface-variant text-label-sm">
+          A premium pet care store, bringing warmth and trust to your four-legged friend.
+        </p>
+      </div>
+      <div class="flex flex-col gap-sm">
+        <span class="font-label-md text-label-md text-primary">Contact</span>
+        <span class="text-on-surface-variant text-label-sm"
+          >Address: Bac Tu Liem, Hanoi</span
+        >
+        <span class="text-on-surface-variant text-label-sm"
+          >Phone: 038.339.2903</span
+        >
+        <span class="text-on-surface-variant text-label-sm"
+          >Email: nampham050723@gmail.com</span
+        >
+      </div>
+      <div class="flex flex-col gap-sm">
+        <span class="font-label-md text-label-md text-primary">Policies</span>
+        <a
+          class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+          href="#"
+          >Privacy Policy</a
+        >
+        <a
+          class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+          href="#"
+          >Terms of Service</a
+        >
+        <a
+          class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+          href="#"
+          >Shipping &amp; Returns</a
+        >
+      </div>
+      <div class="flex flex-col gap-sm">
+        <span class="font-label-md text-label-md text-primary"
+          >Social Media</span
+        >
+        <a
+          class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity flex items-center gap-2"
+          href="https://www.facebook.com/pdn.0507"
+          target="_blank"
+        >
+          <span class="material-symbols-outlined text-sm">public</span> Facebook
+        </a>
+        <a
+          class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity flex items-center gap-2"
+          href="https://www.instagram.com/dinhnam.ph"
+          target="_blank"
+        >
+          <span class="material-symbols-outlined text-sm">camera_alt</span>
+          Instagram
+        </a>
+        <div class="mt-4 flex items-center gap-2 text-on-surface-variant text-[10px]">
+          <img src="../images/logo.png" alt="Gray Pet Shop logo" class="w-5 h-5 rounded-full object-cover border border-primary-container" />
+          <span>© 2026 Gray Pet Shop. All rights reserved.</span>
+        </div>
+        </p>
+      </div>
+      <div class="flex flex-col gap-sm">
+        <span class="font-label-md text-label-md text-primary">Map</span>
+        <div class="w-full h-32 rounded-lg overflow-hidden border border-outline-variant/30">
+          <iframe src="https://maps.google.com/maps?q=273%20%C4%91%C6%B0%E1%BB%9Dng%20C%E1%BB%95%20Nhu%E1%BA%BF%2C%20B%E1%BA%AFc%20T%E1%BB%AB%20Li%C3%AAm%2C%20H%C3%A0%20N%E1%BB%99i&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Chatbot Widget -->
+    <div id="chatWidget">
+      <div id="chatWindow">
+        <!-- Header -->
+        <div
+          class="bg-primary text-on-primary px-4 py-3 flex items-center justify-between shadow-sm z-10"
+        >
+          <div class="flex items-center gap-2">
+            <img src="../images/logo.png" alt="Gray Pet Shop" class="w-6 h-6 rounded-full object-cover border border-white/40" />
+            <span class="font-label-md">Gray Assistant</span>
+          </div>
+          <button
+            id="closeChatBtn"
+            class="hover:bg-black/10 p-1 rounded-full transition-colors flex items-center justify-center"
+          >
+            <span class="material-symbols-outlined text-[18px]">close</span>
+          </button>
+        </div>
+
+        <!-- Messages -->
+        <div id="chatMessages">
+          <div class="chat-msg bot">
+            Hello 👋 I'm the Gray Pet Shop AI assistant. I can help you search for products, recommend pet food, guide you through ordering, check orders, and answer product questions. How can I help you today?
+          </div>
+        </div>
+
+        <!-- Input Area -->
+        <div
+          class="p-3 bg-white border-t border-outline-variant/30 flex items-center gap-2"
+        >
+          <input
+            type="text"
+            id="chatInput"
+            placeholder="Type a message..."
+            class="flex-1 bg-surface border border-outline-variant rounded-full px-4 py-2 text-[14px] focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+            autocomplete="off"
+          />
+          <button
+            id="sendChatBtn"
+            class="bg-primary text-white w-9 h-9 rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-all flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <span class="material-symbols-outlined text-[18px]">send</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Toggle Button -->
+      <button
+        id="toggleChatBtn"
+        class="bg-primary text-on-primary w-14 h-14 rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all"
+      >
+        <span class="material-symbols-outlined text-[28px]">chat</span>
+      </button>
+    </div>
+
+    <script type="module">
+      import { isAuthenticated, getUserInfo, logoutUser } from "../js/auth.js";
+      import { getPublicProducts } from "../js/product.js";
+      import { addToCart, getCartItemCount, syncCartFromBackend } from "../js/cart.js?v=1780539375683";
+
+      const guestNav = document.getElementById("guestNav");
+      const userNav = document.getElementById("userNav");
+      const userAvatar = document.getElementById("userAvatar");
+      const userName = document.getElementById("userName");
+      const menuUserName = document.getElementById("menuUserName");
+      const menuUserEmail = document.getElementById("menuUserEmail");
+      const adminLink = document.getElementById("adminLink");
+      const menuAdminLink = document.getElementById("menuAdminLink");
+      const userMenu = document.getElementById("userMenu");
+      const chevronIcon = document.getElementById("chevronIcon");
+      const logoutBtn = document.getElementById("logoutBtn");
+      const userAvatarBtn = document.getElementById("userAvatarBtn");
+      const productsContainer = document.getElementById("productsContainer");
+
+      function initNav() {
+        if (isAuthenticated()) {
+          const user = getUserInfo();
+          if (!user) return;
+
+          // Show user area, hide guest
+          guestNav.style.display = "none";
+          userNav.style.display = "flex";
+
+          // Set first letter of name in avatar
+          const initial = (user.fullName || user.email || "U")
+            .charAt(0)
+            .toUpperCase();
+          userAvatar.textContent = initial;
+
+          // Set display name
+          const displayName = user.fullName || user.email;
+          userName.textContent = displayName;
+          menuUserName.textContent = displayName;
+          menuUserEmail.textContent = user.email || "";
+
+          // Show Admin link if user is admin
+          if (user.role === "admin") {
+            adminLink.style.display = "flex";
+            menuAdminLink.style.display = "flex";
+          }
+        } else {
+          guestNav.style.display = "";
+          userNav.style.display = "none";
+        }
+      }
+
+      // Format currency to Vietnamese Dong
+      function formatPrice(price) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "VND",
+          minimumFractionDigits: 0,
+        }).format(price);
+      }
+
+      function showToast(message) {
+        const toast = document.createElement("div");
+        toast.className =
+          "fixed bottom-5 right-5 z-[60] rounded-full bg-on-surface text-background px-lg py-3 shadow-lg text-label-md";
+        toast.textContent = message;
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+          toast.remove();
+        }, 2200);
+      }
+
+      function updateCartBadge() {
+        const badge = document.getElementById("cartBadge");
+        if (!badge) return;
+
+        const count = getCartItemCount();
+        if (count > 0) {
+          badge.textContent = count;
+          badge.classList.remove("hidden");
+        } else {
+          badge.classList.add("hidden");
+        }
+      }
+
+      // Render product card HTML
+      function renderProductCard(product) {
+        return `
+          <div class="bg-white rounded-[24px] border border-outline-variant/30 overflow-hidden shadow-sm hover:shadow-lg transition-all group flex flex-col">
+            <a href="/product/detail?id=${product._id}" class="relative p-lg h-64 flex items-center justify-center bg-white cursor-pointer">
+              <img
+                alt="${product.name}"
+                class="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300"
+                src="${product.image || "https://via.placeholder.com/256?text=No+Image"}"
+              />
+              ${product.quantity < 10 ? '<div class="absolute top-md right-md"><span class="bg-error/20 text-error px-sm py-1 rounded-full font-label-sm">Low stock</span></div>' : ""}
+            </a>
+            <div class="p-lg flex flex-col flex-grow">
+              <div class="flex items-center gap-xs mb-sm">
+                <span
+                  class="material-symbols-outlined text-primary text-[16px]"
+                  style="font-variation-settings: 'FILL' 1"
+                >star</span>
+                <span class="font-label-sm text-on-surface">${product.rating > 0 ? product.rating.toFixed(1) : "Not yet rated"}</span>
+              </div>
+              <a href="/product/detail?id=${product._id}" class="hover:underline">
+                <h4 class="font-headline-md text-headline-md text-on-surface mb-xs">
+                  ${product.name}
+                </h4>
+              </a>
+              <p class="font-body-md text-body-md text-on-surface-variant mb-md">
+                ${product.description || "High-quality products for pets"}
+              </p>
+              <div class="mt-auto flex items-center justify-between">
+                <span class="text-primary-container font-headline-md text-headline-md">
+                  ${formatPrice(product.price)}
+                </span>
+                <button
+                  class="bg-primary text-on-primary p-3 rounded-full hover:scale-110 transition-transform shadow-md active:scale-95 flex items-center justify-center"
+                  data-product-id="${product._id}"
+                  data-product-name="${product.name}"
+                  data-product-price="${product.price}"
+                  data-product-image="${product.image || ""}"
+                >
+                  <span class="material-symbols-outlined">add_shopping_cart</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // Fetch and render products
+      async function loadProducts() {
+        const response = await getPublicProducts({ limit: 4 });
+
+        if (Array.isArray(response)) {
+          // If response is directly an array
+          const products = response.slice(0, 4);
+          if (products.length === 0) {
+            productsContainer.innerHTML =
+              '<div class="text-center py-xl col-span-full"><p class="text-on-surface-variant">No products found</p></div>';
+            return;
+          }
+          productsContainer.innerHTML = products
+            .map((product) => renderProductCard(product))
+            .join("");
+        } else if (response.success && response.products) {
+          // If response has success flag and products array
+          const products = response.products.slice(0, 4);
+          if (products.length === 0) {
+            productsContainer.innerHTML =
+              '<div class="text-center py-xl col-span-full"><p class="text-on-surface-variant">No products found</p></div>';
+            return;
+          }
+          productsContainer.innerHTML = products
+            .map((product) => renderProductCard(product))
+            .join("");
+        } else {
+          productsContainer.innerHTML =
+            '<div class="text-center py-xl col-span-full"><p class="text-error">Error loading products</p></div>';
+        }
+
+        // Add event listeners to add-to-cart buttons
+        document.querySelectorAll("[data-product-id]").forEach((btn) => {
+          btn.addEventListener("click", async () => {
+            const result = await addToCart(
+              {
+                _id: btn.dataset.productId,
+                name: btn.dataset.productName,
+                price: Number(btn.dataset.productPrice || 0),
+                image: btn.dataset.productImage || "",
+              },
+              1
+            );
+            if (result) {
+              updateCartBadge();
+              showToast(`Added "${btn.dataset.productName}" to cart`);
+            }
+          });
+        });
+      }
+
+      // Toggle dropdown
+      userAvatarBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = userMenu.classList.toggle("open");
+        chevronIcon.textContent = isOpen ? "expand_less" : "expand_more";
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", () => {
+        userMenu.classList.remove("open");
+        chevronIcon.textContent = "expand_more";
+      });
+
+      // Log out
+      logoutBtn.addEventListener("click", async () => {
+        await logoutUser();
+        window.location.href = "/auth/login";
+      });
+
+      // Chatbot Logic
+      const chatWindow = document.getElementById("chatWindow");
+      const toggleChatBtn = document.getElementById("toggleChatBtn");
+      const closeChatBtn = document.getElementById("closeChatBtn");
+      const chatInput = document.getElementById("chatInput");
+      const sendChatBtn = document.getElementById("sendChatBtn");
+      const chatMessages = document.getElementById("chatMessages");
+
+      let chatHistory = [];
+      let isTyping = false;
+
+      function toggleChat() {
+        const isOpen = chatWindow.classList.contains("open");
+        if (isOpen) {
+          chatWindow.classList.remove("open");
+          setTimeout(() => {
+            chatWindow.style.display = "none";
+          }, 300);
+        } else {
+          chatWindow.style.display = "flex";
+          // Trigger reflow to ensure transition runs
+          void chatWindow.offsetWidth;
+          chatWindow.classList.add("open");
+          chatInput.focus();
+        }
+      }
+
+      toggleChatBtn.addEventListener("click", toggleChat);
+      closeChatBtn.addEventListener("click", toggleChat);
+
+      function addMessageToUI(content, sender) {
+        const msgDiv = document.createElement("div");
+        msgDiv.className = `chat-msg ${sender}`;
+        msgDiv.textContent = content;
+        chatMessages.appendChild(msgDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      function showTypingIndicator() {
+        const div = document.createElement("div");
+        div.className = "typing-indicator";
+        div.id = "typingIndicator";
+        div.innerHTML =
+          '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      function hideTypingIndicator() {
+        const indicator = document.getElementById("typingIndicator");
+        if (indicator) indicator.remove();
+      }
+
+      async function handleSendChat() {
+        const message = chatInput.value.trim();
+        if (!message || isTyping) return;
+
+        chatInput.value = "";
+        addMessageToUI(message, "user");
+
+        isTyping = true;
+        sendChatBtn.disabled = true;
+        showTypingIndicator();
+
+        try {
+          const response = await fetch("/api/chat", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              message,
+              history: chatHistory,
+            }),
+          });
+
+          const data = await response.json();
+
+          hideTypingIndicator();
+
+          if (data.success) {
+            addMessageToUI(data.message, "bot");
+            // Save to history
+            chatHistory.push({ role: "user", content: message });
+            chatHistory.push({ role: "assistant", content: data.message });
+
+            // Keep history limited to last 10 messages to save tokens
+            if (chatHistory.length > 10) {
+              chatHistory = chatHistory.slice(-10);
+            }
+          } else {
+            addMessageToUI(
+              data.message ||
+                "Sorry, I'm experiencing a technical issue. Please try again later!",
+              "bot"
+            );
+          }
+        } catch (error) {
+          console.error("Chat Error:", error);
+          hideTypingIndicator();
+          addMessageToUI(
+            "Cannot connect to the server. Please check your network.",
+            "bot"
+          );
+        } finally {
+          isTyping = false;
+          sendChatBtn.disabled = false;
+          chatInput.focus();
+        }
+      }
+
+      sendChatBtn.addEventListener("click", handleSendChat);
+      chatInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          handleSendChat();
+        }
+      });
+
+      async function initHomepage() {
+        initNav();
+        if (isAuthenticated()) {
+          await syncCartFromBackend();
+        }
+        updateCartBadge();
+        loadProducts();
+      }
+
+      initHomepage();
+
+      // ========== SCROLL REVEAL ==========
+      const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-scale');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach(el => revealObserver.observe(el));
+
+      // ========== PARTICLE SYSTEM (Hero) ==========
+      (function initParticles() {
+        const canvas = document.getElementById('particleCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const section = canvas.parentElement;
+
+        function resize() {
+          canvas.width  = section.offsetWidth;
+          canvas.height = section.offsetHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        const PAWS = ['🐾', '🐱', '⭐', '✨', '🌟'];
+        const particles = Array.from({ length: 18 }, () => ({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height + canvas.height * 0.3,
+          size: 12 + Math.random() * 16,
+          speedY: 0.4 + Math.random() * 0.6,
+          speedX: (Math.random() - 0.5) * 0.4,
+          opacity: 0.15 + Math.random() * 0.35,
+          char: PAWS[Math.floor(Math.random() * PAWS.length)],
+          rot: Math.random() * 360,
+          rotSpeed: (Math.random() - 0.5) * 0.8,
+        }));
+
+        function animate() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          particles.forEach(p => {
+            ctx.save();
+            ctx.globalAlpha = p.opacity;
+            ctx.font = `${p.size}px serif`;
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rot * Math.PI / 180);
+            ctx.fillText(p.char, 0, 0);
+            ctx.restore();
+
+            p.y -= p.speedY;
+            p.x += p.speedX;
+            p.rot += p.rotSpeed;
+            p.opacity -= 0.0008;
+
+            if (p.y < -40 || p.opacity <= 0) {
+              p.x = Math.random() * canvas.width;
+              p.y = canvas.height + 20;
+              p.opacity = 0.15 + Math.random() * 0.35;
+              p.char = PAWS[Math.floor(Math.random() * PAWS.length)];
+            }
+          });
+          requestAnimationFrame(animate);
+        }
+        animate();
+      })();
+
+      // ========== NAVBAR SCROLL EFFECT ==========
+      const header = document.querySelector('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) {
+          header.style.boxShadow = '0 4px 24px rgba(132,84,0,0.10)';
+          header.style.background = 'rgba(255,248,244,0.96)';
+        } else {
+          header.style.boxShadow = '';
+          header.style.background = '';
+        }
+      }, { passive: true });
+    </script>
+  </body>
+</html>

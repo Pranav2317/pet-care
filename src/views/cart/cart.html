@@ -1,0 +1,720 @@
+﻿<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <title>Shopping Cart - Gray Pet Shop</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Quicksand:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Material Symbols -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../js/animations.css" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-container": "#704700",
+              "on-background": "#211a13",
+              "inverse-surface": "#372f27",
+              "primary-fixed": "#ffddb6",
+              tertiary: "#006780",
+              "on-tertiary-container": "#00576d",
+              "on-primary-fixed-variant": "#643f00",
+              "on-secondary": "#ffffff",
+              "surface-container-highest": "#eee0d4",
+              "primary-fixed-dim": "#ffb95a",
+              "on-secondary-fixed": "#1e1c0f",
+              "surface-tint": "#845400",
+              "on-tertiary-fixed-variant": "#004d61",
+              "on-tertiary-fixed": "#001f28",
+              "surface-container-high": "#f3e6da",
+              background: "#fff8f4",
+              "surface-container-low": "#fff1e5",
+              "on-primary-fixed": "#2a1800",
+              "surface-container-lowest": "#ffffff",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+              "surface-container": "#f9ecdf",
+              error: "#ba1a1a",
+              "on-error": "#ffffff",
+              "inverse-primary": "#ffb95a",
+              "tertiary-container": "#52d0f9",
+              "surface-dim": "#e5d8cc",
+              "tertiary-fixed": "#b8eaff",
+              "secondary-fixed-dim": "#ccc7b2",
+              "on-surface-variant": "#524535",
+              "on-surface": "#211a13",
+              surface: "#fff8f4",
+              "secondary-fixed": "#e8e3cd",
+              "surface-bright": "#fff8f4",
+              "tertiary-fixed-dim": "#58d5fe",
+              "on-primary": "#ffffff",
+              "secondary-container": "#e8e3cd",
+              "inverse-on-surface": "#fceee2",
+              "primary-container": "#ffb347",
+              "surface-variant": "#eee0d4",
+              secondary: "#625f4e",
+              "on-error-container": "#93000a",
+              outline: "#847463",
+              primary: "#845400",
+              "outline-variant": "#d6c3b0",
+              "on-secondary-container": "#686554",
+              "on-secondary-fixed-variant": "#4a4737",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              xl: "40px",
+              xs: "4px",
+              unit: "4px",
+              lg: "24px",
+              "margin-mobile": "16px",
+              gutter: "24px",
+              "container-max": "1200px",
+              sm: "8px",
+              md: "16px",
+            },
+            fontFamily: {
+              "label-sm": ["Plus Jakarta Sans"],
+              "label-md": ["Plus Jakarta Sans"],
+              "headline-md": ["Quicksand"],
+              "body-md": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Quicksand"],
+              "headline-xl": ["Quicksand"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "headline-lg": ["Quicksand"],
+            },
+            fontSize: {
+              "label-sm": ["12px", { lineHeight: "16px", fontWeight: "700" }],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-md": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "headline-lg-mobile": [
+                "28px",
+                { lineHeight: "36px", fontWeight: "700" },
+              ],
+              "headline-xl": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "headline-lg": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "700" },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      /* User dropdown */
+      #userMenu {
+        display: none;
+      }
+      #userMenu.open {
+        display: block;
+      }
+      .soft-shadow {
+        box-shadow: 0 10px 30px -10px rgba(132, 84, 0, 0.08);
+      }
+      .squishy-active:active {
+        transform: scale(0.95);
+        transition: transform 0.1s ease;
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #fff8f4;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #d6c3b0;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed"
+  >
+    <header class="bg-surface/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+      <nav
+        class="flex justify-between items-center px-lg py-md w-full max-w-container-max mx-auto"
+      >
+        <div class="flex items-center gap-xl">
+          <a
+            class="inline-flex items-center gap-3 font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim hover:scale-105 transition-transform duration-200"
+            href="/"
+          >
+            <img src="../images/logo.png" alt="Gray Pet Shop logo" class="w-10 h-10 rounded-full object-cover border-2 border-primary-container shadow-sm" />
+            <span>Gray Pet Shop</span>
+          </a>
+          <div class="hidden md:flex gap-md">
+            <a
+              class="text-on-surface-variant dark:text-outline hover:text-primary font-body-md text-body-md transition-colors"
+              href="/"
+              >Home</a
+            >
+            <a
+              class="text-on-surface-variant dark:text-outline hover:text-primary font-body-md text-body-md transition-colors"
+              href="/product"
+              >Products</a
+            >
+            <a
+              class="text-on-surface-variant dark:text-outline hover:text-primary font-body-md text-body-md transition-colors"
+              href="/homepage/categories"
+              >Categories</a
+            >
+          </div>
+        </div>
+        <div class="flex items-center gap-md">
+          <div class="relative hidden sm:block">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline"
+              >search</span
+            >
+            <input
+              class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 focus:ring-2 focus:ring-primary-container w-48 lg:w-64 transition-all"
+              placeholder="Search..."
+              type="text"
+            />
+          </div>
+          <a
+            href="/cart"
+            class="relative inline-flex items-center justify-center text-primary p-2 transition-transform duration-200 hover:scale-110 active:scale-95"
+          >
+            <span class="material-symbols-outlined">shopping_cart</span>
+            <span
+              id="cartBadge"
+              class="hidden absolute -top-1 -right-1 min-w-[18px] h-[18px] rounded-full bg-primary text-white text-[10px] font-bold flex items-center justify-center px-1"
+            ></span>
+          </a>
+          <div id="guestNav" class="hidden sm:flex items-center gap-sm">
+            <a
+              href="/auth/login"
+              class="text-on-surface-variant hover:text-primary font-label-md px-md py-sm transition-colors"
+              >Log in</a
+            >
+            <a
+              href="/auth/register"
+              class="bg-primary-container text-on-primary-container font-label-md px-lg py-sm rounded-full hover:scale-105 transition-transform shadow-sm"
+              >Sign up</a
+            >
+          </div>
+          <div id="userNav" class="hidden items-center gap-sm relative">
+            <a
+              id="adminLink"
+              href="/admin"
+              class="hidden items-center gap-xs px-md py-1 bg-primary text-on-primary rounded-full font-label-sm hover:opacity-90 transition-opacity"
+            >
+              <span class="material-symbols-outlined text-[14px]"
+                >admin_panel_settings</span
+              >
+              Admin
+            </a>
+            <div class="relative">
+              <button id="userAvatarBtn" class="flex items-center gap-sm group">
+                <div
+                  id="userAvatar"
+                  class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold"
+                >
+                  A
+                </div>
+                <span
+                  id="userName"
+                  class="hidden sm:block font-label-md text-on-surface max-w-[120px] truncate"
+                ></span>
+                <span
+                  id="chevronIcon"
+                  class="material-symbols-outlined text-on-surface-variant text-[18px] transition-transform group-hover:text-primary"
+                  >expand_more</span
+                >
+              </button>
+              <div
+                id="userMenu"
+                class="absolute right-0 top-full mt-2 w-52 bg-surface-container-lowest rounded-2xl shadow-lg border border-outline-variant/30 overflow-hidden z-50"
+              >
+                <div class="px-lg py-md border-b border-outline-variant/20">
+                  <p
+                    id="menuUserName"
+                    class="font-label-md text-on-surface truncate"
+                  ></p>
+                  <p
+                    id="menuUserEmail"
+                    class="text-label-sm text-on-surface-variant truncate"
+                  ></p>
+                </div>
+                <div class="py-sm">
+                  <a
+                    href="/order/detail"
+                    class="flex items-center gap-sm px-lg py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors font-label-md"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >receipt_long</span
+                    >
+                    My Orders
+                  </a>
+                  <a
+                    id="menuAdminLink"
+                    href="/admin"
+                    class="hidden items-center gap-sm px-lg py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors font-label-md"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >admin_panel_settings</span
+                    >
+                    Admin Panel
+                  </a>
+                  <button
+                    id="logoutBtn"
+                    class="w-full flex items-center gap-sm px-lg py-sm text-error hover:bg-error-container/20 transition-colors font-label-md"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >logout</span
+                    >
+                    Log out
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="max-w-container-max mx-auto px-margin-mobile md:px-lg py-xl">
+      <div
+        class="flex items-center gap-xs text-on-surface-variant mb-lg font-label-sm text-label-sm"
+      >
+        <a class="hover:text-primary" href="/">Home</a>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-primary">Shopping Cart</span>
+      </div>
+      <h1 class="font-headline-xl text-headline-xl text-on-background mb-xl reveal section-heading">
+        Your shopping cart
+      </h1>
+      <div class="flex flex-col lg:grid lg:grid-cols-12 gap-xl">
+        <div class="lg:col-span-8 space-y-md">
+          <div
+            class="hidden md:grid grid-cols-12 gap-md px-md py-sm border-b border-outline-variant text-on-surface-variant font-label-md"
+          >
+            <div class="col-span-6">Product details</div>
+            <div class="col-span-2 text-center">Price</div>
+            <div class="col-span-2 text-center">Quantity</div>
+            <div class="col-span-2 text-right">Subtotal</div>
+          </div>
+          <div id="cartItemsContainer" class="space-y-md"></div>
+          <div class="pt-lg flex items-center">
+            <a
+              class="flex items-center gap-sm text-primary font-bold hover:gap-md transition-all group"
+              href="/product"
+            >
+              <span class="material-symbols-outlined">arrow_back</span>
+              Continue shopping
+            </a>
+          </div>
+        </div>
+
+        <aside class="lg:col-span-4">
+          <div
+            class="bg-surface-container-low p-lg rounded-[32px] soft-shadow sticky top-32 reveal-right delay-2"
+          >
+            <h2 class="font-headline-md text-headline-md text-on-surface mb-lg">
+              Order summary
+            </h2>
+            <div class="space-y-md mb-lg">
+              <div class="flex justify-between items-center">
+                <span class="text-on-surface-variant">Subtotal</span>
+                <span id="subtotalValue" class="font-bold text-on-surface"
+                  >0₫</span
+                >
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-on-surface-variant">Shipping fee</span>
+                <span id="shippingValue" class="font-bold text-on-surface"
+                  >30.000₫</span
+                >
+              </div>
+              <div class="pt-md border-t border-outline-variant">
+                <div class="flex justify-between items-center mb-xs">
+                  <span class="font-bold text-body-lg text-on-surface"
+                    >Total</span
+                  >
+                  <span
+                    id="totalValue"
+                    class="font-headline-md text-headline-md text-primary"
+                    >0₫</span
+                  >
+                </div>
+                <p
+                  id="itemCountLabel"
+                  class="text-label-sm text-outline text-right italic"
+                >
+                  0 products
+                </p>
+              </div>
+            </div>
+            <a
+              id="checkoutBtn"
+              href="/order/checkout"
+              class="block w-full bg-primary-container text-on-primary-container font-headline-md py-lg rounded-full flex items-center justify-center gap-md hover:scale-[1.02] active:scale-95 transition-all shadow-md group anim-pulse-glow btn-ripple"
+            >
+              Proceed to checkout
+              <span
+                class="material-symbols-outlined transition-transform group-hover:translate-x-1"
+                >shopping_cart_checkout</span
+              >
+            </a>
+            <div
+              class="mt-xl grid grid-cols-3 gap-sm opacity-60 grayscale hover:grayscale-0 transition-all duration-500"
+            >
+              <div class="flex flex-col items-center text-center gap-xs">
+                <span class="material-symbols-outlined text-primary text-[24px]"
+                  >verified_user</span
+                >
+                <span class="text-[10px] font-bold">Secure</span>
+              </div>
+              <div class="flex flex-col items-center text-center gap-xs">
+                <span class="material-symbols-outlined text-primary text-[24px]"
+                  >local_shipping</span
+                >
+                <span class="text-[10px] font-bold">Fast</span>
+              </div>
+              <div class="flex flex-col items-center text-center gap-xs">
+                <span class="material-symbols-outlined text-primary text-[24px]"
+                  >published_with_changes</span
+                >
+                <span class="text-[10px] font-bold">30-day returns</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <footer
+      class="w-full py-xl px-lg grid grid-cols-1 md:grid-cols-5 gap-lg max-w-container-max mx-auto bg-surface-container-highest dark:bg-surface-container mt-xl rounded-[24px]"
+    >
+      <div class="col-span-1 md:col-span-1">
+        <span class="font-headline-sm text-headline-sm text-on-surface"
+          >Gray Pet Shop</span
+        >
+        <p class="mt-md text-on-surface-variant text-label-sm">
+          A premium pet care store, bringing warmth and trust to your four-legged friend.
+        </p>
+      </div>
+      <div class="flex flex-col gap-sm">
+        <span class="font-label-md text-label-md text-primary">Contact</span>
+        <span class="text-on-surface-variant text-label-sm"
+          >Address: Bac Tu Liem, Hanoi</span
+        >
+        <span class="text-on-surface-variant text-label-sm"
+          >Phone: 038.339.2903</span
+        >
+        <span class="text-on-surface-variant text-label-sm"
+          >Email: nampham050723@gmail.com</span
+        >
+      </div>
+      <div class="flex flex-col gap-sm">
+        <span class="font-label-md text-label-md text-primary">Policies</span>
+        <a
+          class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+          href="#"
+          >Privacy Policy</a
+        >
+        <a
+          class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+          href="#"
+          >Terms of Service</a
+        >
+        <a
+          class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+          href="#"
+          >Shipping &amp; Returns</a
+        >
+      </div>
+      <div class="flex flex-col gap-sm">
+        <span class="font-label-md text-label-md text-primary"
+          >Social Media</span
+        >
+        <a
+          class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity flex items-center gap-2"
+          href="https://www.facebook.com/pdn.0507"
+          target="_blank"
+        >
+          <span class="material-symbols-outlined text-sm">public</span> Facebook
+        </a>
+        <a
+          class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity flex items-center gap-2"
+          href="https://www.instagram.com/dinhnam.ph"
+          target="_blank"
+        >
+          <span class="material-symbols-outlined text-sm">camera_alt</span>
+          Instagram
+        </a>
+        <p class="mt-4 text-on-surface-variant text-[10px]">
+          © 2026 Gray Pet Shop. All rights reserved.
+        </p>
+      </div>
+      <div class="flex flex-col gap-sm">
+        <span class="font-label-md text-label-md text-primary">Map</span>
+        <div class="w-full h-32 rounded-lg overflow-hidden border border-outline-variant/30">
+          <iframe src="https://maps.google.com/maps?q=273%20%C4%91%C6%B0%E1%BB%9Dng%20C%E1%BB%95%20Nhu%E1%BA%BF%2C%20B%E1%BA%AFc%20T%E1%BB%AB%20Li%C3%AAm%2C%20H%C3%A0%20N%E1%BB%99i&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module">
+      import { isAuthenticated, getUserInfo, logoutUser } from "../js/auth.js";
+      import {
+        getCart,
+        removeFromCart,
+        updateCartQuantity,
+        getCartTotal,
+        getCartItemCount,
+        syncCartFromBackend,
+      } from "../js/cart.js?v=1780539375679";
+
+      const guestNav = document.getElementById("guestNav");
+      const userNav = document.getElementById("userNav");
+      const userAvatar = document.getElementById("userAvatar");
+      const userName = document.getElementById("userName");
+      const menuUserName = document.getElementById("menuUserName");
+      const menuUserEmail = document.getElementById("menuUserEmail");
+      const adminLink = document.getElementById("adminLink");
+      const menuAdminLink = document.getElementById("menuAdminLink");
+      const userMenu = document.getElementById("userMenu");
+      const chevronIcon = document.getElementById("chevronIcon");
+      const logoutBtn = document.getElementById("logoutBtn");
+      const userAvatarBtn = document.getElementById("userAvatarBtn");
+      const cartItemsContainer = document.getElementById("cartItemsContainer");
+      const subtotalValue = document.getElementById("subtotalValue");
+      const shippingValue = document.getElementById("shippingValue");
+      const totalValue = document.getElementById("totalValue");
+      const itemCountLabel = document.getElementById("itemCountLabel");
+      const checkoutBtn = document.getElementById("checkoutBtn");
+
+      function initNav() {
+        if (isAuthenticated()) {
+          const user = getUserInfo();
+          if (!user) return;
+          guestNav.style.display = "none";
+          userNav.style.display = "flex";
+          const initial = (user.fullName || user.email || "U")
+            .charAt(0)
+            .toUpperCase();
+          userAvatar.textContent = initial;
+          const displayName = user.fullName || user.email;
+          userName.textContent = displayName;
+          menuUserName.textContent = displayName;
+          menuUserEmail.textContent = user.email || "";
+          if (user.role === "admin") {
+            adminLink.style.display = "flex";
+            menuAdminLink.style.display = "flex";
+          }
+        } else {
+          guestNav.style.display = "";
+          userNav.style.display = "none";
+        }
+      }
+
+      function formatCurrency(value) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "VND",
+          maximumFractionDigits: 0,
+        }).format(value);
+      }
+
+      function updateCartBadge() {
+        const badge = document.getElementById("cartBadge");
+        if (!badge) return;
+        const count = getCartItemCount();
+        if (count > 0) {
+          badge.textContent = count;
+          badge.classList.remove("hidden");
+        } else {
+          badge.classList.add("hidden");
+        }
+      }
+
+      function renderCartItems() {
+        const cart = getCart();
+        if (!cart.length) {
+          cartItemsContainer.innerHTML = `
+            <div class="bg-white p-lg rounded-[24px] soft-shadow border border-outline-variant/30 text-center">
+              <p class="text-on-surface-variant mb-md">Your cart is empty.</p>
+              <a href="/product" class="inline-flex items-center justify-center bg-primary-container text-on-primary-container px-lg py-sm rounded-full font-label-md">Browse products</a>
+            </div>`;
+          subtotalValue.textContent = formatCurrency(0);
+          if (shippingValue) shippingValue.textContent = formatCurrency(0);
+          totalValue.textContent = formatCurrency(0);
+          itemCountLabel.textContent = "0 products";
+          checkoutBtn.classList.add("pointer-events-none", "opacity-50");
+          return;
+        }
+
+        checkoutBtn.classList.remove("pointer-events-none", "opacity-50");
+        cartItemsContainer.innerHTML = cart
+          .map(
+            (item) => `
+            <div class="bg-white p-md rounded-[24px] soft-shadow border border-outline-variant/30 flex flex-col md:grid md:grid-cols-12 md:items-center gap-md group">
+              <div class="col-span-6 flex items-center gap-md">
+                <div class="w-24 h-24 bg-surface-container rounded-xl overflow-hidden flex-shrink-0">
+                  <img alt="${item.name}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="${item.image || "https://via.placeholder.com/96?text=No+Image"}" />
+                </div>
+                <div class="flex flex-col gap-xs">
+                  <h3 class="font-headline-md text-[18px] text-on-surface"><a href="/product/detail?id=${item._id}" class="hover:text-primary">${item.name}</a></h3>
+                  <button data-remove-id="${item._id}" class="text-error font-label-sm flex items-center gap-1 mt-2 hover:underline">
+                    <span class="material-symbols-outlined text-[16px]">delete</span>
+                    Remove
+                  </button>
+                </div>
+              </div>
+              <div class="col-span-2 text-center font-semibold text-on-surface">${formatCurrency(item.price)}</div>
+              <div class="col-span-2 flex justify-center">
+                <div class="flex items-center bg-surface-container-low rounded-full px-2 py-1">
+                  <button data-decrease-id="${item._id}" class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high rounded-full transition-colors squishy-active">
+                    <span class="material-symbols-outlined text-sm">remove</span>
+                  </button>
+                  <span class="w-8 text-center font-bold">${item.quantity}</span>
+                  <button data-increase-id="${item._id}" class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high rounded-full transition-colors squishy-active">
+                    <span class="material-symbols-outlined text-sm">add</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-span-2 text-right font-bold text-primary text-body-lg">${formatCurrency(item.price * item.quantity)}</div>
+            </div>
+          `
+          )
+          .join("");
+
+        const subtotal = getCartTotal();
+        const shippingFee = cart.length > 0 ? 30000 : 0;
+        subtotalValue.textContent = formatCurrency(subtotal);
+        if (shippingValue)
+          shippingValue.textContent = formatCurrency(shippingFee);
+        totalValue.textContent = formatCurrency(subtotal + shippingFee);
+        itemCountLabel.textContent = `${cart.reduce((sum, item) => sum + item.quantity, 0)} products`;
+
+        cartItemsContainer
+          .querySelectorAll("[data-remove-id]")
+          .forEach((button) => {
+            button.addEventListener("click", async () => {
+              await removeFromCart(button.dataset.removeId);
+              renderCartItems();
+              updateCartBadge();
+            });
+          });
+
+        cartItemsContainer
+          .querySelectorAll("[data-decrease-id]")
+          .forEach((button) => {
+            button.addEventListener("click", async () => {
+              const currentItem = getCart().find(
+                (item) => item._id === button.dataset.decreaseId
+              );
+              const nextQty = currentItem
+                ? Math.max(1, currentItem.quantity - 1)
+                : 1;
+              await updateCartQuantity(button.dataset.decreaseId, nextQty);
+              renderCartItems();
+              updateCartBadge();
+            });
+          });
+
+        cartItemsContainer
+          .querySelectorAll("[data-increase-id]")
+          .forEach((button) => {
+            button.addEventListener("click", async () => {
+              const currentItem = getCart().find(
+                (item) => item._id === button.dataset.increaseId
+              );
+              const nextQty = currentItem ? currentItem.quantity + 1 : 1;
+              await updateCartQuantity(button.dataset.increaseId, nextQty);
+              renderCartItems();
+              updateCartBadge();
+            });
+          });
+      }
+
+      userAvatarBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = userMenu.classList.toggle("open");
+        chevronIcon.textContent = isOpen ? "expand_less" : "expand_more";
+      });
+
+      document.addEventListener("click", () => {
+        userMenu.classList.remove("open");
+        chevronIcon.textContent = "expand_more";
+      });
+
+      logoutBtn.addEventListener("click", async () => {
+        await logoutUser();
+        window.location.href = "/auth/login";
+      });
+
+      window.addEventListener("scroll", () => {
+        const header = document.querySelector("header");
+        if (!header) return;
+        if (window.scrollY > 10) {
+          header.classList.add("shadow-md");
+        } else {
+          header.classList.remove("shadow-md");
+        }
+      });
+
+      async function initCartPage() {
+        initNav();
+        if (isAuthenticated()) {
+          await syncCartFromBackend();
+        }
+        updateCartBadge();
+        renderCartItems();
+      }
+
+      initCartPage();
+    </script>
+    <script src="../js/animations.js"></script>
+  </body>
+</html>

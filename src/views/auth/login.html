@@ -1,0 +1,467 @@
+﻿<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../js/animations.css" />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error-container": "#93000a",
+              "tertiary-fixed": "#b8eaff",
+              "on-tertiary-fixed": "#001f28",
+              background: "#fff8f4",
+              "surface-container-low": "#fff1e5",
+              "secondary-container": "#e8e3cd",
+              "on-surface": "#211a13",
+              "surface-container-highest": "#eee0d4",
+              "on-tertiary-container": "#00576d",
+              "surface-bright": "#fff8f4",
+              "on-secondary-container": "#686554",
+              "tertiary-fixed-dim": "#58d5fe",
+              "tertiary-container": "#52d0f9",
+              "on-surface-variant": "#524535",
+              "surface-variant": "#eee0d4",
+              "outline-variant": "#d6c3b0",
+              tertiary: "#006780",
+              "surface-container": "#f9ecdf",
+              "surface-container-high": "#f3e6da",
+              "secondary-fixed": "#e8e3cd",
+              "primary-fixed": "#ffddb6",
+              "on-tertiary-fixed-variant": "#004d61",
+              outline: "#847463",
+              "on-tertiary": "#ffffff",
+              "on-error": "#ffffff",
+              primary: "#845400",
+              "on-primary-container": "#704700",
+              "on-background": "#211a13",
+              "inverse-primary": "#ffb95a",
+              "on-primary-fixed-variant": "#643f00",
+              surface: "#fff8f4",
+              "primary-container": "#ffb347",
+              "on-primary": "#ffffff",
+              "inverse-surface": "#372f27",
+              "on-secondary": "#ffffff",
+              "primary-fixed-dim": "#ffb95a",
+              "on-primary-fixed": "#2a1800",
+              secondary: "#625f4e",
+              "error-container": "#ffdad6",
+              "secondary-fixed-dim": "#ccc7b2",
+              "surface-dim": "#e5d8cc",
+              "inverse-on-surface": "#fceee2",
+              error: "#ba1a1a",
+              "on-secondary-fixed-variant": "#4a4737",
+              "on-secondary-fixed": "#1e1c0f",
+              "surface-tint": "#845400",
+              "surface-container-lowest": "#ffffff",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "margin-mobile": "16px",
+              lg: "24px",
+              unit: "4px",
+              xl: "40px",
+              "container-max": "1200px",
+              md: "16px",
+              sm: "8px",
+              xs: "4px",
+              gutter: "24px",
+            },
+            fontFamily: {
+              "headline-md": ["Quicksand"],
+              "headline-lg-mobile": ["Quicksand"],
+              "headline-xl": ["Quicksand"],
+              "label-sm": ["Plus Jakarta Sans"],
+              "label-md": ["Plus Jakarta Sans"],
+              "headline-lg": ["Quicksand"],
+              "body-md": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "headline-md": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "headline-lg-mobile": [
+                "28px",
+                { lineHeight: "36px", fontWeight: "700" },
+              ],
+              "headline-xl": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-sm": ["12px", { lineHeight: "16px", fontWeight: "700" }],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "700" },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #f5f5f5; /* Pastel Grey background per brand instructions */
+        font-family: "Quicksand", sans-serif;
+      }
+      .tinted-shadow {
+        box-shadow: 0 20px 30px -10px rgba(132, 84, 0, 0.08);
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    </style>
+  </head>
+  <body class="bg-[#f5f5f5] flex flex-col min-h-screen">
+    <div class="flex items-center justify-center flex-1 p-md">
+      <main class="w-full max-w-[440px]">
+        <!-- Login Card -->
+        <div
+          class="bg-surface-container-lowest rounded-[32px] p-xl tinted-shadow border border-outline-variant/30 relative overflow-hidden reveal-scale"
+        >
+          <!-- Brand Identity Anchor -->
+          <div class="flex flex-col items-center mb-xl">
+            <div class="mb-md flex items-center justify-center gap-3">
+              <img
+                src="../images/logo.png"
+                alt="Gray Pet Shop logo"
+                class="w-12 h-12 rounded-full object-cover border-2 border-primary-container shadow-sm anim-float"
+              />
+              <div class="text-left">
+                <h1
+                  class="font-headline-lg text-headline-lg text-primary tracking-tight anim-fade-in-down"
+                >
+                  Gray Pet Shop
+                </h1>
+                <p
+                  class="font-body-md text-body-md text-on-surface-variant mt-xs"
+                >
+                  Welcome back
+                </p>
+              </div>
+            </div>
+          </div>
+          <form class="space-y-lg" id="loginForm">
+            <!-- Email Input Group -->
+            <div class="space-y-xs">
+              <label
+                class="font-label-md text-label-md text-on-surface ml-unit"
+                for="email"
+                >Your email</label
+              >
+              <div class="relative group">
+                <div
+                  class="absolute inset-y-0 left-0 pl-md flex items-center pointer-events-none text-on-surface-variant group-focus-within:text-primary transition-colors"
+                >
+                  <span class="material-symbols-outlined" data-icon="mail"
+                    >mail</span
+                  >
+                </div>
+                <input
+                  class="w-full pl-[48px] pr-md py-md bg-surface-container-low border-none rounded-xl font-body-md text-body-md focus:ring-2 focus:ring-primary-container focus:bg-surface-container-lowest transition-all duration-300"
+                  id="email"
+                  name="email"
+                  placeholder="example@gmail.com"
+                  type="email"
+                  required
+                />
+              </div>
+            </div>
+            <!-- Password Input Group -->
+            <div class="space-y-xs">
+              <label
+                class="font-label-md text-label-md text-on-surface ml-unit"
+                for="password"
+                >Password</label
+              >
+              <div class="relative group">
+                <div
+                  class="absolute inset-y-0 left-0 pl-md flex items-center pointer-events-none text-on-surface-variant group-focus-within:text-primary transition-colors"
+                >
+                  <span class="material-symbols-outlined" data-icon="lock"
+                    >lock</span
+                  >
+                </div>
+                <input
+                  class="w-full pl-[48px] pr-md py-md bg-surface-container-low border-none rounded-xl font-body-md text-body-md focus:ring-2 focus:ring-primary-container focus:bg-surface-container-lowest transition-all duration-300"
+                  id="password"
+                  name="password"
+                  placeholder="••••••••"
+                  type="password"
+                  required
+                />
+              </div>
+            </div>
+            <!-- Utilities Row -->
+            <div class="flex items-center justify-between">
+              <label class="flex items-center gap-sm cursor-pointer group">
+                <div class="relative">
+                  <input class="peer hidden" type="checkbox" />
+                  <div
+                    class="w-5 h-5 rounded-md border-2 border-outline-variant peer-checked:bg-primary peer-checked:border-primary transition-all flex items-center justify-center"
+                  >
+                    <span
+                      class="material-symbols-outlined text-white text-[14px] opacity-0 peer-checked:opacity-100 transition-opacity"
+                      data-icon="check"
+                      style="font-variation-settings: &quot;wght&quot; 700"
+                      >check</span
+                    >
+                  </div>
+                </div>
+                <span
+                  class="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface transition-colors"
+                  >Remember me</span
+                >
+              </label>
+              <a
+                class="font-label-md text-label-md text-primary hover:underline transition-all"
+                href="#"
+                >Forgot password?</a
+              >
+            </div>
+            <!-- Error Message -->
+            <div
+              id="errorMessage"
+              class="hidden bg-error-container text-on-error-container p-md rounded-xl text-center font-body-md"
+            ></div>
+            <!-- Success Message -->
+            <div
+              id="successMessage"
+              class="hidden bg-primary-container text-on-primary-container p-md rounded-xl text-center font-body-md"
+            ></div>
+            <!-- Submit Button -->
+            <button
+              class="w-full py-md bg-primary-container text-on-primary-container font-headline-md text-headline-md rounded-full shadow-md hover:scale-[1.03] active:scale-95 transition-all duration-200 mt-md disabled:opacity-50 anim-pulse-glow btn-ripple"
+              type="submit"
+              id="submitBtn"
+            >
+              Log in
+            </button>
+          </form>
+          <!-- Divider with "Or" -->
+          <div class="mt-xl pt-lg border-t border-outline-variant/30">
+            <div class="flex items-center gap-md mb-lg">
+              <div class="flex-1 h-px bg-outline-variant/30"></div>
+              <span class="text-on-surface-variant font-body-md text-body-md"
+                >Or</span
+              >
+              <div class="flex-1 h-px bg-outline-variant/30"></div>
+            </div>
+            <!-- Google Login Button -->
+            <a
+              href="/auth/google"
+              class="w-full py-md bg-white border-2 border-outline-variant text-on-surface font-headline-md text-headline-md rounded-full shadow-md hover:scale-[1.03] active:scale-95 transition-all duration-200 flex items-center justify-center gap-md"
+            >
+              <svg class="w-5 h-5" viewBox="0 0 24 24">
+                <image
+                  href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%234285F4' d='M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z'/%3E%3Cpath fill='%2334A853' d='M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z'/%3E%3Cpath fill='%23FBBC05' d='M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z'/%3E%3Cpath fill='%23EA4335' d='M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z'/%3E%3Cpath fill='none' d='M1 1h22v22H1z'/%3E%3C/svg%3E"
+                  x="0"
+                  y="0"
+                  width="24"
+                  height="24"
+                />
+              </svg>
+              Log in with Google
+            </a>
+          </div>
+          <!-- Register Divider -->
+          <div
+            class="mt-lg pt-lg border-t border-outline-variant/30 text-center"
+          >
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Don't have an account?
+              <a
+                class="text-primary font-bold hover:underline"
+                href="/auth/register"
+                >Sign up now</a
+              >
+            </p>
+          </div>
+        </div>
+        <!-- Decorative Background Illustration Suggestion (CSS based) -->
+        <div
+          class="mt-lg flex justify-center items-center gap-md opacity-40 grayscale hover:grayscale-0 transition-all duration-500"
+        >
+          <script type="module">
+            import { loginUser } from "../js/auth.js";
+            import { mergeLocalCartToBackend } from "../js/cart.js?v=1780539375677";
+
+            const loginForm = document.getElementById("loginForm");
+            const errorDiv = document.getElementById("errorMessage");
+            const successDiv = document.getElementById("successMessage");
+            const submitBtn = document.getElementById("submitBtn");
+
+            loginForm.addEventListener("submit", async (e) => {
+              e.preventDefault();
+              errorDiv.classList.add("hidden");
+              successDiv.classList.add("hidden");
+              submitBtn.disabled = true;
+
+              const email = document.getElementById("email").value;
+              const password = document.getElementById("password").value;
+
+              const result = await loginUser({ email, password });
+
+              if (result.success) {
+                successDiv.textContent =
+                  "Logged in successfully! Redirecting...";
+                successDiv.classList.remove("hidden");
+
+                try {
+                  await mergeLocalCartToBackend();
+                } catch (e) {
+                  console.error("Error syncing cart on login:", e);
+                }
+
+                setTimeout(() => {
+                  window.location.href = "/";
+                }, 1500);
+              } else {
+                errorDiv.textContent = result.message;
+                errorDiv.classList.remove("hidden");
+                submitBtn.disabled = false;
+              }
+            });
+          </script>
+          <img
+            alt=""
+            class="w-12 h-12 rounded-full border-2 border-white shadow-sm"
+            data-alt="A close-up portrait of a serene grey cat with striking green eyes resting in a sunlit, minimalist room. The lighting is high-key and soft, creating a gentle and cozy atmosphere that aligns with the premium cat care brand's identity. The background consists of soft white and pastel grey textures, emphasizing a clean and modern aesthetic that conveys dependable and observant care."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBExhWDrcRPHZLy_-SMpVypVCST7RJHW5EJm_-61dpCnTgp3-hKa6zgBsqkI14FQAUcJLpU4mj6adA0nWxjmoHsX4B9JDIsnX2SWtxjuzrIwmxHIjNTYZDv9t4DTZcT66X0n3RH1Gp-40U53pHOSAPAas4h5hGqq4U2V28uBKJVH7FLg1OIs8vitdwERp79qTlTagiTPuXDF_FCpy5uzuWZ54t5l0yRJ7j8alRFls7gZ6FUgptEaI-d-fBsNzrmFTHxz0SfFxc-o3I"
+          />
+          <img
+            alt=""
+            class="w-12 h-12 rounded-full border-2 border-white shadow-sm"
+            data-alt="A beautiful ginger cat stretching comfortably on a plush cream-colored rug in a bright, modern living space. The scene is bathed in warm, diffused natural light, highlighting the soft minimalist design of the interior. The color palette is dominated by whites, light oranges, and soft greys, reflecting a calm and competent domestic setting focused on cat well-being."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYIGUlv8WgWeHjw7dIxx5FGcGeyvfjoxWwduttiN6DYzpLLNfNI4MlCF6vFPa2Qz9Sft2-9-itDj-WdQKg7ubaeMcLqho4PVJJTVqTOAWiiSxyzCV_fa4xHzxonyBCPYImlEnnAXtjFseRdUPT4CyRAX_YDISTSnUArUYK02nPhLcvziw-9lL-xjTR9cAgbvsIWwZpo8ElOTj9Rad3segZhR8nbN2cN67dOmscDBxL64uiBRRMfPiaDr7dNd284nNK3Q_RjH5yEUw"
+          />
+        </div>
+      </main>
+    </div>
+    <!-- Footer -->
+    <footer
+      class="w-full py-xl px-lg bg-surface-container-highest dark:bg-surface-container"
+    >
+      <div
+        class="grid grid-cols-1 md:grid-cols-4 gap-lg max-w-container-max mx-auto rounded-[24px] p-lg"
+      >
+        <div class="col-span-1 md:col-span-1">
+          <span class="font-headline-sm text-headline-sm text-on-surface"
+            >Gray Pet Shop</span
+          >
+          <p class="mt-md text-on-surface-variant text-label-sm">
+            A premium pet care store, bringing warmth and trust to your four-legged friend.
+          </p>
+        </div>
+        <div class="flex flex-col gap-sm">
+          <span class="font-label-md text-label-md text-primary">Contact</span>
+          <span class="text-on-surface-variant text-label-sm"
+            >Address: Bac Tu Liem, Hanoi</span
+          >
+          <span class="text-on-surface-variant text-label-sm"
+            >Phone: 038.339.2903</span
+          >
+          <span class="text-on-surface-variant text-label-sm"
+            >Email: nampham050723@gmail.com</span
+          >
+        </div>
+        <div class="flex flex-col gap-sm">
+          <span class="font-label-md text-label-md text-primary"
+            >Policies</span
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+            href="#"
+            >Privacy Policy</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+            href="#"
+            >Terms of Service</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+            href="#"
+            >Shipping &amp; Returns</a
+          >
+        </div>
+        <div class="flex flex-col gap-sm">
+          <span class="font-label-md text-label-md text-primary"
+            >Social Media</span
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity flex items-center gap-2"
+            href="https://www.facebook.com/pdn.0507"
+            target="_blank"
+          >
+            <span class="material-symbols-outlined text-sm">public</span>
+            Facebook
+          </a>
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity flex items-center gap-2"
+            href="https://www.instagram.com/dinhnam.ph"
+            target="_blank"
+          >
+            <span class="material-symbols-outlined text-sm">camera_alt</span>
+            Instagram
+          </a>
+          <p class="mt-4 text-on-surface-variant text-[10px]">
+            © 2026 Gray Pet Shop. All rights reserved.
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-col gap-sm">
+        <span class="font-label-md text-label-md text-primary">Map</span>
+        <div class="w-full h-32 rounded-lg overflow-hidden border border-outline-variant/30">
+          <iframe src="https://maps.google.com/maps?q=273%20%C4%91%C6%B0%E1%BB%9Dng%20C%E1%BB%95%20Nhu%E1%BA%BF%2C%20B%E1%BA%AFc%20T%E1%BB%AB%20Li%C3%AAm%2C%20H%C3%A0%20N%E1%BB%99i&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </footer>
+    <script src="../js/animations.js"></script>
+  </body>
+</html>

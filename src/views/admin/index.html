@@ -1,0 +1,659 @@
+﻿<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Quicksand:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../js/animations.css" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-container": "#686554",
+              error: "#ba1a1a",
+              "tertiary-fixed-dim": "#58d5fe",
+              "surface-container-high": "#f3e6da",
+              "primary-fixed-dim": "#ffb95a",
+              "surface-container-lowest": "#ffffff",
+              "on-error": "#ffffff",
+              "surface-tint": "#845400",
+              secondary: "#625f4e",
+              "on-tertiary": "#ffffff",
+              "primary-container": "#ffb347",
+              "tertiary-container": "#52d0f9",
+              outline: "#847463",
+              "on-surface-variant": "#524535",
+              "on-secondary-fixed": "#1e1c0f",
+              "on-primary-container": "#704700",
+              "surface-dim": "#e5d8cc",
+              "inverse-surface": "#372f27",
+              "on-tertiary-fixed-variant": "#004d61",
+              "on-background": "#211a13",
+              "on-primary": "#ffffff",
+              "surface-bright": "#fff8f4",
+              "inverse-primary": "#ffb95a",
+              "outline-variant": "#d6c3b0",
+              "secondary-container": "#e8e3cd",
+              "on-primary-fixed-variant": "#643f00",
+              tertiary: "#006780",
+              "error-container": "#ffdad6",
+              "surface-variant": "#eee0d4",
+              "secondary-fixed": "#e8e3cd",
+              "on-error-container": "#93000a",
+              primary: "#845400",
+              "on-surface": "#211a13",
+              "on-primary-fixed": "#2a1800",
+              "primary-fixed": "#ffddb6",
+              surface: "#fff8f4",
+              "tertiary-fixed": "#b8eaff",
+              "surface-container-low": "#fff1e5",
+              background: "#fff8f4",
+              "inverse-on-surface": "#fceee2",
+              "surface-container-highest": "#eee0d4",
+              "secondary-fixed-dim": "#ccc7b2",
+              "on-tertiary-container": "#00576d",
+              "on-secondary": "#ffffff",
+              "on-secondary-fixed-variant": "#4a4737",
+              "on-tertiary-fixed": "#001f28",
+              "surface-container": "#f9ecdf",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              lg: "24px",
+              xs: "4px",
+              xl: "40px",
+              "margin-mobile": "16px",
+              "container-max": "1200px",
+              unit: "4px",
+              gutter: "24px",
+              sm: "8px",
+              md: "16px",
+            },
+            fontFamily: {
+              "label-md": ["Plus Jakarta Sans"],
+              "headline-lg": ["Quicksand"],
+              "headline-md": ["Quicksand"],
+              "body-md": ["Plus Jakarta Sans"],
+              "label-sm": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "700" },
+              ],
+              "headline-md": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "label-sm": ["12px", { lineHeight: "16px", fontWeight: "700" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .soft-shadow {
+        box-shadow: 0 10px 30px -10px rgba(132, 84, 0, 0.08);
+      }
+      .tinted-shadow {
+        box-shadow: 0 20px 40px -15px rgba(132, 84, 0, 0.12);
+      }
+    </style>
+  </head>
+  <body class="bg-background font-body-md text-on-background min-h-screen">
+    <!-- SideNavBar -->
+    <aside
+      class="flex flex-col h-screen fixed left-0 top-0 border-r border-outline-variant bg-surface-container-low w-64 z-50"
+    >
+      <div class="px-lg py-xl">
+        <div class="flex items-center gap-3 mb-sm">
+          <img src="../images/logo.png" alt="Gray Pet Shop logo" class="w-10 h-10 rounded-full object-cover border-2 border-primary-container shadow-sm" />
+          <h1 class="font-headline-sm text-headline-sm text-primary">
+            Admin Panel
+          </h1>
+        </div>
+        <p class="text-label-sm text-on-surface-variant opacity-70">
+          Gray Pet Shop Management
+        </p>
+        <!-- Admin info -->
+        <div
+          class="mt-md pt-md border-t border-outline-variant/30 flex items-center gap-sm"
+        >
+          <div
+            id="adminAvatarSidebar"
+            class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-label-sm flex-shrink-0"
+          >
+            A
+          </div>
+          <span
+            id="adminDisplayName"
+            class="text-label-sm text-on-surface font-semibold truncate max-w-[130px]"
+            >Admin</span
+          >
+        </div>
+      </div>
+      <nav class="flex-grow space-y-2 py-md">
+        <a
+          class="bg-primary-container text-on-primary-container rounded-xl mx-2 px-4 py-3 flex items-center gap-3 shadow-sm transition-all duration-150 translate-x-1"
+          href="/admin"
+        >
+          <span class="material-symbols-outlined">dashboard</span>
+          <span class="font-label-md text-label-md">Dashboard</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors"
+          href="/admin/manageOrder"
+        >
+          <span class="material-symbols-outlined">shopping_bag</span>
+          <span class="font-label-md text-label-md">Orders</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors"
+          href="/admin/manageProduct"
+        >
+          <span class="material-symbols-outlined">inventory_2</span>
+          <span class="font-label-md text-label-md">Products</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors"
+          href="/admin/manageCategory"
+        >
+          <span class="material-symbols-outlined">category</span>
+          <span class="font-label-md text-label-md">Categories</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors"
+          href="/admin/manageBrand"
+        >
+          <span class="material-symbols-outlined">verified</span>
+          <span class="font-label-md text-label-md">Brands</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors"
+          href="/admin/manageCustomer"
+        >
+          <span class="material-symbols-outlined">group</span>
+          <span class="font-label-md text-label-md">Users</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors"
+          href="/admin/report"
+        >
+          <span class="material-symbols-outlined">assessment</span>
+          <span class="font-label-md text-label-md">Reports</span>
+        </a>
+      </nav>
+      <div class="pb-xl border-t border-outline-variant pt-md">
+        <button
+          id="logoutBtn"
+          class="text-on-surface-variant hover:bg-error-container/30 hover:text-error rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors cursor-pointer w-[calc(100%-16px)]"
+        >
+          <span class="material-symbols-outlined">logout</span>
+          <span class="font-label-md text-label-md">Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="ml-64 p-lg md:p-xl space-y-xl">
+      <!-- Header Section -->
+      <header class="flex justify-between items-center w-full">
+        <div>
+          <h2
+            class="font-headline-lg text-headline-lg text-primary section-heading reveal"
+          >
+            Admin Overview
+          </h2>
+          <p class="font-body-md text-on-surface-variant">
+            Welcome back,
+            <span
+              id="headerAdminName"
+              class="font-semibold text-primary"
+            ></span>
+          </p>
+        </div>
+        <div class="flex gap-md items-center">
+          <div
+            class="bg-white rounded-full px-md py-sm flex items-center gap-sm soft-shadow border border-outline-variant/30"
+          >
+            <span class="material-symbols-outlined text-primary"
+              >calendar_today</span
+            >
+            <span class="font-label-md text-label-md" id="todayDate"
+              >Today</span
+            >
+          </div>
+          <div
+            class="h-12 w-12 rounded-full overflow-hidden border-2 border-primary-container bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-lg"
+            id="headerAvatar"
+          >
+            A
+          </div>
+        </div>
+      </header>
+
+      <!-- Stats Bento Grid -->
+      <section
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg"
+        data-stagger
+      >
+        <div
+          class="stat-card bg-white p-lg rounded-[24px] border border-outline-variant/20 soft-shadow"
+        >
+          <div class="flex justify-between items-start mb-md">
+            <div class="p-sm bg-secondary-container rounded-xl">
+              <span
+                class="material-symbols-outlined text-on-secondary-container"
+                >shopping_cart</span
+              >
+            </div>
+          </div>
+          <p class="font-label-md text-on-surface-variant opacity-70">
+            Total Orders
+          </p>
+          <h3 class="font-headline-md text-headline-md mt-xs" id="statOrders">
+            —
+          </h3>
+        </div>
+        <div
+          class="stat-card bg-white p-lg rounded-[24px] border border-outline-variant/20 soft-shadow"
+        >
+          <div class="flex justify-between items-start mb-md">
+            <div class="p-sm bg-primary-container/20 rounded-xl">
+              <span class="material-symbols-outlined text-primary"
+                >payments</span
+              >
+            </div>
+          </div>
+          <p class="font-label-md text-on-surface-variant opacity-70">
+            Revenue (VND)
+          </p>
+          <h3 class="font-headline-md text-headline-md mt-xs" id="statRevenue">
+            —
+          </h3>
+        </div>
+        <div
+          class="stat-card bg-white p-lg rounded-[24px] border border-outline-variant/20 soft-shadow"
+        >
+          <div class="flex justify-between items-start mb-md">
+            <div class="p-sm bg-tertiary-container/20 rounded-xl">
+              <span class="material-symbols-outlined text-tertiary"
+                >person_add</span
+              >
+            </div>
+          </div>
+          <p class="font-label-md text-on-surface-variant opacity-70">
+            New Users
+          </p>
+          <h3 class="font-headline-md text-headline-md mt-xs" id="statUsers">
+            —
+          </h3>
+        </div>
+        <div
+          class="stat-card bg-white p-lg rounded-[24px] border border-outline-variant/20 soft-shadow"
+        >
+          <div class="flex justify-between items-start mb-md">
+            <div class="p-sm bg-surface-container-highest rounded-xl">
+              <span class="material-symbols-outlined text-on-surface"
+                >pets</span
+              >
+            </div>
+            <span class="text-error font-label-sm" id="statLowStock">—</span>
+          </div>
+          <p class="font-label-md text-on-surface-variant opacity-70">
+            Products in Stock
+          </p>
+          <h3 class="font-headline-md text-headline-md mt-xs" id="statProducts">
+            —
+          </h3>
+        </div>
+      </section>
+
+      <!-- Main Dashboard Layout -->
+      <section class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+        <!-- Revenue Chart -->
+        <div
+          class="lg:col-span-2 bg-white p-lg rounded-[24px] border border-outline-variant/20 soft-shadow reveal-left delay-1"
+        >
+          <div class="flex justify-between items-center mb-xl">
+            <h3 class="font-headline-md text-headline-md">
+              Revenue Statistics
+            </h3>
+            <div class="flex gap-sm">
+              <button
+                class="px-4 py-2 rounded-full font-label-sm bg-primary-container text-on-primary-container"
+              >
+                Month
+              </button>
+              <button
+                class="px-4 py-2 rounded-full font-label-sm text-on-surface-variant hover:bg-surface-container"
+              >
+                Year
+              </button>
+            </div>
+          </div>
+          <div
+            id="revenueChartContainer"
+            class="relative h-[300px] w-full flex items-end justify-between gap-md pb-lg group"
+          >
+            <div
+              class="absolute inset-0 flex flex-col justify-between pointer-events-none"
+            >
+              <div class="border-b border-outline-variant/20 w-full h-0"></div>
+              <div class="border-b border-outline-variant/20 w-full h-0"></div>
+              <div class="border-b border-outline-variant/20 w-full h-0"></div>
+              <div class="border-b border-outline-variant/20 w-full h-0"></div>
+              <div
+                class="border-b-2 border-outline-variant/50 w-full h-0"
+              ></div>
+            </div>
+          </div>
+          <div
+            id="revenueChartLabels"
+            class="flex justify-between mt-sm px-2 text-label-sm text-on-surface-variant opacity-60"
+          ></div>
+        </div>
+        <!-- Recent Activity -->
+        <div
+          class="bg-white p-lg rounded-[24px] border border-outline-variant/20 soft-shadow reveal-right delay-2"
+        >
+          <h3 class="font-headline-md text-headline-md mb-xl">
+            Recent Activity
+          </h3>
+          <div id="dashboardRecentActivities" class="space-y-lg">
+            <p class="text-on-surface-variant">Loading...</p>
+          </div>
+          <button
+            onclick="window.location.href='/admin/manageOrder'"
+            class="w-full mt-xl py-3 rounded-full border-2 border-outline-variant text-primary font-label-md hover:bg-surface-container transition-colors"
+          >
+            View All
+          </button>
+        </div>
+      </section>
+      <!-- Footer -->
+      <footer
+        class="w-full py-xl px-lg grid grid-cols-1 md:grid-cols-5 gap-lg bg-surface-container-highest dark:bg-surface-container mt-xl rounded-[24px]"
+      >
+        <div class="col-span-1 md:col-span-1">
+          <span class="font-headline-sm text-headline-sm text-on-surface"
+            >Gray Pet Shop</span
+          >
+          <p class="mt-md text-on-surface-variant text-label-sm">
+            A premium pet care store, bringing warmth and trust to your four-legged friend.
+          </p>
+        </div>
+        <div class="flex flex-col gap-sm">
+          <span class="font-label-md text-label-md text-primary">Contact</span>
+          <span class="text-on-surface-variant text-label-sm"
+            >Address: Bac Tu Liem, Hanoi</span
+          >
+          <span class="text-on-surface-variant text-label-sm"
+            >Phone: 038.339.2903</span
+          >
+          <span class="text-on-surface-variant text-label-sm"
+            >Email: nampham050723@gmail.com</span
+          >
+        </div>
+        <div class="flex flex-col gap-sm">
+          <span class="font-label-md text-label-md text-primary"
+            >Policies</span
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+            href="#"
+            >Privacy Policy</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+            href="#"
+            >Terms of Service</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+            href="#"
+            >Shipping &amp; Returns</a
+          >
+        </div>
+        <div class="flex flex-col gap-sm">
+          <span class="font-label-md text-label-md text-primary"
+            >Social Media</span
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity flex items-center gap-2"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-sm">public</span>
+            Facebook
+          </a>
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity flex items-center gap-2"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-sm">camera_alt</span>
+            Instagram
+          </a>
+          <p class="mt-4 text-on-surface-variant text-[10px]">
+            © 2026 Gray Pet Shop. All rights reserved.
+          </p>
+        </div>
+      <div class="flex flex-col gap-sm">
+        <span class="font-label-md text-label-md text-primary">Map</span>
+        <div class="w-full h-32 rounded-lg overflow-hidden border border-outline-variant/30">
+          <iframe src="https://maps.google.com/maps?q=273%20%C4%91%C6%B0%E1%BB%9Dng%20C%E1%BB%95%20Nhu%E1%BA%BF%2C%20B%E1%BA%AFc%20T%E1%BB%AB%20Li%C3%AAm%2C%20H%C3%A0%20N%E1%BB%99i&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </footer>
+    </main>
+
+    <script type="module">
+      import { getDashboardStats } from "../js/admin.js";
+      import { isAuthenticated, getUserInfo, logoutUser } from "../js/auth.js";
+
+      // === Auth Guard ===
+      if (!isAuthenticated()) {
+        window.location.href = "/auth/login";
+      }
+      const userInfo = getUserInfo();
+      if (userInfo && userInfo.role !== "admin") {
+        window.location.href = "/";
+      }
+
+      // === Show admin info ===
+      if (userInfo) {
+        const name = userInfo.fullName || userInfo.email || "Admin";
+        const initial = name.charAt(0).toUpperCase();
+
+        document.getElementById("adminDisplayName").textContent = name;
+        document.getElementById("adminAvatarSidebar").textContent = initial;
+        document.getElementById("headerAdminName").textContent = name;
+        document.getElementById("headerAvatar").textContent = initial;
+      }
+
+      // === Today's date ===
+      const now = new Date();
+      document.getElementById("todayDate").textContent =
+        "Today: " +
+        now.toLocaleDateString("en-US", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        });
+
+      // === Log out ===
+      document
+        .getElementById("logoutBtn")
+        .addEventListener("click", async () => {
+          if (confirm("Are you sure you want to log out?")) {
+            await logoutUser();
+            window.location.href = "/auth/login";
+          }
+        });
+
+      // === Load Dashboard Stats ===
+      async function loadDashboard() {
+        const result = await getDashboardStats();
+        if (result.success) {
+          const d = result.dashboard;
+          document.getElementById("statOrders").textContent =
+            d.orders?.total?.toLocaleString("en-US") || "—";
+          document.getElementById("statRevenue").textContent =
+            d.orders?.revenue?.toLocaleString("en-US") || "—";
+          document.getElementById("statUsers").textContent =
+            d.users?.customers?.toLocaleString("en-US") || "—";
+          document.getElementById("statProducts").textContent =
+            d.products?.total?.toLocaleString("en-US") || "—";
+
+          // Recent activity
+          const activitiesContainer = document.getElementById(
+            "dashboardRecentActivities"
+          );
+          if (d.recentOrders && d.recentOrders.length > 0) {
+            activitiesContainer.innerHTML = d.recentOrders
+              .map(
+                (order) => `
+              <div class="flex items-center gap-md">
+                <div class="p-sm bg-primary-container/20 rounded-xl">
+                  <span class="material-symbols-outlined text-primary">local_mall</span>
+                </div>
+                <div class="flex-1">
+                  <h4 class="font-label-md text-on-surface">New order #${order._id.substring(0, 8)}</h4>
+                  <p class="text-label-sm text-on-surface-variant">${order.user?.fullName || order.shippingAddress?.fullName || "Walk-in customer"} - ${order.totalPrice.toLocaleString("en-US")}₫</p>
+                </div>
+                <span class="text-label-sm text-on-surface-variant">${new Date(order.createdAt).toLocaleDateString("en-US")}</span>
+              </div>
+            `
+              )
+              .join("");
+          } else {
+            activitiesContainer.innerHTML =
+              '<p class="text-on-surface-variant">No recent activity</p>';
+          }
+
+          // Chart
+          const chartContainer = document.getElementById(
+            "revenueChartContainer"
+          );
+          const labelsContainer = document.getElementById("revenueChartLabels");
+          if (d.revenueByDay && d.revenueByDay.length > 0) {
+            // Convert day data to map for easier lookup
+            const dayMap = {};
+            d.revenueByDay.forEach((item) => {
+              const key = `${item._id.year}-${String(item._id.month).padStart(2, "0")}-${String(item._id.day).padStart(2, "0")}`;
+              dayMap[key] = item.revenue;
+            });
+
+            // Get current week (Monday-Sunday)
+            const today = new Date();
+            const currentDayOfWeek = today.getDay();
+            const daysToMonday =
+              currentDayOfWeek === 0 ? 6 : currentDayOfWeek - 1; // Calculate days to Monday
+            const monday = new Date(today);
+            monday.setDate(monday.getDate() - daysToMonday);
+            monday.setHours(0, 0, 0, 0);
+
+            // Create array of 7 days (Monday-Sunday)
+            const weekDays = [];
+            for (let i = 0; i < 7; i++) {
+              const date = new Date(monday);
+              date.setDate(date.getDate() + i);
+              weekDays.push(date);
+            }
+
+            // Get max revenue for scaling
+            const weekRevs = weekDays.map((date) => {
+              const key = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+              return dayMap[key] || 0;
+            });
+            const maxWeekRev = Math.max(...weekRevs) || 1;
+
+            const dayNames = [
+              "Mon",
+              "Tue",
+              "Wed",
+              "Thu",
+              "Fri",
+              "Sat",
+              "Sun",
+            ];
+
+            const barsHtml = weekDays
+              .map((date, dayIdx) => {
+                const key = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+                const revenue = dayMap[key] || 0;
+                const heightPct =
+                  revenue > 0 ? Math.max(10, (revenue / maxWeekRev) * 250) : 5;
+                const dateStr = `${String(date.getDate()).padStart(2, "0")}/${String(date.getMonth() + 1).padStart(2, "0")}`;
+
+                return `<div class="relative flex-1 flex flex-col items-center gap-1">
+                <div class="relative w-full bg-primary-container/40 hover:bg-primary-container transition-all duration-300 rounded-t-xl group/bar" style="height: ${heightPct}px">
+                  <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 bg-inverse-surface text-inverse-on-surface text-xs px-2 py-1 rounded opacity-0 group-hover/bar:opacity-100 transition-opacity whitespace-nowrap z-10 pointer-events-none">
+                    ${revenue.toLocaleString("en-US")}₫
+                  </div>
+                </div>
+                <span class="text-xs text-on-surface-variant">${dateStr}</span>
+              </div>`;
+              })
+              .join("");
+
+            chartContainer.innerHTML = `
+              <div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+                <div class="border-b border-outline-variant/20 w-full h-0"></div>
+                <div class="border-b border-outline-variant/20 w-full h-0"></div>
+                <div class="border-b border-outline-variant/20 w-full h-0"></div>
+                <div class="border-b border-outline-variant/20 w-full h-0"></div>
+                <div class="border-b-2 border-outline-variant/50 w-full h-0"></div>
+              </div>
+              <div class="relative w-full h-full flex gap-1 items-end px-2">
+                ${barsHtml}
+              </div>
+            `;
+            labelsContainer.innerHTML = "";
+          }
+        }
+
+        // Re-trigger scroll reveal and other animations on dynamic dashboard elements
+        if (window.XamAnimations) {
+          window.XamAnimations.init();
+        }
+      }
+      loadDashboard();
+    </script>
+    <script src="../js/animations.js"></script>
+  </body>
+</html>

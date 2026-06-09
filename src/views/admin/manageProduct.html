@@ -1,0 +1,1311 @@
+﻿<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&amp;family=Plus+Jakarta+Sans:wght@200..800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../js/animations.css" />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-container": "#686554",
+              error: "#ba1a1a",
+              "tertiary-fixed-dim": "#58d5fe",
+              "surface-container-high": "#f3e6da",
+              "primary-fixed-dim": "#ffb95a",
+              "surface-container-lowest": "#ffffff",
+              "on-error": "#ffffff",
+              "surface-tint": "#845400",
+              secondary: "#625f4e",
+              "on-tertiary": "#ffffff",
+              "primary-container": "#ffb347",
+              "tertiary-container": "#52d0f9",
+              outline: "#847463",
+              "on-surface-variant": "#524535",
+              "on-secondary-fixed": "#1e1c0f",
+              "on-primary-container": "#704700",
+              "surface-dim": "#e5d8cc",
+              "inverse-surface": "#372f27",
+              "on-tertiary-fixed-variant": "#004d61",
+              "on-background": "#211a13",
+              "on-primary": "#ffffff",
+              "surface-bright": "#fff8f4",
+              "inverse-primary": "#ffb95a",
+              "outline-variant": "#d6c3b0",
+              "secondary-container": "#e8e3cd",
+              "on-primary-fixed-variant": "#643f00",
+              tertiary: "#006780",
+              "error-container": "#ffdad6",
+              "surface-variant": "#eee0d4",
+              "secondary-fixed": "#e8e3cd",
+              "on-error-container": "#93000a",
+              primary: "#845400",
+              "on-surface": "#211a13",
+              "on-primary-fixed": "#2a1800",
+              "primary-fixed": "#ffddb6",
+              surface: "#fff8f4",
+              "tertiary-fixed": "#b8eaff",
+              "surface-container-low": "#fff1e5",
+              background: "#fff8f4",
+              "inverse-on-surface": "#fceee2",
+              "surface-container-highest": "#eee0d4",
+              "secondary-fixed-dim": "#ccc7b2",
+              "on-tertiary-container": "#00576d",
+              "on-secondary": "#ffffff",
+              "on-secondary-fixed-variant": "#4a4737",
+              "on-tertiary-fixed": "#001f28",
+              "surface-container": "#f9ecdf",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              lg: "24px",
+              xs: "4px",
+              xl: "40px",
+              "margin-mobile": "16px",
+              "container-max": "1200px",
+              unit: "4px",
+              gutter: "24px",
+              sm: "8px",
+              md: "16px",
+            },
+            fontFamily: {
+              "label-md": ["Plus Jakarta Sans"],
+              "headline-lg": ["Quicksand"],
+              "headline-md": ["Quicksand"],
+              "body-md": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Quicksand"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "label-sm": ["Plus Jakarta Sans"],
+              "headline-xl": ["Quicksand"],
+            },
+            fontSize: {
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "700" },
+              ],
+              "headline-md": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "headline-lg-mobile": [
+                "28px",
+                { lineHeight: "36px", fontWeight: "700" },
+              ],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "label-sm": ["12px", { lineHeight: "16px", fontWeight: "700" }],
+              "headline-xl": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #fff8f4;
+        color: #211a13;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .soft-shadow {
+        box-shadow: 0 10px 30px -10px rgba(132, 84, 0, 0.08);
+      }
+      .table-row-hover:hover {
+        background-color: #f9ecdf;
+      }
+      .ts-control {
+        border-radius: 9999px !important;
+        padding: 0.5rem 1.5rem !important;
+        border: none !important;
+        background-color: #f9ecdf !important;
+        font-family: inherit;
+        font-size: 14px;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+      }
+      .ts-control > input {
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body class="font-body-md text-body-md">
+    <!-- SideNavBar (Authority: Admin Context) -->
+    <aside
+      class="flex flex-col h-screen fixed left-0 top-0 border-r border-outline-variant bg-surface-container-low dark:bg-surface-container-lowest w-64 shadow-md z-50"
+    >
+      <div class="px-lg py-xl">
+        <div class="flex items-center gap-3 mb-sm">
+          <img src="../images/logo.png" alt="Gray Pet Shop logo" class="w-10 h-10 rounded-full object-cover border-2 border-primary-container shadow-sm" />
+          <h1 class="font-headline-sm text-headline-sm text-primary">
+            Admin Panel
+          </h1>
+        </div>
+        <p class="text-label-sm text-on-surface-variant opacity-70">
+          Gray Pet Shop Management
+        </p>
+        <div
+          class="mt-md pt-md border-t border-outline-variant/30 flex items-center gap-sm"
+        >
+          <div
+            id="adminAvatarSidebar"
+            class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-label-sm flex-shrink-0"
+          >
+            A
+          </div>
+          <span
+            id="adminDisplayName"
+            class="text-label-sm text-on-surface font-semibold truncate max-w-[130px]"
+            >Admin</span
+          >
+        </div>
+      </div>
+      <nav class="flex-1 space-y-1 mt-4">
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors"
+          href="/admin"
+        >
+          <span class="material-symbols-outlined">dashboard</span>
+          <span class="font-label-md text-label-md">Dashboard</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors"
+          href="/admin/manageOrder"
+        >
+          <span class="material-symbols-outlined">shopping_bag</span>
+          <span class="font-label-md text-label-md">Orders</span>
+        </a>
+        <!-- Active State: Products -->
+        <a
+          class="bg-primary-container text-on-primary-container rounded-xl mx-2 px-4 py-3 flex items-center gap-3 shadow-sm"
+          href="/admin/manageProduct"
+        >
+          <span
+            class="material-symbols-outlined"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >inventory_2</span
+          >
+          <span class="font-label-md text-label-md">Products</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors"
+          href="/admin/manageCategory"
+        >
+          <span class="material-symbols-outlined">category</span>
+          <span class="font-label-md text-label-md">Categories</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors"
+          href="/admin/manageBrand"
+        >
+          <span class="material-symbols-outlined">verified</span>
+          <span class="font-label-md text-label-md">Brands</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors"
+          href="/admin/manageCustomer"
+        >
+          <span class="material-symbols-outlined">group</span>
+          <span class="font-label-md text-label-md">Users</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors"
+          href="/admin/report"
+        >
+          <span class="material-symbols-outlined">assessment</span>
+          <span class="font-label-md text-label-md">Reports</span>
+        </a>
+      </nav>
+      <div class="p-4 border-t border-outline-variant">
+        <button
+          id="logoutBtn"
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl w-full px-4 py-3 flex items-center gap-3 transition-colors cursor-pointer"
+        >
+          <span class="material-symbols-outlined">logout</span>
+          <span class="font-label-md text-label-md">Logout</span>
+        </button>
+      </div>
+    </aside>
+    <!-- Main Content Canvas -->
+    <main class="ml-64 p-xl min-h-screen">
+      <!-- Header Actions Section -->
+      <header
+        class="flex flex-col md:flex-row justify-between items-start md:items-center mb-xl gap-md"
+      >
+        <div>
+          <h2 class="font-headline-lg text-headline-lg text-on-surface section-heading">
+            Product Management
+          </h2>
+
+        </div>
+        <button
+          id="addProductBtn"
+          class="bg-primary-container text-on-primary-container font-label-md text-label-md px-lg py-3 rounded-full flex items-center gap-2 hover:scale-105 transition-transform shadow-md active:scale-95 btn-ripple"
+        >
+          <span class="material-symbols-outlined">add</span>
+          Add Product
+        </button>
+      </header>
+      <!-- Filters and Search -->
+      <div
+        class="bg-white rounded-[24px] p-md mb-lg border border-outline-variant soft-shadow flex flex-wrap items-center gap-md reveal delay-1"
+      >
+        <div class="flex-1 min-w-[300px] relative">
+          <span
+            class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline"
+            >search</span
+          >
+          <input
+            class="w-full bg-surface-container-low border-none rounded-full py-3 pl-12 pr-4 focus:ring-2 focus:ring-primary-container font-body-md text-body-md"
+            placeholder="Search products by name..."
+            type="text"
+          />
+        </div>
+        <select
+          id="tableCategoryFilter"
+          class="bg-surface-container-low border-none rounded-full py-3 px-lg focus:ring-2 focus:ring-primary-container font-label-md text-label-md text-on-surface-variant"
+        >
+          <option value="">All categories</option>
+        </select>
+        <button
+          class="p-3 bg-surface-container-low rounded-full text-on-surface-variant hover:bg-secondary-container transition-colors"
+        >
+          <span class="material-symbols-outlined">filter_list</span>
+        </button>
+      </div>
+      <!-- Products Table -->
+      <div
+        class="bg-white rounded-[24px] border border-outline-variant soft-shadow overflow-hidden reveal"
+      >
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead class="bg-surface-container-low">
+              <tr>
+                <th
+                  class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider"
+                >
+                  Image
+                </th>
+                <th
+                  class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider"
+                >
+                  Product Name
+                </th>
+                <th
+                  class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider"
+                >
+                  Categories
+                </th>
+                <th
+                  class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider"
+                >
+                  Sale Price
+                </th>
+                <th
+                  class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider"
+                >
+                  Stock
+                </th>
+                <th
+                  class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right"
+                >
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody
+              id="productsTableBody"
+              class="divide-y divide-outline-variant"
+            >
+              <!-- Product rows will be rendered here dynamically -->
+              <tr class="table-row-hover transition-colors">
+                <td colspan="6" class="px-lg py-xl text-center">
+                  <p class="text-on-surface-variant">Loading products...</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Pagination -->
+        <div
+          class="px-lg py-md bg-surface-container-low flex justify-between items-center"
+        >
+          <span class="text-label-sm text-on-surface-variant"
+            >Showing <span id="productCountStart">0</span> -
+            <span id="productCountEnd">0</span> of
+            <span id="totalProductsFooter">0</span> products</span
+          >
+          <div class="flex gap-2">
+            <button
+              class="p-2 rounded-full hover:bg-surface-container-high text-on-surface-variant disabled:opacity-30"
+              id="prevPageBtn"
+              disabled=""
+            >
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <div id="paginationContainer" class="flex gap-2">
+              <!-- Page buttons will be rendered here -->
+            </div>
+            <button
+              class="p-2 rounded-full hover:bg-surface-container-high text-on-surface-variant"
+              id="nextPageBtn"
+            >
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+          </div>
+        </div>
+
+      <footer class="w-full py-xl px-lg grid grid-cols-1 md:grid-cols-5 gap-lg max-w-container-max mx-auto bg-surface-container-highest dark:bg-surface-container mt-xl rounded-[24px]">
+        <div class="col-span-1 md:col-span-1">
+          <span class="font-headline-sm text-headline-sm text-on-surface">Gray Pet Shop</span>
+          <p class="mt-md text-on-surface-variant text-label-sm">
+            A premium pet care store, bringing warmth and trust to your four-legged friend.
+          </p>
+        </div>
+        <div class="flex flex-col gap-sm">
+          <span class="font-label-md text-label-md text-primary">Contact</span>
+          <span class="text-on-surface-variant text-label-sm">Address: Bac Tu Liem, Hanoi</span>
+          <span class="text-on-surface-variant text-label-sm">Phone: 038.339.2903</span>
+          <span class="text-on-surface-variant text-label-sm">Email: nampham050723@gmail.com</span>
+        </div>
+        <div class="flex flex-col gap-sm">
+          <span class="font-label-md text-label-md text-primary">Policies</span>
+          <a class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity" href="#">Privacy Policy</a>
+          <a class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity" href="#">Terms of Service</a>
+          <a class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity" href="#">Shipping &amp; Returns</a>
+        </div>
+        <div class="flex flex-col gap-sm">
+          <span class="font-label-md text-label-md text-primary">Social Media</span>
+          <a class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity flex items-center gap-2" href="https://www.facebook.com/pdn.0507" target="_blank">
+            <span class="material-symbols-outlined text-sm">public</span> Facebook
+          </a>
+          <a class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity flex items-center gap-2" href="https://www.instagram.com/dinhnam.ph" target="_blank">
+            <span class="material-symbols-outlined text-sm">camera_alt</span> Instagram
+          </a>
+          <p class="mt-4 text-on-surface-variant text-[10px]">
+            © 2026 Gray Pet Shop. All rights reserved.
+          </p>
+        </div>
+      <div class="flex flex-col gap-sm">
+        <span class="font-label-md text-label-md text-primary">Map</span>
+        <div class="w-full h-32 rounded-lg overflow-hidden border border-outline-variant/30">
+          <iframe src="https://maps.google.com/maps?q=273%20%C4%91%C6%B0%E1%BB%9Dng%20C%E1%BB%95%20Nhu%E1%BA%BF%2C%20B%E1%BA%AFc%20T%E1%BB%AB%20Li%C3%AAm%2C%20H%C3%A0%20N%E1%BB%99i&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </footer>
+    </main>
+
+    <!-- Modal for Add/Edit Product -->
+    <div
+      id="productModal"
+      class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-lg"
+    >
+      <div
+        class="bg-white rounded-[32px] w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-xl"
+      >
+        <div
+          class="sticky top-0 bg-white px-xl py-lg border-b border-outline-variant flex items-center justify-between"
+        >
+          <h3
+            id="modalTitle"
+            class="font-headline-lg text-headline-lg text-on-surface"
+          >
+            Add Product
+          </h3>
+          <button
+            id="closeModalBtn"
+            class="p-2 text-on-surface-variant hover:text-on-surface transition-colors"
+          >
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+
+        <form id="productForm" class="p-xl space-y-lg">
+          <input type="hidden" id="productId" />
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+            <div>
+              <label
+                class="block font-label-md text-label-md text-on-surface mb-sm"
+              >
+                Product Name *
+              </label>
+              <input
+                id="productName"
+                type="text"
+                class="w-full bg-surface-container-low border-none rounded-full px-lg py-md focus:ring-2 focus:ring-primary-container outline-none"
+                placeholder="Enter product name"
+                required
+              />
+            </div>
+
+            <div>
+              <label
+                class="block font-label-md text-label-md text-on-surface mb-sm"
+              >
+                Brand *
+              </label>
+              <select
+                id="productBrand"
+                class="w-full bg-surface-container-low border-none rounded-full px-lg py-md focus:ring-2 focus:ring-primary-container outline-none"
+                required
+              >
+                <option value="">Select brand</option>
+              </select>
+            </div>
+
+            <div>
+              <label
+                class="block font-label-md text-label-md text-on-surface mb-sm"
+              >
+                Category *
+              </label>
+              <select
+                id="productCategory"
+                class="w-full bg-surface-container-low border-none rounded-full px-lg py-md focus:ring-2 focus:ring-primary-container outline-none"
+                required
+              >
+                <option value="">Select category</option>
+              </select>
+            </div>
+
+            <div>
+              <label
+                class="block font-label-md text-label-md text-on-surface mb-sm"
+              >
+                Sale Price (VND) *
+              </label>
+              <input
+                id="productPrice"
+                type="number"
+                class="w-full bg-surface-container-low border-none rounded-full px-lg py-md focus:ring-2 focus:ring-primary-container outline-none"
+                placeholder="0"
+                min="0"
+                required
+              />
+            </div>
+
+            <div>
+              <label
+                class="block font-label-md text-label-md text-on-surface mb-sm"
+              >
+                Stock (Quantity) *
+              </label>
+              <input
+                id="productQuantity"
+                type="number"
+                class="w-full bg-surface-container-low border-none rounded-full px-lg py-md focus:ring-2 focus:ring-primary-container outline-none"
+                placeholder="0"
+                min="0"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+            <!-- Brands merged into Categories -->
+            <div>
+              <label class="block font-label-md text-label-md text-on-surface mb-sm">Weight</label>
+              <input id="productWeight" type="text" class="w-full bg-surface-container-low border-none rounded-full px-lg py-md focus:ring-2 focus:ring-primary-container outline-none" placeholder="VD: 2kg" />
+            </div>
+            <div>
+              <label class="block font-label-md text-label-md text-on-surface mb-sm">Life Stage</label>
+              <input id="productLifeStage" type="text" class="w-full bg-surface-container-low border-none rounded-full px-lg py-md focus:ring-2 focus:ring-primary-container outline-none" placeholder="VD: Adult Cats" />
+            </div>
+            <div>
+              <label class="block font-label-md text-label-md text-on-surface mb-sm">Flavor</label>
+              <input id="productFlavor" type="text" class="w-full bg-surface-container-low border-none rounded-full px-lg py-md focus:ring-2 focus:ring-primary-container outline-none" placeholder="e.g. Salmon" />
+            </div>
+            <div>
+              <label class="block font-label-md text-label-md text-on-surface mb-sm">Origin</label>
+              <input id="productOrigin" type="text" class="w-full bg-surface-container-low border-none rounded-full px-lg py-md focus:ring-2 focus:ring-primary-container outline-none" placeholder="e.g. France" />
+            </div>
+            <div>
+              <label class="block font-label-md text-label-md text-on-surface mb-sm">Benefits (comma-separated)</label>
+              <input id="productBenefits" type="text" class="w-full bg-surface-container-low border-none rounded-full px-lg py-md focus:ring-2 focus:ring-primary-container outline-none" placeholder="e.g. Dental care, Shiny coat" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block font-label-md text-label-md text-on-surface mb-sm">Ingredients (comma-separated)</label>
+            <textarea id="productIngredients" class="w-full bg-surface-container-low border-none rounded-lg px-lg py-md focus:ring-2 focus:ring-primary-container outline-none" placeholder="e.g. Salmon 50%, Vitamin E..." rows="2"></textarea>
+          </div>
+
+          <div>
+            <label class="block font-label-md text-label-md text-on-surface mb-sm">Short description</label>
+            <textarea id="productDescription" class="w-full bg-surface-container-low border-none rounded-lg px-lg py-md focus:ring-2 focus:ring-primary-container outline-none" placeholder="Enter a short product description" rows="3"></textarea>
+          </div>
+
+          <div>
+            <label class="block font-label-md text-label-md text-on-surface mb-sm">Detailed description</label>
+            <textarea id="productDetailedDescription" class="w-full bg-surface-container-low border-none rounded-lg px-lg py-md focus:ring-2 focus:ring-primary-container outline-none" placeholder="Detailed description for the details tab" rows="5"></textarea>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+            <div>
+              <label class="block font-label-md text-label-md text-on-surface mb-sm">Image URL</label>
+              <input id="productImage" type="url" class="w-full bg-surface-container-low border-none rounded-full px-lg py-md focus:ring-2 focus:ring-primary-container outline-none" placeholder="https://..." />
+            </div>
+            <div>
+              <label class="block font-label-md text-label-md text-on-surface mb-sm">Upload image from computer</label>
+              <input id="productImageFile" type="file" accept="image/*" class="w-full bg-surface-container-low border-none rounded-full px-lg py-2 focus:ring-2 focus:ring-primary-container outline-none text-body-sm" />
+              <p id="currentImageText" class="mt-xs text-xs text-primary hidden"></p>
+            </div>
+          </div>
+
+          <div class="flex gap-md pt-lg">
+            <button
+              type="submit"
+              id="submitBtn"
+              class="flex-1 bg-primary text-on-primary font-label-md px-lg py-md rounded-full hover:scale-105 transition-transform shadow-md active:scale-95 btn-ripple"
+            >
+              Save Product
+            </button>
+            <button
+              type="button"
+              id="cancelBtn"
+              class="flex-1 bg-surface-container-high text-on-surface font-label-md px-lg py-md rounded-full hover:bg-surface-container-highest transition-colors"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal for Add/Edit Category -->
+    <div id="categoryModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-lg">
+      <div class="bg-white rounded-[32px] w-full max-w-md shadow-xl overflow-hidden">
+        <div class="sticky top-0 bg-white px-xl py-lg border-b border-outline-variant flex items-center justify-between">
+          <h3 id="categoryModalTitle" class="font-headline-lg text-headline-lg text-on-surface">Add category</h3>
+          <button id="closeCategoryModalBtn" class="p-2 text-on-surface-variant hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <form id="categoryForm" class="p-xl space-y-lg">
+          <input type="hidden" id="categoryId" />
+          <div>
+            <label class="block font-label-md text-label-md text-on-surface mb-sm">Category name</label>
+            <input id="categoryName" type="text" class="w-full bg-surface-container-low border-none rounded-full px-lg py-md focus:ring-2 focus:ring-primary-container outline-none" placeholder="Enter category name" required />
+          </div>
+          <div class="flex gap-md pt-lg">
+            <button type="submit" class="flex-1 bg-primary text-on-primary font-label-md px-lg py-md rounded-full hover:scale-105 transition-transform shadow-md active:scale-95 btn-ripple">Save category</button>
+            <button type="button" id="cancelCategoryBtn" class="flex-1 bg-surface-container-high text-on-surface font-label-md px-lg py-md rounded-full hover:bg-surface-container-highest transition-colors">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal for Add/Edit Brand -->
+    <div id="brandModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-lg">
+      <div class="bg-white rounded-[32px] w-full max-w-md shadow-xl overflow-hidden">
+        <div class="sticky top-0 bg-white px-xl py-lg border-b border-outline-variant flex items-center justify-between">
+          <h3 id="brandModalTitle" class="font-headline-lg text-headline-lg text-on-surface">Add brand</h3>
+          <button id="closeBrandModalBtn" class="p-2 text-on-surface-variant hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <form id="brandForm" class="p-xl space-y-lg">
+          <input type="hidden" id="brandId" />
+          <div>
+            <label class="block font-label-md text-label-md text-on-surface mb-sm">Brand name</label>
+            <input id="brandName" type="text" class="w-full bg-surface-container-low border-none rounded-full px-lg py-md focus:ring-2 focus:ring-primary-container outline-none" placeholder="Enter brand name" required />
+          </div>
+          <div class="flex gap-md pt-lg">
+            <button type="submit" class="flex-1 bg-primary text-on-primary font-label-md px-lg py-md rounded-full hover:scale-105 transition-transform shadow-md active:scale-95 btn-ripple">Save brand</button>
+            <button type="button" id="cancelBrandBtn" class="flex-1 bg-surface-container-high text-on-surface font-label-md px-lg py-md rounded-full hover:bg-surface-container-highest transition-colors">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="module">
+      import {
+        getAdminProducts,
+        createProduct,
+        updateProduct,
+        deleteProduct,
+        getAdminCategories,
+        getAdminBrands,
+        createCategory,
+        updateCategory,
+        deleteCategory,
+        createBrand,
+        updateBrand,
+        deleteBrand,
+      } from "../js/admin.js";
+      import { logoutUser, getUserInfo, isAuthenticated } from "../js/auth.js";
+
+      // Check auth
+      if (!isAuthenticated() || getUserInfo()?.role !== "admin") {
+        window.location.href = "/auth/login";
+      }
+
+      // DOM Elements
+      const addProductBtn = document.getElementById("addProductBtn");
+      const productModal = document.getElementById("productModal");
+      const closeModalBtn = document.getElementById("closeModalBtn");
+      const cancelBtn = document.getElementById("cancelBtn");
+      const productForm = document.getElementById("productForm");
+      const modalTitle = document.getElementById("modalTitle");
+      const submitBtn = document.getElementById("submitBtn");
+      const productsTableBody = document.getElementById("productsTableBody");
+      const searchInput = document.querySelector(
+        'input[placeholder*="Search"]',
+      );
+      const categorySelect = document.getElementById("tableCategoryFilter");
+      const categoryModal = document.getElementById("categoryModal");
+      const brandModal = document.getElementById("brandModal");
+      const closeCategoryModalBtn = document.getElementById("closeCategoryModalBtn");
+      const cancelCategoryBtn = document.getElementById("cancelCategoryBtn");
+      const categoryForm = document.getElementById("categoryForm");
+      const categoryModalTitle = document.getElementById("categoryModalTitle");
+      const categoryNameInput = document.getElementById("categoryName");
+      const categoryIdInput = document.getElementById("categoryId");
+      const closeBrandModalBtn = document.getElementById("closeBrandModalBtn");
+      const cancelBrandBtn = document.getElementById("cancelBrandBtn");
+      const brandForm = document.getElementById("brandForm");
+      const brandModalTitle = document.getElementById("brandModalTitle");
+      const brandNameInput = document.getElementById("brandName");
+      const brandIdInput = document.getElementById("brandId");
+      const paginationContainer = document.getElementById(
+        "paginationContainer",
+      );
+      const prevPageBtn = document.getElementById("prevPageBtn");
+      const nextPageBtn = document.getElementById("nextPageBtn");
+
+      let currentPage = 1;
+      let currentFilters = {};
+      let editingProductId = null;
+      let totalPages = 1;
+      let totalProducts = 0;
+
+      // Update pagination UI
+      function updatePaginationUI(pagination) {
+        if (!pagination) return;
+
+        totalPages = pagination.pages;
+        totalProducts = pagination.total;
+
+        // Update display text
+        const startNum = (pagination.page - 1) * pagination.limit + 1;
+        const endNum = Math.min(
+          pagination.page * pagination.limit,
+          pagination.total,
+        );
+
+        document.getElementById("productCountStart").textContent = startNum;
+        document.getElementById("productCountEnd").textContent = endNum;
+        document.getElementById("totalProductsFooter").textContent =
+          pagination.total;
+
+        // Render page buttons
+        paginationContainer.innerHTML = "";
+        for (let i = 1; i <= totalPages; i++) {
+          const btn = document.createElement("button");
+          btn.className =
+            i === currentPage
+              ? "w-10 h-10 rounded-full bg-primary-container text-on-primary-container font-label-md flex items-center justify-center"
+              : "w-10 h-10 rounded-full hover:bg-surface-container-high text-on-surface-variant font-label-md flex items-center justify-center";
+          btn.textContent = i;
+          btn.addEventListener("click", () => goToPage(i));
+          paginationContainer.appendChild(btn);
+        }
+
+        // Update prev/next button states
+        prevPageBtn.disabled = currentPage === 1;
+        nextPageBtn.disabled = currentPage === totalPages;
+      }
+
+      // Go to specific page
+      function goToPage(page) {
+        if (page < 1 || page > totalPages) return;
+        currentPage = page;
+        loadProducts();
+      }
+
+      // Format currency
+      function formatPrice(price) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "VND",
+          minimumFractionDigits: 0,
+        }).format(price);
+      }
+
+      // Render product row
+      function renderProductRow(product) {
+        const stockStatus =
+          product.quantity < 10
+            ? `<span class="w-2 h-2 rounded-full bg-error"></span><span class="font-body-md text-body-md text-error">${product.quantity} (Low stock)</span>`
+            : `<span class="w-2 h-2 rounded-full bg-tertiary"></span><span class="font-body-md text-body-md">${product.quantity}</span>`;
+
+        return `
+          <tr class="table-row-hover transition-colors">
+            <td class="px-lg py-md">
+              <div class="w-16 h-16 rounded-xl overflow-hidden bg-surface-container-highest border border-outline-variant">
+                <img
+                  class="w-full h-full object-cover"
+                  src="${product.image || "https://via.placeholder.com/64?text=No+Image"}"
+                  alt="${product.name}"
+                />
+              </div>
+            </td>
+            <td class="px-lg py-md">
+              <div class="flex flex-col">
+                <span class="font-label-md text-label-md text-on-surface">${product.name}</span>
+                <span class="text-label-sm text-on-surface-variant">ID: ${product._id.substring(0, 8)}</span>
+              </div>
+            </td>
+            <td class="px-lg py-md">
+              <span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-label-sm font-bold uppercase">
+                ${product.category}
+              </span>
+            </td>
+            <td class="px-lg py-md">
+              <span class="font-label-md text-label-md text-primary">${formatPrice(product.price)}</span>
+            </td>
+            <td class="px-lg py-md">
+              <div class="flex items-center gap-2">
+                ${stockStatus}
+              </div>
+            </td>
+            <td class="px-lg py-md text-right">
+              <div class="flex justify-end gap-2">
+                <button
+                  class="p-2 text-on-surface-variant hover:text-primary transition-colors hover:bg-primary-container/10 rounded-full edit-btn"
+                  data-id="${product._id}"
+                >
+                  <span class="material-symbols-outlined">edit</span>
+                </button>
+                <button
+                  class="p-2 text-on-surface-variant hover:text-error transition-colors hover:bg-error-container/20 rounded-full delete-btn"
+                  data-id="${product._id}"
+                  data-name="${product.name}"
+                >
+                  <span class="material-symbols-outlined">delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }
+
+      // Load and render products
+      async function loadProducts() {
+        try {
+          const result = await getAdminProducts({
+            page: currentPage,
+            limit: 10,
+            ...currentFilters,
+          });
+
+          if (result && result.success && result.products) {
+            if (result.products.length === 0) {
+              productsTableBody.innerHTML = `
+                <tr>
+                  <td colspan="6" class="px-lg py-xl text-center">
+                    <p class="text-on-surface-variant">No products found</p>
+                  </td>
+                </tr>
+              `;
+              updatePaginationUI(result.pagination);
+            } else {
+              productsTableBody.innerHTML = result.products
+                .map(renderProductRow)
+                .join("");
+              attachRowEventListeners();
+              updatePaginationUI(result.pagination);
+            }
+          } else {
+            productsTableBody.innerHTML = `
+              <tr>
+                <td colspan="6" class="px-lg py-xl text-center">
+                  <p class="text-error">Error loading data: ${result?.message || "Unknown error"}</p>
+                </td>
+              </tr>
+            `;
+            if (result?.message === "Invalid token" || result?.message === "No token provided") {
+              alert("Your session has expired. Please log in again.");
+              localStorage.removeItem("token");
+              localStorage.removeItem("user");
+              window.location.href = "/auth/login";
+            }
+          }
+        } catch (error) {
+          productsTableBody.innerHTML = `
+            <tr>
+              <td colspan="6" class="px-lg py-xl text-center">
+                <p class="text-error">Connection error: ${error.message}</p>
+              </td>
+            </tr>
+          `;
+        }
+      }
+
+      // Attach event listeners to edit and delete buttons
+      function attachRowEventListeners() {
+        // Edit buttons
+        document.querySelectorAll(".edit-btn").forEach((btn) => {
+          btn.addEventListener("click", async () => {
+            const productId = btn.dataset.id;
+            const response = await fetch(
+              `http://localhost:5000/api/products/${productId}`,
+            );
+            const product = await response.json();
+            openEditModal(product);
+          });
+        });
+
+        // Delete buttons
+        document.querySelectorAll(".delete-btn").forEach((btn) => {
+          btn.addEventListener("click", async () => {
+            const productId = btn.dataset.id;
+            const productName = btn.dataset.name;
+            if (confirm(`Are you sure you want to delete "${productName}"?`)) {
+              const result = await deleteProduct(productId);
+              if (result.success) {
+                alert(result.message || "Product deleted successfully");
+                loadProducts();
+              } else {
+                alert(result.message || "Error deleting product");
+              }
+            }
+          });
+        });
+      }
+
+      const categoryOptionsCache = new Map();
+      const brandOptionsCache = new Map();
+
+      const renderCategoryRow = (category) => `
+        <tr class="table-row-hover transition-colors">
+          <td class="px-lg py-md">${category.name}</td>
+          <td class="px-lg py-md text-right">
+            <div class="flex justify-end gap-2">
+              <button data-id="${category._id}" data-name="${category.name}" class="p-2 text-on-surface-variant hover:text-primary transition-colors hover:bg-primary-container/10 rounded-full edit-category-btn">
+                <span class="material-symbols-outlined">edit</span>
+              </button>
+              <button data-id="${category._id}" data-name="${category.name}" class="p-2 text-on-surface-variant hover:text-error transition-colors hover:bg-error-container/20 rounded-full delete-category-btn">
+                <span class="material-symbols-outlined">delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+
+      const renderBrandRow = (brand) => `
+        <tr class="table-row-hover transition-colors">
+          <td class="px-lg py-md">${brand.name}</td>
+          <td class="px-lg py-md text-right">
+            <div class="flex justify-end gap-2">
+              <button data-id="${brand._id}" data-name="${brand.name}" class="p-2 text-on-surface-variant hover:text-primary transition-colors hover:bg-primary-container/10 rounded-full edit-brand-btn">
+                <span class="material-symbols-outlined">edit</span>
+              </button>
+              <button data-id="${brand._id}" data-name="${brand.name}" class="p-2 text-on-surface-variant hover:text-error transition-colors hover:bg-error-container/20 rounded-full delete-brand-btn">
+                <span class="material-symbols-outlined">delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+
+      let brandSelectInstance = null;
+      let categorySelectInstance = null;
+
+      const populateBrandSelect = (brands) => {
+        const select = document.getElementById("productBrand");
+        if (!select) return;
+        if (brandSelectInstance) brandSelectInstance.destroy();
+        select.innerHTML = `<option value="">Select brand</option>${brands
+          .map((item) => `<option value="${item.name}">${item.name}</option>`)
+          .join("")}`;
+        brandSelectInstance = new TomSelect("#productBrand", {
+          create: false,
+          sortField: { field: "text", direction: "asc" },
+          placeholder: "Search brands...",
+        });
+      };
+
+      const populateCategorySelect = (categories) => {
+        const select = document.getElementById("productCategory");
+        if (!select) return;
+        if (categorySelectInstance) categorySelectInstance.destroy();
+        select.innerHTML = `<option value="">Select category</option>${categories
+          .map((item) => `<option value="${item.name}">${item.name}</option>`)
+          .join("")}`;
+        categorySelectInstance = new TomSelect("#productCategory", {
+          create: false,
+          sortField: { field: "text", direction: "asc" },
+          placeholder: "Search categories...",
+        });
+      };
+
+      const populateCategoryFilter = (categories) => {
+        categorySelect.innerHTML = `<option value="">All categories</option>${categories
+          .map((cat) => `<option value="${cat.name}">${cat.name}</option>`)
+          .join("")}`;
+      };
+
+      const loadCategoriesAndBrands = async () => {
+        const [categoriesResult, brandsResult] = await Promise.all([
+          getAdminCategories(),
+          getAdminBrands(),
+        ]);
+        const categories = categoriesResult.success ? categoriesResult.categories : [];
+        const brands = brandsResult.success ? brandsResult.brands : [];
+        populateBrandSelect(brands);
+        populateCategorySelect(categories);
+        populateCategoryFilter(categories);
+      };
+
+      const attachCategoryRowListeners = () => {
+        document.querySelectorAll(".edit-category-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            categoryIdInput.value = btn.dataset.id;
+            categoryNameInput.value = btn.dataset.name;
+            categoryModalTitle.textContent = "Edit category";
+            categoryModal.classList.remove("hidden");
+          });
+        });
+        document.querySelectorAll(".delete-category-btn").forEach((btn) => {
+          btn.addEventListener("click", async () => {
+            if (confirm(`Delete category "${btn.dataset.name}"?`)) {
+              const result = await deleteCategory(btn.dataset.id);
+              if (result.success) {
+                alert(result.message);
+                loadCategoriesAndBrands();
+              } else {
+                alert(result.message || "Cannot delete category");
+              }
+            }
+          });
+        });
+      };
+
+      const attachBrandRowListeners = () => {
+        document.querySelectorAll(".edit-brand-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            brandIdInput.value = btn.dataset.id;
+            brandNameInput.value = btn.dataset.name;
+            brandModalTitle.textContent = "Edit brand";
+            brandModal.classList.remove("hidden");
+          });
+        });
+        document.querySelectorAll(".delete-brand-btn").forEach((btn) => {
+          btn.addEventListener("click", async () => {
+            if (confirm(`Delete brand "${btn.dataset.name}"?`)) {
+              const result = await deleteBrand(btn.dataset.id);
+              if (result.success) {
+                alert(result.message);
+                loadCategoriesAndBrands();
+              } else {
+                alert(result.message || "Cannot delete brand");
+              }
+            }
+          });
+        });
+      };
+
+      const openCategoryModal = () => {
+        categoryIdInput.value = "";
+        categoryNameInput.value = "";
+        categoryModalTitle.textContent = "Add category";
+        categoryModal.classList.remove("hidden");
+      };
+
+      const openBrandModal = () => {
+        brandIdInput.value = "";
+        brandNameInput.value = "";
+        brandModalTitle.textContent = "Add brand";
+        brandModal.classList.remove("hidden");
+      };
+
+      const closeCategoryModal = () => {
+        categoryModal.classList.add("hidden");
+        categoryForm.reset();
+      };
+
+      const closeBrandModal = () => {
+        brandModal.classList.add("hidden");
+        brandForm.reset();
+      };
+
+      categoryForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const payload = { name: categoryNameInput.value.trim() };
+        let result;
+        if (categoryIdInput.value) {
+          result = await updateCategory(categoryIdInput.value, payload);
+        } else {
+          result = await createCategory(payload);
+        }
+        if (result.success) {
+          alert(result.message);
+          closeCategoryModal();
+          loadCategoriesAndBrands();
+        } else {
+          alert(result.message || "Error saving category");
+        }
+      });
+
+      brandForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const payload = { name: brandNameInput.value.trim() };
+        let result;
+        if (brandIdInput.value) {
+          result = await updateBrand(brandIdInput.value, payload);
+        } else {
+          result = await createBrand(payload);
+        }
+        if (result.success) {
+          alert(result.message);
+          closeBrandModal();
+          loadCategoriesAndBrands();
+        } else {
+          alert(result.message || "Error saving brand");
+        }
+      });
+
+      document.getElementById("closeCategoryModalBtn")?.addEventListener("click", closeCategoryModal);
+      document.getElementById("cancelCategoryBtn")?.addEventListener("click", closeCategoryModal);
+      document.getElementById("closeBrandModalBtn")?.addEventListener("click", closeBrandModal);
+      document.getElementById("cancelBrandBtn")?.addEventListener("click", closeBrandModal);
+
+      document.addEventListener("click", (event) => {
+        if (event.target === categoryModal) closeCategoryModal();
+        if (event.target === brandModal) closeBrandModal();
+      });
+
+      // Open add/edit modal
+      function openAddModal() {
+        editingProductId = null;
+        modalTitle.textContent = "Add Product";
+        submitBtn.textContent = "Add Product";
+        productForm.reset();
+        
+        const imgFileText = document.getElementById("currentImageText");
+        if (imgFileText) imgFileText.classList.add("hidden");
+        
+        productModal.classList.remove("hidden");
+      }
+
+      function openEditModal(product) {
+        editingProductId = product._id;
+        modalTitle.textContent = "Edit Product";
+        submitBtn.textContent = "Update";
+
+        document.getElementById("productId").value = product._id;
+        document.getElementById("productName").value = product.name;
+
+        if (brandSelectInstance) {
+          brandSelectInstance.setValue(product.brand || "");
+        } else {
+          document.getElementById("productBrand").value = product.brand || "";
+        }
+
+        if (categorySelectInstance) {
+          categorySelectInstance.setValue(product.category || "");
+        } else {
+          document.getElementById("productCategory").value = product.category || "";
+        }
+
+        document.getElementById("productPrice").value = product.price;
+        document.getElementById("productQuantity").value = product.quantity;
+        document.getElementById("productWeight").value = product.weight || "";
+        document.getElementById("productLifeStage").value = product.lifeStage || "";
+        document.getElementById("productFlavor").value = product.flavor || "";
+        document.getElementById("productOrigin").value = product.origin || "";
+        document.getElementById("productBenefits").value = (product.benefits || []).join(", ");
+        document.getElementById("productIngredients").value = (product.ingredients || []).join(", ");
+        document.getElementById("productDescription").value = product.description || "";
+        document.getElementById("productDetailedDescription").value = product.detailedDescription || "";
+        
+        const imgInput = document.getElementById("productImage");
+        const imgFileText = document.getElementById("currentImageText");
+        
+        if (product.image && product.image.includes("uploads/")) {
+          imgInput.value = ""; 
+          if (imgFileText) {
+             const fileName = product.image.split('/').pop();
+             imgFileText.textContent = `Current image: ${fileName}`;
+             imgFileText.classList.remove("hidden");
+          }
+        } else {
+          imgInput.value = product.image || "";
+          if (imgFileText) {
+             imgFileText.classList.add("hidden");
+          }
+        }
+        
+        document.getElementById("productImageFile").value = ""; // Reset file input
+
+        productModal.classList.remove("hidden");
+      }
+
+      function closeModal() {
+        productModal.classList.add("hidden");
+        editingProductId = null;
+        productForm.reset();
+      }
+
+      // Handle form submission
+      productForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("name", document.getElementById("productName").value);
+        formData.append("category", document.getElementById("productCategory").value);
+        formData.append("brand", document.getElementById("productBrand").value);
+        formData.append("price", document.getElementById("productPrice").value);
+        formData.append("quantity", document.getElementById("productQuantity").value);
+        formData.append("weight", document.getElementById("productWeight").value);
+        formData.append("lifeStage", document.getElementById("productLifeStage").value);
+        formData.append("flavor", document.getElementById("productFlavor").value);
+        formData.append("origin", document.getElementById("productOrigin").value);
+        formData.append("benefits", document.getElementById("productBenefits").value);
+        formData.append("ingredients", document.getElementById("productIngredients").value);
+        formData.append("description", document.getElementById("productDescription").value);
+        formData.append("detailedDescription", document.getElementById("productDetailedDescription").value);
+        
+        const imageUrl = document.getElementById("productImage").value;
+        if (imageUrl) formData.append("image", imageUrl);
+        
+        const imageFile = document.getElementById("productImageFile").files[0];
+        if (imageFile) formData.append("imageFile", imageFile);
+
+        let result;
+        if (editingProductId) {
+          result = await updateProduct(editingProductId, formData);
+        } else {
+          result = await createProduct(formData);
+        }
+
+        if (result.success) {
+          alert(
+            result.message ||
+              (editingProductId
+                ? "Product updated successfully"
+                : "Product added successfully"),
+          );
+          closeModal();
+          loadProducts();
+        } else {
+          // Show validation errors from controller
+          if (result.errors && Array.isArray(result.errors)) {
+            const errorMessage = result.errors.join("\n• ");
+            alert("Validation errors:\n• " + errorMessage);
+          } else {
+            alert(result.message || "Error saving product");
+          }
+        }
+      });
+
+      // Event listeners
+      addProductBtn.addEventListener("click", openAddModal);
+      closeModalBtn.addEventListener("click", closeModal);
+      cancelBtn.addEventListener("click", closeModal);
+
+      // Pagination handlers
+      prevPageBtn?.addEventListener("click", () => goToPage(currentPage - 1));
+      nextPageBtn?.addEventListener("click", () => goToPage(currentPage + 1));
+
+      // Close modal when clicking outside
+      productModal.addEventListener("click", (e) => {
+        if (e.target === productModal) {
+          closeModal();
+        }
+      });
+
+      // Search functionality
+      searchInput?.addEventListener("keyup", () => {
+        currentFilters.search = searchInput.value;
+        currentPage = 1;
+        loadProducts();
+      });
+
+      // Category filter
+      categorySelect?.addEventListener("change", (e) => {
+        if (e.target.value) {
+          currentFilters.category = e.target.value;
+        } else {
+          delete currentFilters.category;
+        }
+        currentPage = 1;
+        loadProducts();
+      });
+
+      // Admin info
+      const userInfo = getUserInfo();
+      if (userInfo) {
+        const nameEl = document.getElementById("adminDisplayName");
+        const avatarEl = document.getElementById("adminAvatarSidebar");
+        if (nameEl) nameEl.textContent = userInfo.fullName || userInfo.email;
+        if (avatarEl)
+          avatarEl.textContent = (userInfo.fullName || userInfo.email || "A")
+            .charAt(0)
+            .toUpperCase();
+      }
+
+      // Logout handler
+      const logoutBtn = document.getElementById("logoutBtn");
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", async (e) => {
+          e.preventDefault();
+          if (confirm("Are you sure you want to log out?")) {
+            await logoutUser();
+            window.location.href = "/auth/login";
+          }
+        });
+      }
+
+      // Initial load
+      loadProducts();
+      loadCategoriesAndBrands();
+    </script>
+    <script src="../js/animations.js"></script>
+  </body>
+</html>

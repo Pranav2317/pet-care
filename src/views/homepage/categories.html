@@ -1,0 +1,658 @@
+﻿<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../js/animations.css" />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error-container": "#93000a",
+              "on-secondary-fixed-variant": "#4a4737",
+              "primary-fixed": "#ffddb6",
+              "secondary-container": "#e8e3cd",
+              "tertiary-fixed-dim": "#58d5fe",
+              "primary-fixed-dim": "#ffb95a",
+              error: "#ba1a1a",
+              "primary-container": "#ffb347",
+              outline: "#847463",
+              "on-secondary-fixed": "#1e1c0f",
+              "on-secondary-container": "#686554",
+              "secondary-fixed-dim": "#ccc7b2",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary": "#ffffff",
+              "on-tertiary-container": "#00576d",
+              "inverse-surface": "#372f27",
+              "on-background": "#211a13",
+              "tertiary-fixed": "#b8eaff",
+              "inverse-primary": "#ffb95a",
+              "on-tertiary-fixed": "#001f28",
+              "on-error": "#ffffff",
+              tertiary: "#006780",
+              "surface-container-highest": "#eee0d4",
+              "surface-tint": "#845400",
+              "on-tertiary-fixed-variant": "#004d61",
+              background: "#fff8f4",
+              primary: "#845400",
+              "secondary-fixed": "#e8e3cd",
+              "surface-container-high": "#f3e6da",
+              "on-tertiary": "#ffffff",
+              "inverse-on-surface": "#fceee2",
+              "surface-variant": "#eee0d4",
+              secondary: "#625f4e",
+              "surface-container": "#f9ecdf",
+              "on-primary-fixed-variant": "#643f00",
+              surface: "#fff8f4",
+              "on-primary-container": "#704700",
+              "surface-dim": "#e5d8cc",
+              "surface-bright": "#fff8f4",
+              "error-container": "#ffdad6",
+              "on-primary": "#ffffff",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              gutter: "24px",
+              md: "16px",
+              lg: "24px",
+              sm: "8px",
+              xl: "40px",
+              unit: "4px",
+              "margin-mobile": "16px",
+              xs: "4px",
+              "container-max": "1200px",
+            },
+            fontFamily: {
+              "headline-lg": ["Quicksand"],
+              "headline-md": ["Quicksand"],
+              "label-md": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Quicksand"],
+              "body-md": ["Plus Jakarta Sans"],
+              "label-sm": ["Plus Jakarta Sans"],
+              "headline-xl": ["Quicksand"],
+            },
+            fontSize: {
+              "headline-lg": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "700" },
+              ],
+              "headline-md": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "headline-lg-mobile": [
+                "28px",
+                { lineHeight: "36px", fontWeight: "700" },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "label-sm": ["12px", { lineHeight: "16px", fontWeight: "700" }],
+              "headline-xl": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .category-card:hover .category-image {
+        transform: scale(1.08);
+      }
+      /* User dropdown */
+      #userMenu {
+        display: none;
+      }
+      #userMenu.open {
+        display: block;
+      }
+      #userAvatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 9999px;
+        background: #ffb347;
+        color: #704700;
+        font-weight: 700;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: 2px solid #ffddb6;
+        transition: transform 0.15s;
+        flex-shrink: 0;
+      }
+      #userAvatar:hover {
+        transform: scale(1.08);
+      }
+    </style>
+  </head>
+  <body class="bg-background text-on-background font-body-md">
+    <!-- Top Navigation Bar -->
+    <nav
+      class="bg-surface/80 backdrop-blur-md shadow-sm fixed top-0 w-full z-50 transition-all duration-200"
+    >
+      <div
+        class="flex justify-between items-center px-lg py-md w-full max-w-container-max mx-auto"
+      >
+        <a
+          href="/"
+          class="inline-flex items-center gap-3 font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim"
+        >
+          <img
+            src="../images/logo.png"
+            alt="Gray Pet Shop logo"
+            class="w-10 h-10 rounded-full object-cover border-2 border-primary-container shadow-sm"
+          />
+          <span>Gray Pet Shop</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-xl">
+          <a
+            class="text-on-surface-variant hover:text-primary transition-transform duration-200 hover:scale-105 font-body-md text-body-md"
+            href="/"
+            >Home</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-transform duration-200 hover:scale-105 font-body-md text-body-md"
+            href="/product"
+            >Products</a
+          >
+          <a
+            class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md"
+            href="/homepage/categories"
+            >Categories</a
+          >
+        </nav>
+        <div class="flex items-center gap-md">
+          <a
+            href="/cart"
+            class="relative group cursor-pointer p-sm rounded-full hover:bg-surface-container transition-colors"
+          >
+            <span class="material-symbols-outlined text-on-surface-variant"
+              >shopping_cart</span
+            >
+          </a>
+          <!-- GUEST: shown when not logged in -->
+          <div id="guestNav" class="hidden sm:flex items-center gap-sm">
+            <a
+              href="/auth/login"
+              class="text-on-surface-variant hover:text-primary font-label-md px-md py-sm transition-colors"
+              >Log in</a
+            >
+            <a
+              href="/auth/register"
+              class="bg-primary-container text-on-primary-container px-lg py-sm rounded-full font-label-md hover:scale-105 transition-all active:scale-95 inline-block"
+              >Sign up</a
+            >
+          </div>
+          <!-- USER: shown when logged in -->
+          <div id="userNav" class="hidden items-center gap-sm relative">
+            <a
+              id="adminLink"
+              href="/admin"
+              class="hidden items-center gap-xs px-md py-1 bg-primary text-on-primary rounded-full font-label-sm hover:opacity-90 transition-opacity"
+            >
+              <span class="material-symbols-outlined text-[14px]"
+                >admin_panel_settings</span
+              >
+              Admin
+            </a>
+            <div class="relative">
+              <button id="userAvatarBtn" class="flex items-center gap-sm group">
+                <div id="userAvatar">A</div>
+                <span
+                  id="userName"
+                  class="hidden sm:block font-label-md text-on-surface max-w-[120px] truncate"
+                ></span>
+                <span
+                  class="material-symbols-outlined text-on-surface-variant text-[18px] transition-transform group-hover:text-primary"
+                  id="chevronIcon"
+                  >expand_more</span
+                >
+              </button>
+              <div
+                id="userMenu"
+                class="absolute right-0 top-full mt-2 w-52 bg-surface-container-lowest rounded-2xl shadow-lg border border-outline-variant/30 overflow-hidden z-50"
+              >
+                <div class="px-lg py-md border-b border-outline-variant/20">
+                  <p
+                    class="font-label-md text-on-surface truncate"
+                    id="menuUserName"
+                  ></p>
+                  <p
+                    class="text-label-sm text-on-surface-variant truncate"
+                    id="menuUserEmail"
+                  ></p>
+                </div>
+                <div class="py-sm">
+                  <a
+                    href="/order/detail"
+                    class="flex items-center gap-sm px-lg py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors font-label-md"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >receipt_long</span
+                    >
+                    My Orders
+                  </a>
+                  <a
+                    id="menuAdminLink"
+                    href="/admin"
+                    class="hidden items-center gap-sm px-lg py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors font-label-md"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >admin_panel_settings</span
+                    >
+                    Admin Panel
+                  </a>
+                  <button
+                    id="logoutBtn"
+                    class="w-full flex items-center gap-sm px-lg py-sm text-error hover:bg-error-container/20 transition-colors font-label-md"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >logout</span
+                    >
+                    Log out
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Main Content Canvas -->
+    <main
+      class="pt-[100px] pb-xl w-full max-w-container-max mx-auto px-margin-mobile md:px-lg"
+    >
+      <!-- Header Section -->
+      <header class="mb-xl text-center md:text-left">
+        <h1
+          class="font-headline-xl text-headline-xl text-primary mb-sm section-heading reveal"
+        >
+          Product Categories
+        </h1>
+        <p
+          class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl reveal delay-1"
+        >
+          Explore professional cat care with premium product lines carefully selected for your four-legged friend.
+        </p>
+      </header>
+      <!-- Categories Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter" data-stagger>
+        <!-- Category: Cat Dry Food (Large Asymmetric) -->
+        <a
+          href="/product?q=dry+food"
+          class="md:col-span-8 group category-card relative overflow-hidden rounded-[32px] bg-white shadow-sm border border-outline-variant h-[400px] block cursor-pointer"
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10"
+          ></div>
+          <img
+            class="category-image absolute inset-0 w-full h-full object-cover transition-transform duration-700"
+            alt="Premium cat dry food"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7MvxW6edxaBTenuacppKslzN1ZzqVKYh7l14Tg-BgrjXSwDD1rC0Udgf2oc177CUXLqJBh0MZrhyMEIBICd2b0oICKz6xqGCJ8yMhnFVTyhWbQ0Xn1DoW1gQPf-IqWsclWH2nIXsTx_oH4xV-mKsLxv0-Ef-T_LWUAdRL46jyhIz6Bxz_T7FIM7F6tKgVEOi9_PEQCJWDbyPabPE_hQaVLmpz0n90YcKzHqyd1xOkCrUVHICzsfqS-5IdkEjBHdnDf5VWCorF8J0"
+          />
+          <div class="absolute bottom-0 left-0 p-xl z-20 w-full">
+            <span
+              class="inline-block px-md py-xs bg-tertiary-container text-on-tertiary-container rounded-full text-label-sm mb-md"
+              >Best Seller</span
+            >
+            <h2 class="font-headline-lg text-headline-lg text-white mb-xs">
+              Premium Cat Dry Food
+            </h2>
+            <p class="font-body-md text-white/90 mb-lg max-w-md">
+              Balanced nutrition for a soft coat and healthy digestion.
+            </p>
+            <span
+              class="px-lg py-md bg-white text-primary font-bold rounded-full inline-flex items-center gap-sm hover:scale-105 active:scale-95 transition-all"
+            >
+              View details
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </span>
+          </div>
+        </a>
+        <!-- Category: Cat Pate (Medium) -->
+        <a
+          href="/product?q=pate"
+          class="md:col-span-4 group category-card relative overflow-hidden rounded-[32px] bg-white shadow-sm border border-outline-variant h-[400px] block cursor-pointer"
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"
+          ></div>
+          <img
+            class="category-image absolute inset-0 w-full h-full object-cover transition-transform duration-700"
+            alt="Cat pate"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvqgpVX2NhqJuMnABEhwRHdJGbVyTp1vMv5ZEJNbxr5s_SF0vpCBzE_57-f3JFt9HKjn3eYIJP18iKnpKFLYNY3wD7qEXLqMKlcLlHKOa_M6UhzMSEQBMCtvPc-TzpDeuY0lyx6FytYmCsPv13_xyKz69niWnmVG8muFx6UQwmcxshCt6CQOiQe_Mh5oQv1KpNUcDxxb5NdXqF5L0f4QLLvqOOGwb1HxHX1kjnUDM7OQAPzKOEN3c_tkoDpdItkfMEfYwjLoQsQhk"
+          />
+          <div class="absolute bottom-0 left-0 p-xl z-20">
+            <h2 class="font-headline-md text-headline-md text-white mb-xs">
+              Cat Pate
+            </h2>
+            <p class="font-body-md text-white/90 mb-lg">
+              Rich real-meat flavor with essential daily moisture.
+            </p>
+            <span
+              class="px-lg py-md bg-primary-container text-white font-bold rounded-full inline-block hover:scale-105 active:scale-95 transition-all"
+            >
+              Explore
+            </span>
+          </div>
+        </a>
+        <!-- Category: Cat Snacks (Medium) -->
+        <a
+          href="/product?q=snack"
+          class="md:col-span-4 group category-card relative overflow-hidden rounded-[32px] bg-white shadow-sm border border-outline-variant h-[350px] block cursor-pointer"
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"
+          ></div>
+          <img
+            class="category-image absolute inset-0 w-full h-full object-cover transition-transform duration-700"
+            alt="Cat snacks"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp3v-idD14wfQ6fKtWKUNR7spQpDsjGksksAj4_bH19yrlA-g8_In9JmQ5cDizZhHVPs0papPdSVsy1lpYlZ_-wAIpaFgJh-GtBv6Rip3q_GaJk5M7TbAKZ7x2Mc1lxbc2fwoECgkkJrCOMhuVBTDOW-fosAOSOy05KWM_lFLKdDiKB6zQTR2WOt5KLptczLUTNowyhuQWu5uKC2vUL75TBVwhDMC73AzbwbGvUlbXeXM_qtAc3284gOtQssrojeE3E6VY-JZ9AXQ"
+          />
+          <div class="absolute bottom-0 left-0 p-xl z-20">
+            <h2 class="font-headline-md text-headline-md text-white mb-xs">
+              Cat Snacks
+            </h2>
+            <p class="font-body-md text-white/90 mb-lg">
+              A great reward for playful moments.
+            </p>
+            <span
+              class="w-12 h-12 bg-white text-primary rounded-full inline-flex items-center justify-center hover:scale-110 transition-transform"
+            >
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </span>
+          </div>
+        </a>
+        <!-- Category: Cat Milk (Medium) -->
+        <a
+          href="/product?q=milk"
+          class="md:col-span-4 group category-card relative overflow-hidden rounded-[32px] bg-white shadow-sm border border-outline-variant h-[350px] block cursor-pointer"
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"
+          ></div>
+          <img
+            class="category-image absolute inset-0 w-full h-full object-cover transition-transform duration-700"
+            alt="Cat milk"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5NwgZCI4kOdgWvyU5J3yqW6Js1keAONUpMx9lB7CZSjXbC7pZpzW38iDW5vvaXqlF2LfHYFcXp_BsRfkUMp8vf-8NWCAOLgNgXFc9aSTKqsj6hU5dI_1em6Chw30osujjbyA85w7Rh4wEdad5nGiAWO6WwEk2p5KjfnuwuQ8SAGlw99o7KHDdG75hnv68ae7iyKeKT-vVN5INa5wZgRJ972bHHI4q_wHZMBrAgOzk8eoSIjToVpb7NsbZdtxAIY7uijVQJtJVy5g"
+          />
+          <div class="absolute bottom-0 left-0 p-xl z-20">
+            <h2 class="font-headline-md text-headline-md text-white mb-xs">
+              Cat Milk
+            </h2>
+            <p class="font-body-md text-white/90 mb-lg">
+              A digestible formula for cats of all ages.
+            </p>
+            <span
+              class="px-lg py-md border-2 border-white text-white font-bold rounded-full inline-block hover:bg-white hover:text-primary transition-all"
+            >
+              Shop now
+            </span>
+          </div>
+        </a>
+        <!-- Category: Feeding Accessories (Medium) -->
+        <a
+          href="/product?q=accessories"
+          class="md:col-span-4 group category-card relative overflow-hidden rounded-[32px] bg-white shadow-sm border border-outline-variant h-[350px] block cursor-pointer"
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"
+          ></div>
+          <img
+            class="category-image absolute inset-0 w-full h-full object-cover transition-transform duration-700"
+            alt="Feeding accessories"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuALhH6ES1D0a5sRrXmk-L7HV8_iMPhW310jpeT83fXFB9Vcf5FB_-hKQR_d2vu9TrczAtNXwW1mT7iQOb-soUziDbmAyHECE8L-iZEwdtfRpY8d3mcfWk5mobWkJ8--tZN8AYBqX56sqauxppdaXA2hnhQmVkmA2KfqpyatrE7ZWgl89x3owbXWCZ4VRwLoWVu3Je6asDX_Kfdy-1v-zryGn3cwZ-HK84FuzOxGbLdCZp6YBe-wcITPv1RvC2Sa5FyBSVvKq83JCOs"
+          />
+          <div class="absolute bottom-0 left-0 p-xl z-20">
+            <h2 class="font-headline-md text-headline-md text-white mb-xs">
+              Feeding Accessories
+            </h2>
+            <p class="font-body-md text-white/90 mb-lg">
+              Elevate mealtime with premium ceramic bowls and water filters.
+            </p>
+            <span
+              class="px-lg py-md bg-white/20 backdrop-blur-md text-white font-bold rounded-full inline-block hover:bg-white hover:text-primary transition-all"
+            >
+              Collection
+            </span>
+          </div>
+        </a>
+      </div>
+      <!-- Featured Section: Cozy Modern Atmosphere -->
+      <section
+        class="mt-xl py-xl bg-surface-container rounded-[40px] px-lg overflow-hidden relative reveal"
+      >
+        <div class="grid md:grid-cols-2 gap-xl items-center relative z-10">
+          <div>
+            <span
+              class="text-primary font-bold tracking-widest text-label-sm uppercase mb-md block"
+              >Shopping experience</span
+            >
+            <h2 class="font-headline-lg text-headline-lg mb-md">
+              Why choose Gray Pet Shop?
+            </h2>
+            <ul class="space-y-md">
+              <li class="flex gap-md items-start">
+                <div
+                  class="w-10 h-10 rounded-xl bg-primary-container/20 flex items-center justify-center flex-shrink-0"
+                >
+                  <span class="material-symbols-outlined text-primary"
+                    >verified</span
+                  >
+                </div>
+                <div>
+                  <p class="font-bold text-on-surface">100% Authentic</p>
+                  <p class="text-on-surface-variant text-label-md">
+                    Imported products from leading global brands.
+                  </p>
+                </div>
+              </li>
+              <li class="flex gap-md items-start">
+                <div
+                  class="w-10 h-10 rounded-xl bg-primary-container/20 flex items-center justify-center flex-shrink-0"
+                >
+                  <span class="material-symbols-outlined text-primary"
+                    >local_shipping</span
+                  >
+                </div>
+                <div>
+                  <p class="font-bold text-on-surface">Express Delivery</p>
+                  <p class="text-on-surface-variant text-label-md">
+                    Same-day delivery available in the city center.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="relative">
+            <div
+              class="aspect-square rounded-[32px] overflow-hidden shadow-lg transform rotate-3"
+            >
+              <img
+                class="w-full h-full object-cover"
+                data-alt="A beautiful ginger cat relaxing in a sunlit modern living room. The lighting is soft and golden, highlighting the warm textures of a cozy blanket and minimalist furniture. The overall mood is one of peace and premium comfort, reflecting the soft minimalist values of Gray Pet Shop."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwjQQxw0ebHt9eoef9oVQ_xI8R3dCdyH0lso0-crMN_m3G5j3jC4RlgSpwFpglyZq-lj3KbekBU76944fjntVY1k0jpd7KO1YeaxoLEhQAFJe5-JvJODFN8TfdPeFcuFuHUpb65jK4nDVKMCQckR-xXbvADL8HtZFkSABtc_hxqzN2Tia2bQP7EVoEVXcFAhWfYt8SbT1xKSwkunhaIB0z-xjTCF7iAF6Sf4D0K2Zm2pWg0N0MEwqAOJgDU-t7Njnl8bVprnvHLWc"
+              />
+            </div>
+            <div
+              class="absolute -bottom-6 -left-6 bg-white p-lg rounded-2xl shadow-xl max-w-[200px] -rotate-3 border border-outline-variant"
+            >
+              <p class="font-headline-md text-primary mb-1">5000+</p>
+              <p class="text-label-sm text-on-surface-variant">
+                Trusted customers every month
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="bg-surface-container-highest dark:bg-surface-container w-full mt-xl"
+    >
+      <div
+        class="w-full py-xl px-lg grid grid-cols-1 md:grid-cols-4 gap-lg max-w-container-max mx-auto"
+      >
+        <div class="col-span-1 md:col-span-1">
+          <div
+            class="font-headline-sm text-headline-sm text-on-surface font-bold mb-md"
+          >
+            Gray Pet Shop
+          </div>
+          <p class="font-body-sm text-label-sm text-on-surface-variant mb-md">
+            A trusted destination for cat lovers. We provide the best for your pet.
+          </p>
+        </div>
+        <div class="flex flex-col gap-sm">
+          <p class="font-label-md text-primary uppercase">Contact</p>
+          <p
+            class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer text-label-sm"
+          >
+            Address: Bac Tu Liem, Hanoi
+          </p>
+          <p
+            class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer text-label-sm"
+          >
+            Phone: 038.339.2903
+          </p>
+          <p
+            class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer text-label-sm"
+          >
+            Email: nampham050723@gmail.com
+          </p>
+        </div>
+        <div class="flex flex-col gap-sm">
+          <p class="font-label-md text-primary uppercase">Quick Links</p>
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-label-sm"
+            href="#"
+            >Home</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-label-sm"
+            href="#"
+            >Products</a
+          >
+          <a class="text-primary underline text-label-sm" href="#">Categories</a>
+        </div>
+        <div class="flex flex-col gap-sm">
+          <p class="font-label-md text-primary uppercase">Follow Us</p>
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-label-sm flex items-center gap-2"
+            href="#"
+          >
+            Facebook
+          </a>
+        </div>
+      </div>
+      <div
+        class="max-w-container-max mx-auto px-lg py-md border-t border-outline-variant text-center md:text-left"
+      >
+        <p class="text-label-sm text-on-surface-variant opacity-70">
+          © 2026 Gray Pet Shop. All rights reserved.
+        </p>
+      </div>
+    </footer>
+    <script type="module">
+      import { isAuthenticated, getUserInfo, logoutUser } from "../js/auth.js";
+      const guestNav = document.getElementById("guestNav");
+      const userNav = document.getElementById("userNav");
+      const userAvatar = document.getElementById("userAvatar");
+      const userName = document.getElementById("userName");
+      const menuUserName = document.getElementById("menuUserName");
+      const menuUserEmail = document.getElementById("menuUserEmail");
+      const adminLink = document.getElementById("adminLink");
+      const menuAdminLink = document.getElementById("menuAdminLink");
+      const userMenu = document.getElementById("userMenu");
+      const chevronIcon = document.getElementById("chevronIcon");
+      const logoutBtn = document.getElementById("logoutBtn");
+      const userAvatarBtn = document.getElementById("userAvatarBtn");
+      function initNav() {
+        if (isAuthenticated()) {
+          const user = getUserInfo();
+          if (!user) return;
+          guestNav.style.display = "none";
+          userNav.style.display = "flex";
+          const initial = (user.fullName || user.email || "U")
+            .charAt(0)
+            .toUpperCase();
+          userAvatar.textContent = initial;
+          const displayName = user.fullName || user.email;
+          userName.textContent = displayName;
+          menuUserName.textContent = displayName;
+          menuUserEmail.textContent = user.email || "";
+          if (user.role === "admin") {
+            adminLink.style.display = "flex";
+            menuAdminLink.style.display = "flex";
+          }
+        } else {
+          guestNav.style.display = "";
+          userNav.style.display = "none";
+        }
+      }
+      userAvatarBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = userMenu.classList.toggle("open");
+        chevronIcon.textContent = isOpen ? "expand_less" : "expand_more";
+      });
+      document.addEventListener("click", () => {
+        userMenu.classList.remove("open");
+        chevronIcon.textContent = "expand_more";
+      });
+      logoutBtn.addEventListener("click", async () => {
+        await logoutUser();
+        window.location.href = "/auth/login";
+      });
+      initNav();
+    </script>
+    <script src="../js/animations.js"></script>
+  </body>
+</html>

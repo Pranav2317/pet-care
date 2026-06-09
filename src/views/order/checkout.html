@@ -1,0 +1,910 @@
+﻿<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <title>Checkout - Gray Pet Shop</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&amp;family=Plus+Jakarta+Sans:wght@200..800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../js/animations.css" />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error-container": "#93000a",
+              "tertiary-fixed": "#b8eaff",
+              "on-tertiary-fixed": "#001f28",
+              background: "#fff8f4",
+              "surface-container-low": "#fff1e5",
+              "secondary-container": "#e8e3cd",
+              "on-surface": "#211a13",
+              "surface-container-highest": "#eee0d4",
+              "on-tertiary-container": "#00576d",
+              "surface-bright": "#fff8f4",
+              "on-secondary-container": "#686554",
+              "tertiary-fixed-dim": "#58d5fe",
+              "tertiary-container": "#52d0f9",
+              "on-surface-variant": "#524535",
+              "surface-variant": "#eee0d4",
+              "outline-variant": "#d6c3b0",
+              tertiary: "#006780",
+              "surface-container": "#f9ecdf",
+              "surface-container-high": "#f3e6da",
+              "secondary-fixed": "#e8e3cd",
+              "primary-fixed": "#ffddb6",
+              "on-tertiary-fixed-variant": "#004d61",
+              outline: "#847463",
+              "on-tertiary": "#ffffff",
+              "on-error": "#ffffff",
+              primary: "#845400",
+              "on-primary-container": "#704700",
+              "on-background": "#211a13",
+              "inverse-primary": "#ffb95a",
+              "on-primary-fixed-variant": "#643f00",
+              surface: "#fff8f4",
+              "primary-container": "#ffb347",
+              "on-primary": "#ffffff",
+              "inverse-surface": "#372f27",
+              "on-secondary": "#ffffff",
+              "primary-fixed-dim": "#ffb95a",
+              "on-primary-fixed": "#2a1800",
+              secondary: "#625f4e",
+              "error-container": "#ffdad6",
+              "secondary-fixed-dim": "#ccc7b2",
+              "surface-dim": "#e5d8cc",
+              "inverse-on-surface": "#fceee2",
+              error: "#ba1a1a",
+              "on-secondary-fixed-variant": "#4a4737",
+              "on-secondary-fixed": "#1e1c0f",
+              "surface-tint": "#845400",
+              "surface-container-lowest": "#ffffff",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "margin-mobile": "16px",
+              lg: "24px",
+              unit: "4px",
+              xl: "40px",
+              "container-max": "1200px",
+              md: "16px",
+              sm: "8px",
+              xs: "4px",
+              gutter: "24px",
+            },
+            fontFamily: {
+              "headline-md": ["Quicksand"],
+              "headline-lg-mobile": ["Quicksand"],
+              "headline-xl": ["Quicksand"],
+              "label-sm": ["Plus Jakarta Sans"],
+              "label-md": ["Plus Jakarta Sans"],
+              "headline-lg": ["Quicksand"],
+              "body-md": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "headline-md": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "headline-lg-mobile": [
+                "28px",
+                { lineHeight: "36px", fontWeight: "700" },
+              ],
+              "headline-xl": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-sm": ["12px", { lineHeight: "16px", fontWeight: "700" }],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "700" },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .soft-shadow {
+        box-shadow: 0 10px 30px -5px rgba(132, 84, 0, 0.08);
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #d6c3b0;
+        border-radius: 10px;
+      }
+      /* User dropdown */
+      #userMenu {
+        display: none;
+      }
+      #userMenu.open {
+        display: block;
+      }
+      #userAvatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 9999px;
+        background: #ffb347;
+        color: #704700;
+        font-weight: 700;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: 2px solid #ffddb6;
+        transition: transform 0.15s;
+        flex-shrink: 0;
+      }
+      #userAvatar:hover {
+        transform: scale(1.08);
+      }
+    </style>
+  </head>
+  <body class="bg-background text-on-background font-body-md min-h-screen">
+    <!-- TopNavBar -->
+    <nav
+      class="bg-surface/80 backdrop-blur-md shadow-sm fixed top-0 w-full z-50"
+    >
+      <div
+        class="flex justify-between items-center px-lg py-md w-full max-w-container-max mx-auto"
+      >
+        <a
+          class="inline-flex items-center gap-3 font-headline-md text-headline-md font-bold text-primary hover:scale-105 transition-transform"
+          href="/"
+        >
+          <img src="../images/logo.png" alt="Gray Pet Shop logo" class="w-10 h-10 rounded-full object-cover border-2 border-primary-container shadow-sm" />
+          <span>Gray Pet Shop</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-xl">
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors font-body-md"
+            href="/"
+            >Home</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors font-body-md"
+            href="/product"
+            >Products</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors font-body-md"
+            href="/homepage/categories"
+            >Categories</a
+          >
+        </nav>
+        <div class="flex items-center gap-md">
+          <button
+            class="material-symbols-outlined text-primary p-sm hover:scale-110 transition-transform"
+            data-icon="shopping_cart"
+          >
+            shopping_cart
+          </button>
+          <!-- GUEST -->
+          <div id="guestNav" class="hidden sm:flex items-center gap-sm">
+            <a
+              href="/auth/login"
+              class="text-on-surface-variant hover:text-primary font-label-md px-md py-sm transition-colors"
+              >Log in</a
+            >
+            <a
+              href="/auth/register"
+              class="bg-primary-container text-on-primary-container px-lg py-sm rounded-full font-label-md hover:scale-105 transition-all active:scale-95 inline-block"
+              >Sign up</a
+            >
+          </div>
+          <!-- USER -->
+          <div id="userNav" class="hidden items-center gap-sm relative">
+            <a
+              id="adminLink"
+              href="/admin"
+              class="hidden items-center gap-xs px-md py-1 bg-primary text-on-primary rounded-full font-label-sm hover:opacity-90 transition-opacity"
+            >
+              <span class="material-symbols-outlined text-[14px]"
+                >admin_panel_settings</span
+              >
+              Admin
+            </a>
+            <div class="relative">
+              <button id="userAvatarBtn" class="flex items-center gap-sm group">
+                <div id="userAvatar">A</div>
+                <span
+                  id="userName"
+                  class="hidden sm:block font-label-md text-on-surface max-w-[120px] truncate"
+                ></span>
+                <span
+                  class="material-symbols-outlined text-on-surface-variant text-[18px] group-hover:text-primary"
+                  id="chevronIcon"
+                  >expand_more</span
+                >
+              </button>
+              <div
+                id="userMenu"
+                class="absolute right-0 top-full mt-2 w-52 bg-surface-container-lowest rounded-2xl shadow-lg border border-outline-variant/30 overflow-hidden z-50"
+              >
+                <div class="px-lg py-md border-b border-outline-variant/20">
+                  <p
+                    class="font-label-md text-on-surface truncate"
+                    id="menuUserName"
+                  ></p>
+                  <p
+                    class="text-label-sm text-on-surface-variant truncate"
+                    id="menuUserEmail"
+                  ></p>
+                </div>
+                <div class="py-sm">
+                  <a
+                    href="/order/detail"
+                    class="flex items-center gap-sm px-lg py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors font-label-md"
+                    ><span class="material-symbols-outlined text-[18px]"
+                      >receipt_long</span
+                    >
+                    My Orders</a
+                  >
+                  <a
+                    id="menuAdminLink"
+                    href="/admin"
+                    class="hidden items-center gap-sm px-lg py-sm text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors font-label-md"
+                    ><span class="material-symbols-outlined text-[18px]"
+                      >admin_panel_settings</span
+                    >
+                    Admin Panel</a
+                  >
+                  <button
+                    id="logoutBtn"
+                    class="w-full flex items-center gap-sm px-lg py-sm text-error hover:bg-error-container/20 transition-colors font-label-md"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >logout</span
+                    >
+                    Log out
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Main Content -->
+    <main
+      class="max-w-container-max mx-auto px-margin-mobile md:px-lg pt-32 pb-xl"
+    >
+      <div class="mb-xl reveal section-heading">
+        <h1 class="font-headline-lg text-headline-lg text-primary mb-xs">
+          Checkout
+        </h1>
+        <p class="text-on-surface-variant font-body-md">
+          Please fill in your details to complete your order.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+        <!-- Left Column: Customer Form -->
+        <div class="lg:col-span-7 space-y-lg">
+          <section
+            class="bg-surface-container-lowest p-lg rounded-[32px] soft-shadow border border-outline-variant/30 reveal"
+          >
+            <div class="flex items-center gap-sm mb-lg">
+              <span
+                class="material-symbols-outlined text-primary"
+                data-icon="person_pin"
+                >person_pin</span
+              >
+              <h2 class="font-headline-md text-headline-md">
+                Shipping information
+              </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+              <div class="space-y-xs">
+                <label class="font-label-md text-on-surface-variant ml-sm"
+                  >Full name</label
+                >
+                <input
+                  class="w-full bg-surface-container-low border-none rounded-xl px-md py-3 focus:ring-2 focus:ring-primary-container transition-all outline-none"
+                  placeholder="John Doe"
+                  type="text"
+                />
+              </div>
+              <div class="space-y-xs">
+                <label class="font-label-md text-on-surface-variant ml-sm"
+                  >Phone number</label
+                >
+                <input
+                  class="w-full bg-surface-container-low border-none rounded-xl px-md py-3 focus:ring-2 focus:ring-primary-container transition-all outline-none"
+                  placeholder="090 123 4567"
+                  type="tel"
+                />
+              </div>
+              <div class="md:col-span-2 space-y-xs relative">
+                <label class="font-label-md text-on-surface-variant ml-sm">Province / City</label>
+                <input id="province-input" class="w-full bg-surface-container-low border-none rounded-xl px-md py-3 focus:ring-2 focus:ring-primary-container transition-all outline-none" placeholder="Search or select province/city..." type="text" autocomplete="off" />
+                <div id="province-dropdown" class="hidden absolute z-10 w-full mt-1 bg-surface-container-lowest border border-outline-variant/30 rounded-xl shadow-lg max-h-60 overflow-y-auto custom-scrollbar"></div>
+              </div>
+              <div class="md:col-span-2 space-y-xs relative">
+                <label class="font-label-md text-on-surface-variant ml-sm">District</label>
+                <input id="district-input" class="w-full bg-surface-container-low border-none rounded-xl px-md py-3 focus:ring-2 focus:ring-primary-container transition-all outline-none disabled:opacity-50" placeholder="Search or select district..." type="text" autocomplete="off" disabled />
+                <div id="district-dropdown" class="hidden absolute z-10 w-full mt-1 bg-surface-container-lowest border border-outline-variant/30 rounded-xl shadow-lg max-h-60 overflow-y-auto custom-scrollbar"></div>
+              </div>
+              <div class="md:col-span-2 space-y-xs relative">
+                <label class="font-label-md text-on-surface-variant ml-sm">Ward</label>
+                <input id="ward-input" class="w-full bg-surface-container-low border-none rounded-xl px-md py-3 focus:ring-2 focus:ring-primary-container transition-all outline-none disabled:opacity-50" placeholder="Search or select ward..." type="text" autocomplete="off" disabled />
+                <div id="ward-dropdown" class="hidden absolute z-10 w-full mt-1 bg-surface-container-lowest border border-outline-variant/30 rounded-xl shadow-lg max-h-60 overflow-y-auto custom-scrollbar"></div>
+              </div>
+              <div class="md:col-span-2 space-y-xs">
+                <label class="font-label-md text-on-surface-variant ml-sm">House number, village, street</label>
+                <input id="street" class="w-full bg-surface-container-low border-none rounded-xl px-md py-3 focus:ring-2 focus:ring-primary-container transition-all outline-none" placeholder="House number, street name..." type="text" />
+              </div>
+              <div class="md:col-span-2 space-y-xs">
+                <label class="font-label-md text-on-surface-variant ml-sm"
+                  >Order notes</label
+                >
+                <textarea
+                  class="w-full bg-surface-container-low border-none rounded-xl px-md py-3 focus:ring-2 focus:ring-primary-container transition-all outline-none resize-none"
+                  placeholder="..."
+                  rows="3"
+                ></textarea>
+              </div>
+            </div>
+          </section>
+          <section
+            class="bg-surface-container-lowest p-lg rounded-[32px] soft-shadow border border-outline-variant/30 reveal"
+          >
+            <div class="flex items-center gap-sm mb-lg">
+              <span
+                class="material-symbols-outlined text-primary"
+                data-icon="payments"
+                >payments</span
+              >
+              <h2 class="font-headline-md text-headline-md">
+                Payment method
+              </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+              <label
+                class="relative flex items-center p-md bg-surface-container-low rounded-2xl cursor-pointer hover:bg-primary-fixed/20 transition-colors group"
+              >
+                <input
+                  checked=""
+                  value="cod"
+                  class="w-5 h-5 text-primary border-outline focus:ring-primary focus:ring-offset-0"
+                  name="payment"
+                  type="radio"
+                />
+                <div class="ml-md flex flex-col">
+                  <span
+                    class="font-label-md text-on-surface text-[14px] font-semibold"
+                    >COD</span
+                  >
+                  <span class="text-[10px] text-on-surface-variant"
+                    >Cash on delivery</span
+                  >
+                </div>
+                <span
+                  class="material-symbols-outlined ml-auto text-primary opacity-40 group-hover:opacity-100 hidden sm:inline"
+                  data-icon="local_shipping"
+                  >local_shipping</span
+                >
+              </label>
+              <label
+                class="relative flex items-center p-md bg-surface-container-low rounded-2xl cursor-pointer hover:bg-primary-fixed/20 transition-colors group"
+              >
+                <input
+                  value="banking"
+                  class="w-5 h-5 text-primary border-outline focus:ring-primary focus:ring-offset-0"
+                  name="payment"
+                  type="radio"
+                />
+                <div class="ml-md flex flex-col">
+                  <span
+                    class="font-label-md text-on-surface text-[14px] font-semibold"
+                    >Bank transfer</span
+                  >
+                  <span class="text-[10px] text-on-surface-variant"
+                    >Via bank</span
+                  >
+                </div>
+                <span
+                  class="material-symbols-outlined ml-auto text-primary opacity-40 group-hover:opacity-100 hidden sm:inline"
+                  data-icon="account_balance"
+                  >account_balance</span
+                >
+              </label>
+            </div>
+          </section>
+        </div>
+        <!-- Right Column: Order Summary -->
+        <div class="lg:col-span-5">
+          <div class="sticky top-32 space-y-lg">
+            <aside
+              class="bg-surface-container-lowest p-lg rounded-[32px] soft-shadow border border-outline-variant/30 reveal-right delay-1"
+            >
+              <div class="flex items-center gap-sm mb-lg">
+                <span
+                  class="material-symbols-outlined text-primary"
+                  data-icon="receipt_long"
+                  >receipt_long</span
+                >
+                <h2 class="font-headline-md text-headline-md">
+                  Order summary
+                </h2>
+              </div>
+              <!-- Product List -->
+              <div
+                id="checkoutItemsContainer"
+                class="space-y-md max-h-[400px] overflow-y-auto pr-sm custom-scrollbar"
+              >
+                <!-- Dynamic data will be rendered here -->
+              </div>
+              <!-- Price Calculation -->
+              <div
+                class="mt-lg pt-lg border-t border-outline-variant/30 space-y-sm"
+              >
+                <div
+                  class="flex justify-between font-body-md text-on-surface-variant"
+                >
+                  <span>Subtotal</span>
+                  <span id="subtotalValue">0₫</span>
+                </div>
+                <div
+                  class="flex justify-between font-body-md text-on-surface-variant"
+                >
+                  <span>Shipping fee</span>
+                  <span id="shippingValue">30.000₫</span>
+                </div>
+                <div class="flex justify-between items-center pt-md">
+                  <span
+                    class="font-headline-md text-headline-md text-on-surface"
+                    >Total</span
+                  >
+                  <span
+                    id="totalValue"
+                    class="font-headline-md text-headline-md text-primary"
+                    >0₫</span
+                  >
+                </div>
+              </div>
+              <button
+                id="placeOrderBtn"
+                class="w-full mt-lg bg-primary text-on-primary font-label-md py-4 rounded-full hover:bg-primary-fixed-variant hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-sm anim-pulse-glow btn-ripple"
+              >
+                <span class="material-symbols-outlined" data-icon="lock"
+                  >lock</span
+                >
+                Place order now
+              </button>
+              <p class="mt-md text-center text-xs text-on-surface-variant">
+                Your payment information is fully secure.
+              </p>
+            </aside>
+            <!-- Trust Badge -->
+            <div
+              class="bg-surface-container-high/50 p-md rounded-2xl flex items-center gap-md border border-outline-variant/20"
+            >
+              <div
+                class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary"
+              >
+                <span
+                  class="material-symbols-outlined"
+                  data-icon="verified_user"
+                  >verified_user</span
+                >
+              </div>
+              <div>
+                <p class="font-label-md text-on-surface">Return policy</p>
+                <p class="text-xs text-on-surface-variant">
+                  Free returns within 7 days if defective.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-surface-container-highest w-full py-xl px-lg">
+      <div
+        class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-lg"
+      >
+        <div class="md:col-span-1">
+          <div class="font-headline-sm text-headline-sm text-on-surface mb-md">
+            Gray Pet Shop
+          </div>
+          <p class="text-on-surface-variant font-label-sm">
+            Bringing the best to your four-legged friends.
+          </p>
+        </div>
+        <div class="space-y-sm">
+          <p class="font-label-md text-primary">Contact</p>
+          <p class="text-on-surface-variant font-label-sm">
+            Address: Bac Tu Liem, Hanoi
+          </p>
+          <p class="text-on-surface-variant font-label-sm">
+            Phone: 038.339.2903
+          </p>
+        </div>
+        <div class="space-y-sm">
+          <p class="font-label-md text-primary">Email</p>
+          <p class="text-on-surface-variant font-label-sm">
+            nampham050723@gmail.com
+          </p>
+          <p class="text-on-surface-variant font-label-sm">Facebook</p>
+        </div>
+        <div class="space-y-sm">
+          <p class="font-label-md text-primary">Copyright</p>
+          <p class="text-on-surface-variant font-label-sm">
+            © 2026 Gray Pet Shop. All rights reserved.
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-col gap-sm">
+        <span class="font-label-md text-label-md text-primary">Map</span>
+        <div class="w-full h-32 rounded-lg overflow-hidden border border-outline-variant/30">
+          <iframe src="https://maps.google.com/maps?q=273%20%C4%91%C6%B0%E1%BB%9Dng%20C%E1%BB%95%20Nhu%E1%BA%BF%2C%20B%E1%BA%AFc%20T%E1%BB%AB%20Li%C3%AAm%2C%20H%C3%A0%20N%E1%BB%99i&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </footer>
+    <script type="module">
+      import { isAuthenticated, getUserInfo, logoutUser, requireAuth } from "../js/auth.js";
+      import { getCart, getCartTotal, clearCart } from "../js/cart.js?v=1780539375684";
+
+      const guestNav = document.getElementById("guestNav");
+      const userNav = document.getElementById("userNav");
+      const userAvatar = document.getElementById("userAvatar");
+      const userName = document.getElementById("userName");
+      const menuUserName = document.getElementById("menuUserName");
+      const menuUserEmail = document.getElementById("menuUserEmail");
+      const adminLink = document.getElementById("adminLink");
+      const menuAdminLink = document.getElementById("menuAdminLink");
+      const userMenu = document.getElementById("userMenu");
+      const chevronIcon = document.getElementById("chevronIcon");
+      const logoutBtn = document.getElementById("logoutBtn");
+      const userAvatarBtn = document.getElementById("userAvatarBtn");
+
+      function initNav() {
+        if (isAuthenticated()) {
+          const user = getUserInfo();
+          if (!user) return;
+          guestNav.style.display = "none";
+          userNav.style.display = "flex";
+          const initial = (user.fullName || user.email || "U")
+            .charAt(0)
+            .toUpperCase();
+          userAvatar.textContent = initial;
+          const displayName = user.fullName || user.email;
+          userName.textContent = displayName;
+          menuUserName.textContent = displayName;
+          menuUserEmail.textContent = user.email || "";
+          if (user.role === "admin") {
+            adminLink.style.display = "flex";
+            menuAdminLink.style.display = "flex";
+          }
+        } else {
+          guestNav.style.display = "";
+          userNav.style.display = "none";
+        }
+      }
+      userAvatarBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = userMenu.classList.toggle("open");
+        chevronIcon.textContent = isOpen ? "expand_less" : "expand_more";
+      });
+      document.addEventListener("click", () => {
+        userMenu.classList.remove("open");
+        chevronIcon.textContent = "expand_more";
+      });
+      logoutBtn.addEventListener("click", async () => {
+        await logoutUser();
+        window.location.href = "/auth/login";
+      });
+
+      const provinceInput = document.getElementById("province-input");
+      const districtInput = document.getElementById("district-input");
+      const wardInput = document.getElementById("ward-input");
+      const streetInput = document.getElementById("street");
+
+      let provincesData = [];
+      let districtsData = [];
+      let wardsData = [];
+
+      function setupDropdown(input, dropdown, dataGetter, onSelect) {
+        function renderOptions() {
+          const list = dataGetter();
+          const val = input.value.trim().toLowerCase();
+          const filtered = val ? list.filter(item => item.name.toLowerCase().includes(val)) : list;
+          
+          if (filtered.length === 0) {
+            dropdown.innerHTML = '<div class="px-4 py-3 text-on-surface-variant text-sm">No results found</div>';
+            return;
+          }
+          dropdown.innerHTML = filtered.map(item => `<div class="px-4 py-3 hover:bg-primary-container/20 cursor-pointer text-on-surface text-sm border-b border-outline-variant/10 last:border-0" data-value="${item.code}">${item.name}</div>`).join('');
+        }
+        
+        input.addEventListener('focus', () => {
+          input.select();
+          dropdown.classList.remove('hidden');
+          renderOptions();
+        });
+        
+        input.addEventListener('input', () => {
+          dropdown.classList.remove('hidden');
+          renderOptions();
+        });
+        
+        dropdown.addEventListener('mousedown', (e) => {
+          const div = e.target.closest('div[data-value]');
+          if (div) {
+            input.value = div.textContent;
+            input.dataset.code = div.getAttribute('data-value');
+            dropdown.classList.add('hidden');
+            if (onSelect) onSelect(input.dataset.code);
+          }
+        });
+        
+        input.addEventListener('blur', () => {
+          dropdown.classList.add('hidden');
+          const list = dataGetter();
+          const selected = list.find(d => d.code == input.dataset.code);
+          if (!selected || selected.name !== input.value) {
+            input.value = '';
+            input.dataset.code = '';
+            if (onSelect) onSelect('');
+          }
+        });
+      }
+
+      setupDropdown(provinceInput, document.getElementById("province-dropdown"), () => provincesData, (pCode) => {
+        districtInput.value = ''; districtInput.dataset.code = '';
+        wardInput.value = ''; wardInput.dataset.code = '';
+        districtInput.disabled = true; wardInput.disabled = true;
+        districtsData = []; wardsData = [];
+        if (pCode) {
+          fetch(`https://provinces.open-api.vn/api/p/${pCode}?depth=2`)
+            .then(res => res.json())
+            .then(pData => { districtsData = pData.districts; districtInput.disabled = false; });
+        }
+      });
+
+      setupDropdown(districtInput, document.getElementById("district-dropdown"), () => districtsData, (dCode) => {
+        wardInput.value = ''; wardInput.dataset.code = '';
+        wardInput.disabled = true;
+        wardsData = [];
+        if (dCode) {
+          fetch(`https://provinces.open-api.vn/api/d/${dCode}?depth=2`)
+            .then(res => res.json())
+            .then(dData => { wardsData = dData.wards; wardInput.disabled = false; });
+        }
+      });
+      
+      setupDropdown(wardInput, document.getElementById("ward-dropdown"), () => wardsData, () => {});
+
+      fetch("https://provinces.open-api.vn/api/p/")
+        .then(res => res.json())
+        .then(data => { provincesData = data; });
+
+      function formatCurrency(value) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "VND",
+          maximumFractionDigits: 0,
+        }).format(value);
+      }
+
+      function renderCheckoutSummary() {
+        const cart = getCart();
+        const checkoutItemsContainer = document.getElementById(
+          "checkoutItemsContainer"
+        );
+        const subtotalValue = document.getElementById("subtotalValue");
+        const shippingValue = document.getElementById("shippingValue");
+        const totalValue = document.getElementById("totalValue");
+
+        if (!cart || cart.length === 0) {
+          checkoutItemsContainer.innerHTML =
+            '<p class="text-on-surface-variant text-center py-4">Cart is empty.</p>';
+          subtotalValue.textContent = formatCurrency(0);
+          shippingValue.textContent = formatCurrency(0);
+          totalValue.textContent = formatCurrency(0);
+          return;
+        }
+
+        checkoutItemsContainer.innerHTML = cart
+          .map(
+            (item) => `
+          <div class="flex gap-md group">
+            <div class="w-20 h-20 bg-surface-container-low rounded-2xl flex-shrink-0 p-2 overflow-hidden border border-outline-variant/20">
+              <img class="w-full h-full object-cover rounded-xl" src="${item.image || "https://via.placeholder.com/96?text=No+Image"}" alt="${item.name}">
+            </div>
+            <div class="flex-grow flex flex-col justify-between py-1">
+              <div>
+                <h3 class="font-label-md text-on-surface line-clamp-1">${item.name}</h3>
+                <p class="text-xs text-on-surface-variant">Quantity: ${item.quantity}</p>
+              </div>
+              <p class="font-label-md text-primary">${formatCurrency(item.price)}</p>
+            </div>
+          </div>
+        `
+          )
+          .join("");
+
+        const subtotal = getCartTotal();
+        const shippingFee = 30000;
+        subtotalValue.textContent = formatCurrency(subtotal);
+        shippingValue.textContent = formatCurrency(shippingFee);
+        totalValue.textContent = formatCurrency(subtotal + shippingFee);
+      }
+
+      const placeOrderBtn = document.getElementById("placeOrderBtn");
+
+      async function getAuthHeaders() {
+        const token = localStorage.getItem("token");
+
+        return {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        };
+      }
+
+      async function createOrder(paymentMethod, shippingAddress) {
+        const cart = getCart();
+        const totalPrice = getCartTotal() + 30000;
+
+        const response = await fetch("/api/orders", {
+          method: "POST",
+          headers: await getAuthHeaders(),
+          body: JSON.stringify({
+            paymentMethod,
+            shippingAddress,
+            cart,
+            totalPrice,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          throw new Error(data.message || "Unable to create order.");
+        }
+
+        return data.order;
+      }
+
+      async function handleVnpayCheckout(paymentMethod, shippingAddress) {
+        const order = await createOrder(paymentMethod, shippingAddress);
+
+        const response = await fetch("/api/payments/vnpay/create", {
+          method: "POST",
+          headers: await getAuthHeaders(),
+          body: JSON.stringify({
+            amount: order.totalPrice,
+            language: "vn",
+            orderId: order.orderNumber,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          throw new Error(data.message || "Unable to create payment link.");
+        }
+
+        window.location.href = data.redirectUrl;
+      }
+
+      placeOrderBtn.addEventListener("click", async () => {
+        if (!isAuthenticated()) {
+          window.location.href = "/auth/login";
+          return;
+        }
+
+        const fullName = document
+          .querySelector('input[placeholder="John Doe"]')
+          .value.trim();
+        const phoneNumber = document
+          .querySelector('input[placeholder="090 123 4567"]')
+          .value.trim();
+        const pName = provinceInput.value.trim();
+        const dName = districtInput.value.trim();
+        const wName = wardInput.value.trim();
+        const street = streetInput.value.trim();
+        const address = [street, wName, dName, pName].filter(x => x).join(", ");
+
+        if (!fullName || !phoneNumber || !address) {
+          alert("Please fill in all shipping information!");
+          return;
+        }
+
+        const cart = getCart();
+        if (!cart || cart.length === 0) {
+          alert("Cart is empty. Please add products before checkout.");
+          return;
+        }
+
+        const selectedPayment = document.querySelector(
+          'input[name="payment"]:checked'
+        ).value;
+
+        placeOrderBtn.disabled = true;
+
+        try {
+          if (selectedPayment === "banking") {
+            placeOrderBtn.textContent = "Creating payment link...";
+            await handleVnpayCheckout(selectedPayment, {
+              fullName,
+              address,
+              phone: phoneNumber,
+            });
+            return;
+          }
+
+          const order = await createOrder(selectedPayment, {
+            fullName,
+            address,
+            phone: phoneNumber,
+          });
+
+          alert(`Order placed successfully! Order ID: ${order.orderNumber}`);
+          clearCart();
+          window.location.href = "/order/detail";
+        } catch (error) {
+          alert(error.message);
+          placeOrderBtn.disabled = false;
+          placeOrderBtn.textContent = "Place order now";
+        }
+      });
+
+      requireAuth(); // Redirect immediately if not logged in
+      initNav();
+      renderCheckoutSummary();
+    </script>
+    <script src="../js/animations.js"></script>
+  </body>
+</html>

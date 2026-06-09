@@ -1,0 +1,690 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&amp;family=Plus+Jakarta+Sans:wght@200..800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../js/animations.css" />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-container": "#686554",
+              error: "#ba1a1a",
+              "tertiary-fixed-dim": "#58d5fe",
+              "surface-container-high": "#f3e6da",
+              "primary-fixed-dim": "#ffb95a",
+              "surface-container-lowest": "#ffffff",
+              "on-error": "#ffffff",
+              "surface-tint": "#845400",
+              secondary: "#625f4e",
+              "on-tertiary": "#ffffff",
+              "primary-container": "#ffb347",
+              "tertiary-container": "#52d0f9",
+              outline: "#847463",
+              "on-surface-variant": "#524535",
+              "on-secondary-fixed": "#1e1c0f",
+              "on-primary-container": "#704700",
+              "surface-dim": "#e5d8cc",
+              "inverse-surface": "#372f27",
+              "on-tertiary-fixed-variant": "#004d61",
+              "on-background": "#211a13",
+              "on-primary": "#ffffff",
+              "surface-bright": "#fff8f4",
+              "inverse-primary": "#ffb95a",
+              "outline-variant": "#d6c3b0",
+              "secondary-container": "#e8e3cd",
+              "on-primary-fixed-variant": "#643f00",
+              tertiary: "#006780",
+              "error-container": "#ffdad6",
+              "surface-variant": "#eee0d4",
+              "secondary-fixed": "#e8e3cd",
+              "on-error-container": "#93000a",
+              primary: "#845400",
+              "on-surface": "#211a13",
+              "on-primary-fixed": "#2a1800",
+              "primary-fixed": "#ffddb6",
+              surface: "#fff8f4",
+              "tertiary-fixed": "#b8eaff",
+              "surface-container-low": "#fff1e5",
+              background: "#fff8f4",
+              "inverse-on-surface": "#fceee2",
+              "surface-container-highest": "#eee0d4",
+              "secondary-fixed-dim": "#ccc7b2",
+              "on-tertiary-container": "#00576d",
+              "on-secondary": "#ffffff",
+              "on-secondary-fixed-variant": "#4a4737",
+              "on-tertiary-fixed": "#001f28",
+              "surface-container": "#f9ecdf",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              lg: "24px",
+              xs: "4px",
+              xl: "40px",
+              "margin-mobile": "16px",
+              "container-max": "1200px",
+              unit: "4px",
+              gutter: "24px",
+              sm: "8px",
+              md: "16px",
+            },
+            fontFamily: {
+              "label-md": ["Plus Jakarta Sans"],
+              "headline-lg": ["Quicksand"],
+              "headline-md": ["Quicksand"],
+              "body-md": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Quicksand"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "label-sm": ["Plus Jakarta Sans"],
+              "headline-xl": ["Quicksand"],
+            },
+            fontSize: {
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "700" },
+              ],
+              "headline-md": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "headline-lg-mobile": [
+                "28px",
+                { lineHeight: "36px", fontWeight: "700" },
+              ],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "label-sm": ["12px", { lineHeight: "16px", fontWeight: "700" }],
+              "headline-xl": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #fff8f4;
+        color: #211a13;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .soft-shadow {
+        box-shadow: 0 10px 30px -10px rgba(132, 84, 0, 0.08);
+      }
+      .table-row-hover:hover {
+        background-color: #f9ecdf;
+      }
+    </style>
+  </head>
+  <body class="font-body-md text-body-md">
+    <aside
+      class="flex flex-col h-screen fixed left-0 top-0 border-r border-outline-variant bg-surface-container-low dark:bg-surface-container-lowest w-64 shadow-md z-50"
+    >
+      <div class="px-lg py-xl">
+        <div class="flex items-center gap-3 mb-sm">
+          <img src="../images/logo.png" alt="Gray Pet Shop logo" class="w-10 h-10 rounded-full object-cover border-2 border-primary-container shadow-sm" />
+          <h1 class="font-headline-sm text-headline-sm text-primary">
+            Admin Panel
+          </h1>
+        </div>
+        <p class="text-label-sm text-on-surface-variant opacity-70">
+          Gray Pet Shop Management
+        </p>
+        <div
+          class="mt-md pt-md border-t border-outline-variant/30 flex items-center gap-sm"
+        >
+          <div
+            id="adminAvatarSidebar"
+            class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-label-sm flex-shrink-0"
+          >
+            A
+          </div>
+          <span
+            id="adminDisplayName"
+            class="text-label-sm text-on-surface font-semibold truncate max-w-[130px]"
+            >Admin</span
+          >
+        </div>
+      </div>
+      <nav class="flex-1 space-y-1 mt-4">
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors"
+          href="/admin"
+        >
+          <span class="material-symbols-outlined">dashboard</span>
+          <span class="font-label-md text-label-md">Dashboard</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors"
+          href="/admin/manageOrder"
+        >
+          <span class="material-symbols-outlined">shopping_bag</span>
+          <span class="font-label-md text-label-md">Orders</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors"
+          href="/admin/manageProduct"
+        >
+          <span class="material-symbols-outlined">inventory_2</span>
+          <span class="font-label-md text-label-md">Products</span>
+        </a>
+        <a
+          class="bg-primary-container text-on-primary-container rounded-xl mx-2 px-4 py-3 flex items-center gap-3 shadow-sm"
+          href="/admin/manageCategory"
+        >
+          <span
+            class="material-symbols-outlined"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >category</span
+          >
+          <span class="font-label-md text-label-md">Categories</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors"
+          href="/admin/manageBrand"
+        >
+          <span class="material-symbols-outlined">verified</span>
+          <span class="font-label-md text-label-md">Brands</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors"
+          href="/admin/manageCustomer"
+        >
+          <span class="material-symbols-outlined">group</span>
+          <span class="font-label-md text-label-md">Users</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors"
+          href="/admin/report"
+        >
+          <span class="material-symbols-outlined">assessment</span>
+          <span class="font-label-md text-label-md">Reports</span>
+        </a>
+      </nav>
+      <div class="p-4 border-t border-outline-variant">
+        <button
+          id="logoutBtn"
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl w-full px-4 py-3 flex items-center gap-3 transition-colors cursor-pointer"
+        >
+          <span class="material-symbols-outlined">logout</span>
+          <span class="font-label-md text-label-md">Logout</span>
+        </button>
+      </div>
+    </aside>
+    <main class="ml-64 p-xl min-h-screen">
+      <header
+        class="flex flex-col md:flex-row justify-between items-start md:items-center mb-xl gap-md"
+      >
+        <div>
+          <h2
+            class="font-headline-lg text-headline-lg text-on-surface section-heading"
+          >
+            Category Management
+          </h2>
+        </div>
+        <button
+          id="addCategoryBtn"
+          class="bg-primary-container text-on-primary-container font-label-md text-label-md px-lg py-3 rounded-full flex items-center gap-2 hover:scale-105 transition-transform shadow-md active:scale-95 btn-ripple"
+        >
+          <span class="material-symbols-outlined">add</span>
+          Add Category
+        </button>
+      </header>
+
+      <div
+        class="bg-white rounded-[24px] p-md mb-lg border border-outline-variant soft-shadow flex flex-wrap items-center gap-md reveal delay-1"
+      >
+        <div class="flex-1 min-w-[300px] relative">
+          <span
+            class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline"
+            >search</span
+          >
+          <input
+            id="searchCategoryInput"
+            class="w-full bg-surface-container-low border-none rounded-full py-3 pl-12 pr-4 focus:ring-2 focus:ring-primary-container font-body-md text-body-md"
+            placeholder="Search categories by name..."
+            type="text"
+          />
+        </div>
+      </div>
+
+      <div
+        class="bg-white rounded-[24px] border border-outline-variant soft-shadow overflow-hidden reveal"
+      >
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead class="bg-surface-container-low">
+              <tr>
+                <th
+                  class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider"
+                >
+                  Categories
+                </th>
+                <th
+                  class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider"
+                >
+                  Slug
+                </th>
+                <th
+                  class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right"
+                >
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody id="categoriesTableBody" class="divide-y divide-outline-variant">
+              <tr>
+                <td
+                  colspan="3"
+                  class="px-lg py-xl text-center text-on-surface-variant"
+                >
+                  Loading categories...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="px-lg py-md bg-surface-container-low flex justify-end items-center gap-2"
+          id="paginationControls"
+        ></div>
+      </div>
+
+      <footer
+        class="w-full py-xl px-lg grid grid-cols-1 md:grid-cols-5 gap-lg max-w-container-max mx-auto bg-surface-container-highest dark:bg-surface-container mt-xl rounded-[24px]"
+      >
+        <div class="col-span-1 md:col-span-1">
+          <span class="font-headline-sm text-headline-sm text-on-surface"
+            >Gray Pet Shop</span
+          >
+          <p class="mt-md text-on-surface-variant text-label-sm">
+            A premium pet care store, bringing warmth and trust to your four-legged friend.
+          </p>
+        </div>
+        <div class="flex flex-col gap-sm">
+          <span class="font-label-md text-label-md text-primary">Contact</span>
+          <span class="text-on-surface-variant text-label-sm"
+            >Address: Bac Tu Liem, Hanoi</span
+          >
+          <span class="text-on-surface-variant text-label-sm"
+            >Phone: 038.339.2903</span
+          >
+          <span class="text-on-surface-variant text-label-sm"
+            >Email: nampham050723@gmail.com</span
+          >
+        </div>
+        <div class="flex flex-col gap-sm">
+          <span class="font-label-md text-label-md text-primary"
+            >Policies</span
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+            href="#"
+            >Privacy Policy</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+            href="#"
+            >Terms of Service</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+            href="#"
+            >Shipping &amp; Returns</a
+          >
+        </div>
+        <div class="flex flex-col gap-sm">
+          <span class="font-label-md text-label-md text-primary"
+            >Social Media</span
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity flex items-center gap-2"
+            href="https://www.facebook.com/pdn.0507"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="material-symbols-outlined text-sm">public</span>
+            Facebook
+          </a>
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity flex items-center gap-2"
+            href="https://www.instagram.com/dinhnam.ph"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="material-symbols-outlined text-sm">camera_alt</span>
+            Instagram
+          </a>
+          <p class="mt-4 text-on-surface-variant text-[10px]">
+            © 2026 Gray Pet Shop. All rights reserved.
+          </p>
+        </div>
+        <div class="flex flex-col gap-sm">
+          <span class="font-label-md text-label-md text-primary">Map</span>
+          <div class="w-full h-32 rounded-lg overflow-hidden border border-outline-variant/30">
+            <iframe src="https://maps.google.com/maps?q=273%20%C4%91%C6%B0%E1%BB%9Dng%20C%E1%BB%95%20Nhu%E1%BA%BF%2C%20B%E1%BA%AFc%20T%E1%BB%AB%20Li%C3%AAm%2C%20H%C3%A0%20N%E1%BB%99i&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <div
+      id="categoryModal"
+      class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-lg"
+    >
+      <div
+        class="bg-white rounded-[32px] w-full max-w-md shadow-xl overflow-hidden"
+      >
+        <div
+          class="sticky top-0 bg-white px-xl py-lg border-b border-outline-variant flex items-center justify-between"
+        >
+          <h3
+            id="categoryModalTitle"
+            class="font-headline-lg text-headline-lg text-on-surface"
+          >
+            Add category
+          </h3>
+          <button
+            id="closeCategoryModalBtn"
+            class="p-2 text-on-surface-variant hover:text-on-surface transition-colors"
+          >
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <form id="categoryForm" class="p-xl space-y-lg">
+          <input type="hidden" id="categoryId" />
+          <div>
+            <label
+              class="block font-label-md text-label-md text-on-surface mb-sm"
+              >Category name</label
+            >
+            <input
+              id="categoryName"
+              type="text"
+              class="w-full bg-surface-container-low border-none rounded-full px-lg py-md focus:ring-2 focus:ring-primary-container outline-none text-body-md"
+              placeholder="Enter category name"
+              required
+            />
+          </div>
+          <div>
+            <label
+              class="block font-label-md text-label-md text-on-surface mb-sm"
+              >Description (optional)</label
+            >
+            <input
+              id="categoryDescription"
+              type="text"
+              class="w-full bg-surface-container-low border-none rounded-full px-lg py-md focus:ring-2 focus:ring-primary-container outline-none text-body-md"
+              placeholder="Short description of the category"
+            />
+          </div>
+          <div class="flex gap-md pt-lg">
+            <button
+              type="submit"
+              class="flex-1 bg-primary text-on-primary font-label-md px-lg py-md rounded-full hover:scale-105 transition-transform shadow-md active:scale-95 btn-ripple text-body-md"
+            >
+              Save
+            </button>
+            <button
+              type="button"
+              id="cancelCategoryBtn"
+              class="flex-1 bg-surface-container-high text-on-surface font-label-md px-lg py-md rounded-full hover:bg-surface-container-highest transition-colors text-body-md"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="module">
+      import { logoutUser, getUserInfo, isAuthenticated } from "../js/auth.js";
+      import {
+        getAdminCategories,
+        createCategory,
+        updateCategory,
+        deleteCategory,
+      } from "../js/admin.js";
+
+      if (!isAuthenticated() || getUserInfo()?.role !== "admin") {
+        window.location.href = "/auth/login";
+      }
+
+      const categoriesTableBody = document.getElementById("categoriesTableBody");
+      const addCategoryBtn = document.getElementById("addCategoryBtn");
+      const categoryModal = document.getElementById("categoryModal");
+      const closeCategoryModalBtn = document.getElementById("closeCategoryModalBtn");
+      const cancelCategoryBtn = document.getElementById("cancelCategoryBtn");
+      const categoryForm = document.getElementById("categoryForm");
+      const categoryModalTitle = document.getElementById("categoryModalTitle");
+      const categoryNameInput = document.getElementById("categoryName");
+      const categoryDescriptionInput = document.getElementById("categoryDescription");
+      const categoryIdInput = document.getElementById("categoryId");
+
+      const renderCategoryRow = (category) => `
+        <tr class="table-row-hover transition-colors">
+          <td class="px-lg py-md text-body-md text-on-surface font-medium">${category.name}</td>
+          <td class="px-lg py-md text-label-sm text-on-surface-variant">${category.slug || ""}</td>
+          <td class="px-lg py-md text-right">
+            <div class="flex justify-end gap-2">
+              <button data-id="${category._id}" data-name="${category.name}" data-desc="${category.description || ""}" class="p-2 text-on-surface-variant hover:text-primary transition-colors hover:bg-primary-container/10 rounded-full edit-category-btn">
+                <span class="material-symbols-outlined">edit</span>
+              </button>
+              <button data-id="${category._id}" data-name="${category.name}" class="p-2 text-on-surface-variant hover:text-error transition-colors hover:bg-error-container/20 rounded-full delete-category-btn">
+                <span class="material-symbols-outlined">delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+
+      let allCategories = [];
+      let filteredCategories = [];
+      let currentCategoryPage = 1;
+      const categoriesPerPage = 10;
+
+      const renderCategories = () => {
+        const totalPages =
+          Math.ceil(filteredCategories.length / categoriesPerPage) || 1;
+        if (currentCategoryPage > totalPages) currentCategoryPage = totalPages;
+        if (currentCategoryPage < 1) currentCategoryPage = 1;
+
+        const start = (currentCategoryPage - 1) * categoriesPerPage;
+        const end = start + categoriesPerPage;
+        const paginated = filteredCategories.slice(start, end);
+
+        if (paginated.length > 0) {
+          categoriesTableBody.innerHTML = paginated.map(renderCategoryRow).join("");
+          attachCategoryListeners();
+        } else {
+          categoriesTableBody.innerHTML = `
+            <tr>
+              <td colspan="3" class="px-lg py-xl text-center text-on-surface-variant">No categories found</td>
+            </tr>
+          `;
+        }
+        renderPagination(totalPages);
+      };
+
+      const renderPagination = (totalPages) => {
+        const paginationContainer = document.getElementById("paginationControls");
+        if (!paginationContainer) return;
+
+        paginationContainer.innerHTML = `
+          <span class="text-label-sm text-on-surface-variant mr-4">Page ${currentCategoryPage} / ${totalPages}</span>
+          <button id="prevCategoryPage" class="p-2 rounded-full hover:bg-surface-container-highest text-on-surface-variant disabled:opacity-30" ${currentCategoryPage <= 1 ? "disabled" : ""}>
+            <span class="material-symbols-outlined">chevron_left</span>
+          </button>
+          <button id="nextCategoryPage" class="p-2 rounded-full hover:bg-surface-container-highest text-on-surface-variant disabled:opacity-30" ${currentCategoryPage >= totalPages ? "disabled" : ""}>
+            <span class="material-symbols-outlined">chevron_right</span>
+          </button>
+        `;
+
+        document.getElementById("prevCategoryPage")?.addEventListener("click", () => {
+          if (currentCategoryPage > 1) { currentCategoryPage--; renderCategories(); }
+        });
+        document.getElementById("nextCategoryPage")?.addEventListener("click", () => {
+          if (currentCategoryPage < totalPages) { currentCategoryPage++; renderCategories(); }
+        });
+      };
+
+      const searchCategoryInput = document.getElementById("searchCategoryInput");
+
+      const applySearch = () => {
+        const searchTerm = searchCategoryInput
+          ? searchCategoryInput.value.toLowerCase().trim()
+          : "";
+        filteredCategories = searchTerm
+          ? allCategories.filter((c) => c.name.toLowerCase().includes(searchTerm))
+          : [...allCategories];
+        currentCategoryPage = 1;
+        renderCategories();
+      };
+
+      searchCategoryInput?.addEventListener("input", applySearch);
+
+      const loadCategories = async () => {
+        const response = await getAdminCategories();
+        if (response.success) {
+          allCategories = response.categories || [];
+          applySearch();
+        } else {
+          categoriesTableBody.innerHTML = `
+            <tr>
+              <td colspan="3" class="px-lg py-xl text-center text-error">${response.message || "Error loading categories"}</td>
+            </tr>
+          `;
+        }
+      };
+
+      const attachCategoryListeners = () => {
+        document.querySelectorAll(".edit-category-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            categoryIdInput.value = btn.dataset.id;
+            categoryNameInput.value = btn.dataset.name;
+            categoryDescriptionInput.value = btn.dataset.desc || "";
+            categoryModalTitle.textContent = "Edit category";
+            categoryModal.classList.remove("hidden");
+          });
+        });
+        document.querySelectorAll(".delete-category-btn").forEach((btn) => {
+          btn.addEventListener("click", async () => {
+            if (confirm(`Delete category "${btn.dataset.name}"?`)) {
+              const result = await deleteCategory(btn.dataset.id);
+              if (result.success) {
+                alert(result.message);
+                await loadCategories();
+              } else {
+                alert(result.message || "Cannot delete category");
+              }
+            }
+          });
+        });
+      };
+
+      const closeModal = () => {
+        categoryModal.classList.add("hidden");
+        categoryForm.reset();
+      };
+
+      addCategoryBtn.addEventListener("click", () => {
+        categoryIdInput.value = "";
+        categoryNameInput.value = "";
+        categoryDescriptionInput.value = "";
+        categoryModalTitle.textContent = "Add category";
+        categoryModal.classList.remove("hidden");
+      });
+      closeCategoryModalBtn.addEventListener("click", closeModal);
+      cancelCategoryBtn.addEventListener("click", closeModal);
+      categoryModal.addEventListener("click", (event) => {
+        if (event.target === categoryModal) closeModal();
+      });
+
+      categoryForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const payload = {
+          name: categoryNameInput.value.trim(),
+          description: categoryDescriptionInput.value.trim(),
+        };
+        let result;
+        if (categoryIdInput.value) {
+          result = await updateCategory(categoryIdInput.value, payload);
+        } else {
+          result = await createCategory(payload);
+        }
+        if (result.success) {
+          alert(result.message);
+          closeModal();
+          await loadCategories();
+        } else {
+          alert(result.message || "Error saving category");
+        }
+      });
+
+      const userInfo = getUserInfo();
+      if (userInfo) {
+        const nameEl = document.getElementById("adminDisplayName");
+        const avatarEl = document.getElementById("adminAvatarSidebar");
+        if (nameEl) nameEl.textContent = userInfo.fullName || userInfo.email;
+        if (avatarEl)
+          avatarEl.textContent = (userInfo.fullName || userInfo.email || "A")
+            .charAt(0)
+            .toUpperCase();
+      }
+
+      const logoutBtn = document.getElementById("logoutBtn");
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", async (e) => {
+          e.preventDefault();
+          if (confirm("Are you sure you want to log out?")) {
+            await logoutUser();
+            window.location.href = "/auth/login";
+          }
+        });
+      }
+
+      loadCategories();
+    </script>
+    <script src="../js/animations.js"></script>
+  </body>
+</html>

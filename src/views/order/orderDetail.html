@@ -1,0 +1,1239 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <title>My Orders - Gray Pet Shop</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Plus+Jakarta+Sans:wght@300..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../js/animations.css" />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#845400",
+              "primary-container": "#ffb347",
+              "on-primary-container": "#704700",
+              "on-primary": "#ffffff",
+              secondary: "#625f4e",
+              "secondary-container": "#e8e3cd",
+              background: "#fff8f4",
+              surface: "#fff8f4",
+              "surface-container": "#f9ecdf",
+              "surface-container-low": "#fff1e5",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-high": "#f3e6da",
+              "surface-container-highest": "#eee0d4",
+              "on-surface": "#211a13",
+              "on-surface-variant": "#524535",
+              outline: "#847463",
+              "outline-variant": "#d6c3b0",
+              error: "#ba1a1a",
+              "error-container": "#ffdad6",
+              "on-error-container": "#93000a",
+              tertiary: "#006780",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              lg: "24px",
+              xs: "4px",
+              xl: "40px",
+              "margin-mobile": "16px",
+              "container-max": "1200px",
+              unit: "4px",
+              gutter: "24px",
+              sm: "8px",
+              md: "16px",
+            },
+            fontFamily: {
+              "label-md": ["Plus Jakarta Sans"],
+              "headline-lg": ["Quicksand"],
+              "headline-md": ["Quicksand"],
+              "body-md": ["Plus Jakarta Sans"],
+              "label-sm": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "700" },
+              ],
+              "headline-md": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "label-sm": ["12px", { lineHeight: "16px", fontWeight: "700" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      #userMenu {
+        display: none;
+      }
+      #userMenu.open {
+        display: block;
+      }
+      #userAvatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 9999px;
+        background: #ffb347;
+        color: #704700;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Chatbot inline */
+      #orderChatWindow {
+        display: none;
+        flex-direction: column;
+        height: 360px;
+        border: 1px solid #d6c3b0;
+        border-radius: 16px;
+        overflow: hidden;
+        margin-top: 12px;
+        background: #fff;
+      }
+      #orderChatWindow.open {
+        display: flex;
+      }
+      #orderChatMessages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background: #fff8f4;
+      }
+      .ochat-msg {
+        max-width: 85%;
+        padding: 8px 12px;
+        border-radius: 14px;
+        font-size: 13px;
+        line-height: 1.4;
+        word-wrap: break-word;
+      }
+      .ochat-msg.user {
+        background: #845400;
+        color: #fff;
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+      }
+      .ochat-msg.bot {
+        background: #ffffff;
+        color: #211a13;
+        align-self: flex-start;
+        border: 1px solid #d6c3b0;
+        border-bottom-left-radius: 4px;
+      }
+      .otyping-indicator {
+        display: flex;
+        gap: 4px;
+        padding: 10px 14px;
+        background: #fff;
+        border: 1px solid #d6c3b0;
+        border-radius: 14px;
+        border-bottom-left-radius: 4px;
+        align-self: flex-start;
+        width: fit-content;
+      }
+      .otyping-dot {
+        width: 5px;
+        height: 5px;
+        background: #845400;
+        border-radius: 50%;
+        animation: otyping 1.4s infinite ease-in-out both;
+      }
+      .otyping-dot:nth-child(1) {
+        animation-delay: -0.32s;
+      }
+      .otyping-dot:nth-child(2) {
+        animation-delay: -0.16s;
+      }
+      @keyframes otyping {
+        0%,
+        80%,
+        100% {
+          transform: scale(0);
+        }
+        40% {
+          transform: scale(1);
+        }
+      }
+
+      /* Return policy modal */
+      #returnPolicyOverlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 200;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+      #returnPolicyOverlay.open {
+        display: flex;
+      }
+      #returnPolicyModal {
+        background: #fff;
+        border-radius: 20px;
+        max-width: 560px;
+        width: 100%;
+        max-height: 80vh;
+        overflow-y: auto;
+        padding: 28px;
+        box-shadow: 0 16px 40px rgba(132, 84, 0, 0.15);
+        animation: modalIn 0.25s ease-out;
+      }
+      @keyframes modalIn {
+        from {
+          transform: scale(0.92);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-background text-on-surface">
+    <header
+      class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-md shadow-sm"
+    >
+      <div
+        class="max-w-container-max mx-auto px-lg py-md flex justify-between items-center"
+      >
+        <div class="flex items-center gap-xl">
+          <a
+            class="inline-flex items-center gap-3 font-bold text-primary text-headline-md hover:scale-105 transition-transform"
+            href="/"
+          >
+            <img src="../images/logo.png" alt="Gray Pet Shop logo" class="w-10 h-10 rounded-full object-cover border-2 border-primary-container shadow-sm" />
+            <span>Gray Pet Shop</span>
+          </a>
+          <nav class="hidden md:flex gap-lg">
+            <a class="text-on-surface-variant hover:text-primary" href="/"
+              >Home</a
+            >
+            <a
+              class="text-on-surface-variant hover:text-primary"
+              href="/product"
+              >Products</a
+            >
+            <a
+              class="text-on-surface-variant hover:text-primary"
+              href="/homepage/categories"
+              >Categories</a
+            >
+          </nav>
+        </div>
+        <div class="flex items-center gap-md">
+          <a href="/cart" class="p-2 hover:scale-105 text-on-surface-variant">
+            <span class="material-symbols-outlined">shopping_cart</span>
+          </a>
+          <div id="guestNav" class="hidden sm:flex items-center gap-sm">
+            <a
+              href="/auth/login"
+              class="text-on-surface-variant hover:text-primary px-md py-sm"
+              >Log in</a
+            >
+            <a
+              href="/auth/register"
+              class="bg-primary-container text-on-primary-container px-lg py-sm rounded-full"
+              >Sign up</a
+            >
+          </div>
+          <div id="userNav" class="hidden items-center gap-sm relative">
+            <a
+              id="adminLink"
+              href="/admin"
+              class="hidden items-center gap-xs px-md py-1 bg-primary text-on-primary rounded-full text-label-sm"
+              >Admin</a
+            >
+            <div class="relative">
+              <button id="userAvatarBtn" class="flex items-center gap-sm group">
+                <div id="userAvatar">A</div>
+                <span
+                  id="userName"
+                  class="hidden sm:block max-w-[120px] truncate"
+                ></span>
+                <span
+                  class="material-symbols-outlined text-[18px]"
+                  id="chevronIcon"
+                  >expand_more</span
+                >
+              </button>
+              <div
+                id="userMenu"
+                class="absolute right-0 top-full mt-2 w-52 bg-surface-container-lowest rounded-2xl shadow-lg border border-outline-variant/30 overflow-hidden z-50"
+              >
+                <div class="px-lg py-md border-b border-outline-variant/20">
+                  <p class="font-label-md" id="menuUserName"></p>
+                  <p
+                    class="text-label-sm text-on-surface-variant"
+                    id="menuUserEmail"
+                  ></p>
+                </div>
+                <div class="py-sm">
+                  <a
+                    href="/order/detail"
+                    class="flex items-center gap-sm px-lg py-sm text-on-surface-variant hover:text-primary"
+                    ><span class="material-symbols-outlined">receipt_long</span>
+                    My Orders</a
+                  >
+                  <a
+                    id="menuAdminLink"
+                    href="/admin"
+                    class="hidden items-center gap-sm px-lg py-sm text-on-surface-variant hover:text-primary"
+                    ><span class="material-symbols-outlined"
+                      >admin_panel_settings</span
+                    >
+                    Admin Panel</a
+                  >
+                  <button
+                    id="logoutBtn"
+                    class="w-full flex items-center gap-sm px-lg py-sm text-error hover:bg-error-container/20"
+                  >
+                    <span class="material-symbols-outlined">logout</span> Log out
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main
+      class="mt-24 mb-xl max-w-container-max mx-auto px-margin-mobile md:px-lg min-h-screen"
+    >
+      <nav
+        class="flex items-center gap-xs text-on-surface-variant mb-xl text-label-sm"
+      >
+        <a class="hover:text-primary" href="/">Home</a>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-primary font-bold" id="breadcrumbOrder"
+          >My Orders</span
+        >
+      </nav>
+
+      <div id="orderListView" class="hidden">
+        <h1 class="font-headline-lg text-headline-lg text-on-surface mb-lg reveal section-heading">
+          My order list
+        </h1>
+        <div
+          class="bg-surface-container-lowest rounded-[24px] p-lg shadow-sm border border-outline-variant/30 overflow-x-auto reveal delay-1"
+        >
+          <table class="w-full text-left">
+            <thead
+              class="text-label-sm text-on-surface-variant uppercase tracking-wider border-b border-outline-variant/30"
+            >
+              <tr>
+                <th class="pb-md px-sm">Order ID</th>
+                <th class="pb-md px-sm">Order date</th>
+                <th class="pb-md px-sm">Total</th>
+                <th class="pb-md px-sm">Status</th>
+                <th class="pb-md px-sm">Actions</th>
+              </tr>
+            </thead>
+            <tbody
+              id="allOrdersBody"
+              class="text-body-md divide-y divide-outline-variant/10"
+            ></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div
+        id="orderHeaderDetail"
+        class="hidden bg-surface-container-lowest rounded-[24px] p-lg md:p-xl shadow-sm border border-outline-variant/30 mb-lg reveal"
+      >
+        <div
+          class="flex flex-col md:flex-row justify-between gap-md items-start md:items-center"
+        >
+          <div>
+            <a
+              href="/order/detail"
+              class="inline-flex items-center gap-xs text-primary hover:underline mb-sm text-label-sm"
+              ><span class="material-symbols-outlined text-[16px]"
+                >arrow_back</span
+              >
+              Back to list</a
+            >
+            <h1
+              id="orderHeading"
+              class="font-headline-lg text-headline-lg text-on-surface mb-xs"
+            >
+              My Orders
+            </h1>
+            <p id="orderDate" class="text-on-surface-variant">
+              Loading data...
+            </p>
+          </div>
+          <div
+            class="flex items-center gap-sm bg-primary-container/10 px-lg py-sm rounded-full border border-primary-container/20 anim-scale-in"
+          >
+            <span
+              class="w-2.5 h-2.5 bg-primary rounded-full animate-pulse"
+            ></span>
+            <span
+              id="orderStatusBadge"
+              class="text-primary font-bold text-label-md"
+              >Loading</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="emptyState"
+        class="hidden bg-surface-container-lowest rounded-[24px] p-xl shadow-sm border border-outline-variant/30 text-center reveal"
+      >
+        <h2 class="font-headline-md text-headline-md mb-sm">
+          You have no orders yet
+        </h2>
+        <p class="text-on-surface-variant mb-lg">
+          Add products to your cart and place an order to track them here.
+        </p>
+        <a
+          href="/product"
+          class="inline-flex items-center gap-sm bg-primary text-on-primary px-lg py-3 rounded-full font-bold"
+          >Shop now</a
+        >
+      </div>
+
+      <div
+        id="mainContent"
+        class="hidden grid grid-cols-1 lg:grid-cols-3 gap-lg"
+      >
+        <div class="lg:col-span-2 space-y-lg">
+          <div
+            class="bg-surface-container-lowest rounded-[24px] p-lg shadow-sm border border-outline-variant/30 reveal-left delay-1"
+          >
+            <h2
+              class="font-headline-md text-headline-md mb-lg flex items-center gap-sm"
+            >
+              <span class="material-symbols-outlined text-primary"
+                >location_on</span
+              >
+              Shipping information
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-xl">
+              <div class="space-y-sm">
+                <p class="text-label-sm text-on-surface-variant uppercase">
+                  Recipient
+                </p>
+                <p id="recipientName" class="font-bold text-body-lg">—</p>
+                <p id="recipientPhone" class="text-on-surface-variant">—</p>
+                <p id="recipientAddress" class="text-on-surface-variant">—</p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="bg-surface-container-lowest rounded-[24px] p-lg shadow-sm border border-outline-variant/30 overflow-hidden reveal-left delay-2"
+          >
+            <h2
+              class="font-headline-md text-headline-md mb-lg flex items-center gap-sm"
+            >
+              <span class="material-symbols-outlined text-primary">pets</span>
+              Ordered products
+            </h2>
+            <div id="productsContainer" class="space-y-md"></div>
+          </div>
+        </div>
+
+        <div class="space-y-lg">
+          <div
+            class="bg-surface-container-lowest rounded-[24px] p-lg shadow-sm border border-outline-variant/30 reveal-right delay-1"
+          >
+            <h2 class="font-headline-md text-headline-md mb-lg">
+              Payment details
+            </h2>
+            <div class="space-y-md">
+              <div
+                class="flex justify-between text-body-md text-on-surface-variant"
+              >
+                <span id="subtotalLabel">Subtotal</span>
+                <span id="subtotalValue">—</span>
+              </div>
+              <div
+                class="flex justify-between text-body-md text-on-surface-variant"
+              >
+                <span>Shipping fee</span>
+                <span id="shippingValue">—</span>
+              </div>
+              <div class="h-px bg-outline-variant/30 my-sm"></div>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-headline-md text-on-surface"
+                  >Total</span
+                >
+                <span
+                  id="totalValue"
+                  class="font-bold text-headline-md text-primary"
+                  >—</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div
+            id="cancelSection"
+            class="bg-surface-container-lowest rounded-[24px] p-lg shadow-sm border border-outline-variant/30 hidden reveal-right"
+          >
+            <h2
+              class="font-headline-md text-headline-md mb-lg flex items-center gap-sm"
+            >
+              <span class="material-symbols-outlined text-primary">cancel</span>
+              Cancel order
+            </h2>
+            <p class="text-on-surface-variant mb-md">
+              You can cancel the order while the status is
+              <strong>Pending</strong> or <strong>Confirmed</strong>.
+            </p>
+            <label for="cancelReason" class="block text-label-md mb-2"
+              >Cancellation reason</label
+            >
+            <select
+              id="cancelReason"
+              class="w-full rounded-lg border border-outline-variant bg-surface-container p-3 text-on-surface"
+            >
+              <option value="">-- Select a reason --</option>
+              <option value="Changed my mind">
+                Changed my mind
+              </option>
+              <option value="Product too expensive">Product too expensive</option>
+              <option value="Incorrect shipping information">
+                Incorrect shipping information
+              </option>
+              <option value="Other">Other</option>
+            </select>
+            <button
+              type="button"
+              id="cancelOrderBtn"
+              class="mt-md w-full bg-error text-on-error py-3 rounded-full font-bold hover:opacity-90"
+            >
+              Cancel order
+            </button>
+            <p
+              id="cancelMessage"
+              class="mt-3 text-sm text-on-surface-variant"
+            ></p>
+          </div>
+
+          <div
+            class="bg-surface-container-lowest rounded-[24px] p-lg shadow-sm border border-outline-variant/30 reveal-right delay-2"
+          >
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">
+              Need help?
+            </h3>
+            <p class="text-on-surface-variant mb-lg">
+              If you have any issues with your order, contact our pet care team right away!
+            </p>
+            <button
+              id="toggleOrderChatBtn"
+              class="w-full bg-primary text-white py-4 rounded-full font-bold hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-sm shadow-md"
+            >
+              <span class="material-symbols-outlined">headset_mic</span>
+              Chat with support
+            </button>
+
+            <!-- Inline Chatbot -->
+            <div id="orderChatWindow">
+              <div
+                class="bg-primary text-on-primary px-4 py-2.5 flex items-center justify-between"
+              >
+                <div class="flex items-center gap-2">
+                  <img
+                    src="../images/logo.png"
+                    alt="Gray Pet Shop"
+                    class="w-5 h-5 rounded-full object-cover border border-white/40"
+                  />
+                  <span class="font-label-md text-[13px]"
+                    >Gray Assistant - Order support</span
+                  >
+                </div>
+                <button
+                  id="closeOrderChatBtn"
+                  class="hover:bg-black/10 p-1 rounded-full transition-colors"
+                >
+                  <span class="material-symbols-outlined text-[16px]"
+                    >close</span
+                  >
+                </button>
+              </div>
+              <div id="orderChatMessages">
+                <div class="ochat-msg bot">
+                  Hello 👋 I'm the Gray Pet Shop AI assistant. Please provide your order number so we can check and assist you as quickly as possible.
+                </div>
+              </div>
+              <div
+                class="p-2.5 bg-white border-t border-outline-variant/30 flex items-center gap-2"
+              >
+                <input
+                  type="text"
+                  id="orderChatInput"
+                  placeholder="Type a message..."
+                  autocomplete="off"
+                  class="flex-1 bg-surface border border-outline-variant rounded-full px-3 py-1.5 text-[13px] focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                />
+                <button
+                  id="sendOrderChatBtn"
+                  class="bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-all flex-shrink-0 disabled:opacity-50"
+                >
+                  <span class="material-symbols-outlined text-[16px]"
+                    >send</span
+                  >
+                </button>
+              </div>
+            </div>
+
+            <button
+              id="openReturnPolicyBtn"
+              class="w-full mt-sm border-2 border-outline-variant bg-white text-on-surface-variant py-3 rounded-full font-bold hover:bg-surface-container transition-all"
+            >
+              View return policy
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Return Policy Modal -->
+    <div id="returnPolicyOverlay">
+      <div id="returnPolicyModal">
+        <div class="flex items-center justify-between mb-4">
+          <h2
+            class="font-headline-md text-headline-md text-on-surface flex items-center gap-2"
+          >
+            <span class="material-symbols-outlined text-primary">policy</span>
+            Return policy
+          </h2>
+          <button
+            id="closeReturnPolicyBtn"
+            class="w-9 h-9 rounded-full hover:bg-surface-container flex items-center justify-center transition-colors"
+          >
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+
+        <div class="space-y-4 text-body-md text-on-surface-variant">
+          <div
+            class="bg-primary-container/10 border border-primary-container/20 rounded-xl p-4"
+          >
+            <h3 class="font-label-md text-primary mb-1">
+              ⏰ Return window
+            </h3>
+            <p>
+              Within <strong class="text-on-surface">7 days</strong> of receiving the order.
+            </p>
+          </div>
+
+          <div class="bg-green-50 border border-green-200 rounded-xl p-4">
+            <h3 class="font-label-md text-green-700 mb-2">
+              ✅ Eligible for return
+            </h3>
+            <ul class="space-y-1 list-disc list-inside text-[14px]">
+              <li>Product defective from manufacturer</li>
+              <li>Product expired before delivery date</li>
+              <li>Wrong product or quantity delivered</li>
+              <li>Severely damaged, torn, or dented packaging</li>
+              <li>Product does not match website description</li>
+            </ul>
+          </div>
+
+          <div class="bg-red-50 border border-red-200 rounded-xl p-4">
+            <h3 class="font-label-md text-red-600 mb-2">
+              ❌ Not eligible for return
+            </h3>
+            <ul class="space-y-1 list-disc list-inside text-[14px]">
+              <li>Product seal opened or used</li>
+              <li>More than 7 days after delivery</li>
+              <li>Product damaged due to improper storage by customer</li>
+              <li>Return due to dislike or change of mind</li>
+            </ul>
+          </div>
+
+          <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+            <h3 class="font-label-md text-blue-700 mb-2">
+              📋 Return process
+            </h3>
+            <ol class="space-y-1 list-decimal list-inside text-[14px]">
+              <li>
+                Contact support via chat or hotline <strong>038.339.2903</strong>
+              </li>
+              <li>Provide order number and photos/videos of defective product</li>
+              <li>Support confirms and guides return shipment</li>
+              <li>Refund/exchange within 3-5 business days</li>
+            </ol>
+          </div>
+
+          <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4">
+            <h3 class="font-label-md text-yellow-700 mb-2">
+              💰 Refund method
+            </h3>
+            <ul class="space-y-1 list-disc list-inside text-[14px]">
+              <li>COD payment: Refund via bank transfer</li>
+              <li>VNPAY payment: Refund to original account</li>
+              <li>
+                Return shipping paid by Gray Pet Shop (if fault is ours)
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <button
+          id="closeReturnPolicyBtn2"
+          class="w-full mt-5 bg-primary text-on-primary py-3 rounded-full font-bold hover:opacity-90 transition-all"
+        >
+          Got it
+        </button>
+      </div>
+    </div>
+
+    <footer
+      class="w-full py-xl px-lg grid grid-cols-1 md:grid-cols-5 gap-lg max-w-container-max mx-auto bg-surface-container-highest dark:bg-surface-container mt-xl rounded-[24px]"
+    >
+      <div class="col-span-1 md:col-span-1">
+        <span class="font-headline-sm text-headline-sm text-on-surface"
+          >Gray Pet Shop</span
+        >
+        <p class="mt-md text-on-surface-variant text-label-sm">
+          A premium pet care store, bringing warmth and trust to your four-legged friend.
+        </p>
+      </div>
+      <div class="flex flex-col gap-sm">
+        <span class="font-label-md text-label-md text-primary">Contact</span>
+        <span class="text-on-surface-variant text-label-sm"
+          >Address: Bac Tu Liem, Hanoi</span
+        >
+        <span class="text-on-surface-variant text-label-sm"
+          >Phone: 038.339.2903</span
+        >
+        <span class="text-on-surface-variant text-label-sm"
+          >Email: nampham050723@gmail.com</span
+        >
+      </div>
+      <div class="flex flex-col gap-sm">
+        <span class="font-label-md text-label-md text-primary">Policies</span>
+        <a
+          class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+          href="#"
+          >Privacy Policy</a
+        >
+        <a
+          class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+          href="#"
+          >Terms of Service</a
+        >
+        <a
+          class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+          href="#"
+          >Shipping &amp; Returns</a
+        >
+      </div>
+      <div class="flex flex-col gap-sm">
+        <span class="font-label-md text-label-md text-primary"
+          >Social Media</span
+        >
+        <a
+          class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity flex items-center gap-2"
+          href="https://www.facebook.com/pdn.0507"
+          target="_blank"
+        >
+          <span class="material-symbols-outlined text-sm">public</span> Facebook
+        </a>
+        <a
+          class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity flex items-center gap-2"
+          href="https://www.instagram.com/dinhnam.ph"
+          target="_blank"
+        >
+          <span class="material-symbols-outlined text-sm">camera_alt</span>
+          Instagram
+        </a>
+        <p class="mt-4 text-on-surface-variant text-[10px]">
+          © 2026 Gray Pet Shop. All rights reserved.
+        </p>
+      </div>
+      <div class="flex flex-col gap-sm">
+        <span class="font-label-md text-label-md text-primary">Map</span>
+        <div class="w-full h-32 rounded-lg overflow-hidden border border-outline-variant/30">
+          <iframe src="https://maps.google.com/maps?q=273%20%C4%91%C6%B0%E1%BB%9Dng%20C%E1%BB%95%20Nhu%E1%BA%BF%2C%20B%E1%BA%AFc%20T%E1%BB%AB%20Li%C3%AAm%2C%20H%C3%A0%20N%E1%BB%99i&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module">
+      import { isAuthenticated, getUserInfo, logoutUser } from "../js/auth.js";
+
+      const guestNav = document.getElementById("guestNav");
+      const userNav = document.getElementById("userNav");
+      const userAvatar = document.getElementById("userAvatar");
+      const userName = document.getElementById("userName");
+      const menuUserName = document.getElementById("menuUserName");
+      const menuUserEmail = document.getElementById("menuUserEmail");
+      const adminLink = document.getElementById("adminLink");
+      const menuAdminLink = document.getElementById("menuAdminLink");
+      const userMenu = document.getElementById("userMenu");
+      const chevronIcon = document.getElementById("chevronIcon");
+      const logoutBtn = document.getElementById("logoutBtn");
+      const userAvatarBtn = document.getElementById("userAvatarBtn");
+      const cancelSection = document.getElementById("cancelSection");
+      const cancelReason = document.getElementById("cancelReason");
+      const cancelOrderBtn = document.getElementById("cancelOrderBtn");
+      const cancelMessage = document.getElementById("cancelMessage");
+
+      const statusMap = {
+        pending: "Pending",
+        confirmed: "Confirmed",
+        shipped: "Shipping",
+        delivered: "Delivered",
+        cancelled: "Cancelled",
+      };
+
+      function formatCurrency(value) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "VND",
+        }).format(Number(value || 0));
+      }
+
+      function renderOrderList(orders) {
+        const tbody = document.getElementById("allOrdersBody");
+        if (!orders.length) {
+          tbody.innerHTML =
+            '<tr><td colspan="5" class="px-sm py-md text-center text-on-surface-variant">No orders yet</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = orders
+          .map(
+            (order) => `
+          <tr class="hover:bg-surface-container-low/50 transition-colors">
+            <td class="py-md px-sm font-bold">#${order.orderNumber}</td>
+            <td class="py-md px-sm">${new Date(order.createdAt).toLocaleDateString("en-US")}</td>
+            <td class="py-md px-sm font-bold text-primary">${formatCurrency(order.totalPrice)}</td>
+            <td class="py-md px-sm"><span class="px-3 py-1 rounded-full text-label-sm font-bold ${order.status === "cancelled" ? "bg-error-container text-on-error-container" : order.status === "delivered" ? "bg-green-100 text-green-700" : "bg-primary-container text-on-primary-container"}">${statusMap[order.status] || order.status}</span></td>
+            <td class="py-md px-sm"><a href="/order/detail?id=${order._id}" class="text-primary font-bold hover:underline">Details</a></td>
+          </tr>
+        `
+          )
+          .join("");
+      }
+
+      function renderProducts(order) {
+        const container = document.getElementById("productsContainer");
+        const items = order.products || [];
+
+        if (!items.length) {
+          container.innerHTML =
+            '<p class="text-on-surface-variant">No products in this order.</p>';
+          return;
+        }
+
+        container.innerHTML = items
+          .map((item) => {
+            const subtotal = (item.price || 0) * (item.quantity || 1);
+            return `
+            <div class="flex gap-md p-sm hover:bg-surface-container-low/50 rounded-xl border-b border-outline-variant/30 last:border-b-0">
+              <div class="w-24 h-24 bg-white rounded-xl overflow-hidden border border-outline-variant/30 p-2 flex-shrink-0">
+                <img class="w-full h-full object-contain" src="${item.product?.image || "https://via.placeholder.com/96"}" alt="${item.product?.name || "Products"}" />
+              </div>
+              <div class="flex-grow flex flex-col justify-between">
+                <div>
+                  <h3 class="font-bold text-body-lg text-on-surface">${item.product?.name || "Products"}</h3>
+                  <p class="text-label-sm text-on-surface-variant">Categories: ${item.product?.category || "—"}</p>
+                </div>
+                <div class="flex justify-between items-end mt-2">
+                  <span class="text-on-surface-variant">Quantity: x${item.quantity}</span>
+                  <span class="text-primary font-bold text-body-lg">${formatCurrency(subtotal)}</span>
+                </div>
+              </div>
+            </div>`;
+          })
+          .join("");
+      }
+
+      function renderOrder(order, orders) {
+        document.getElementById("breadcrumbOrder").textContent =
+          `#${order.orderNumber}`;
+        document.getElementById("orderHeading").textContent =
+          `Order ID: #${order.orderNumber}`;
+        document.getElementById("orderDate").textContent =
+          `Order date: ${new Date(order.createdAt).toLocaleString("en-US")}`;
+        document.getElementById("orderStatusBadge").textContent =
+          statusMap[order.status] || order.status;
+
+        const recipient = order.shippingAddress || {};
+        document.getElementById("recipientName").textContent =
+          recipient.fullName || "—";
+        document.getElementById("recipientPhone").textContent =
+          recipient.phone || "—";
+        document.getElementById("recipientAddress").textContent =
+          [recipient.address, recipient.city].filter(Boolean).join(", ") || "—";
+
+        renderProducts(order);
+
+        const subtotal = (order.products || []).reduce(
+          (sum, item) => sum + (item.price || 0) * (item.quantity || 1),
+          0
+        );
+        document.getElementById("subtotalLabel").textContent =
+          `Subtotal (${order.products?.length || 0} products)`;
+        document.getElementById("subtotalValue").textContent =
+          formatCurrency(subtotal);
+        document.getElementById("shippingValue").textContent =
+          formatCurrency(30000);
+        document.getElementById("totalValue").textContent = formatCurrency(
+          order.totalPrice
+        );
+
+        if (["pending", "confirmed"].includes(order.status)) {
+          cancelSection.classList.remove("hidden");
+        } else {
+          cancelSection.classList.add("hidden");
+        }
+
+        if (order.status === "cancelled") {
+          cancelMessage.textContent = `Order has been cancelled${order.cancelReason ? ` with reason: ${order.cancelReason}` : ""}.`;
+          cancelMessage.className = "mt-3 text-sm text-on-surface-variant";
+        } else {
+          cancelMessage.textContent = "";
+        }
+      }
+
+      async function loadOrders() {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          window.location.href = "/auth/login";
+          return;
+        }
+
+        const response = await fetch("/api/orders", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        const data = await response.json();
+        if (!response.ok || !data.success) {
+          throw new Error(data.message || "Unable to load your order.");
+        }
+
+        const orders = data.orders || [];
+        const selectedOrderId = new URLSearchParams(window.location.search).get(
+          "id"
+        );
+
+        if (orders.length === 0) {
+          document.getElementById("emptyState").classList.remove("hidden");
+          return;
+        }
+
+        if (selectedOrderId) {
+          const order = orders.find((item) => item._id === selectedOrderId);
+          if (order) {
+            document
+              .getElementById("orderHeaderDetail")
+              .classList.remove("hidden");
+            document.getElementById("mainContent").classList.remove("hidden");
+            renderOrder(order, orders);
+          } else {
+            window.location.href = "/order/detail";
+          }
+        } else {
+          document.getElementById("orderListView").classList.remove("hidden");
+          renderOrderList(orders);
+        }
+
+        // Re-trigger scroll reveal and other animations on newly revealed elements
+        if (window.XamAnimations) {
+          window.XamAnimations.init();
+        }
+      }
+
+      async function cancelOrder(e) {
+        if (e) e.preventDefault();
+        const token = localStorage.getItem("token");
+        if (!token) {
+          window.location.href = "/auth/login";
+          return;
+        }
+
+        const reason = cancelReason.value;
+        if (!reason) {
+          alert("Please select a cancellation reason.");
+          return;
+        }
+
+        try {
+          const selectedOrderId = new URLSearchParams(
+            window.location.search
+          ).get("id");
+          const ordersRes = await fetch("/api/orders", {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          const orders = await ordersRes.json();
+          const currentOrder =
+            orders.orders?.find((item) => item._id === selectedOrderId) ||
+            orders.orders?.[0];
+
+          if (!currentOrder) {
+            alert("Order not found for cancellation.");
+            return;
+          }
+
+          const response = await fetch(
+            `/api/orders/${currentOrder._id}/cancel`,
+            {
+              method: "PATCH",
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ cancelReason: reason }),
+            }
+          );
+
+          if (!response.ok) {
+            const text = await response.text();
+            console.error("Server Error Response:", text);
+            try {
+              const data = JSON.parse(text);
+              alert(data.message || "Cannot cancel order.");
+            } catch (e) {
+              alert("Server error (404/500). Please try again.");
+            }
+            return;
+          }
+
+          const data = await response.json();
+          if (!data.success) {
+            alert(data.message || "Cannot cancel order.");
+            return;
+          }
+
+          alert("Order cancelled successfully.");
+          window.location.reload();
+        } catch (error) {
+          console.error("Cancel Order Error:", error);
+          alert("An error occurred: " + error.message);
+        }
+      }
+
+      function initNav() {
+        if (isAuthenticated()) {
+          const user = getUserInfo();
+          if (!user) return;
+          guestNav.style.display = "none";
+          userNav.style.display = "flex";
+          userAvatar.textContent = (user.fullName || user.email || "U")
+            .charAt(0)
+            .toUpperCase();
+          userName.textContent = user.fullName || user.email;
+          menuUserName.textContent = user.fullName || user.email;
+          menuUserEmail.textContent = user.email || "";
+          if (user.role === "admin") {
+            adminLink.style.display = "flex";
+            menuAdminLink.style.display = "flex";
+          }
+        } else {
+          guestNav.style.display = "";
+          userNav.style.display = "none";
+        }
+      }
+
+      userAvatarBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = userMenu.classList.toggle("open");
+        chevronIcon.textContent = isOpen ? "expand_less" : "expand_more";
+      });
+
+      document.addEventListener("click", () => {
+        userMenu.classList.remove("open");
+        chevronIcon.textContent = "expand_more";
+      });
+
+      logoutBtn.addEventListener("click", async () => {
+        await logoutUser();
+        window.location.href = "/auth/login";
+      });
+
+      cancelOrderBtn.addEventListener("click", cancelOrder);
+
+      // ===== Chatbot Logic =====
+      const orderChatWindow = document.getElementById("orderChatWindow");
+      const toggleOrderChatBtn = document.getElementById("toggleOrderChatBtn");
+      const closeOrderChatBtn = document.getElementById("closeOrderChatBtn");
+      const orderChatInput = document.getElementById("orderChatInput");
+      const sendOrderChatBtn = document.getElementById("sendOrderChatBtn");
+      const orderChatMessages = document.getElementById("orderChatMessages");
+
+      let orderChatHistory = [];
+      let orderIsTyping = false;
+
+      toggleOrderChatBtn.addEventListener("click", () => {
+        const isOpen = orderChatWindow.classList.toggle("open");
+        toggleOrderChatBtn.innerHTML = isOpen
+          ? '<span class="material-symbols-outlined">expand_less</span> Hide chat'
+          : '<span class="material-symbols-outlined">headset_mic</span> Chat with support';
+        if (isOpen) orderChatInput.focus();
+      });
+
+      closeOrderChatBtn.addEventListener("click", () => {
+        orderChatWindow.classList.remove("open");
+        toggleOrderChatBtn.innerHTML =
+          '<span class="material-symbols-outlined">headset_mic</span> Chat with support';
+      });
+
+      function addOChatMsg(content, sender) {
+        const div = document.createElement("div");
+        div.className = `ochat-msg ${sender}`;
+        div.textContent = content;
+        orderChatMessages.appendChild(div);
+        orderChatMessages.scrollTop = orderChatMessages.scrollHeight;
+      }
+
+      function showOTyping() {
+        const div = document.createElement("div");
+        div.className = "otyping-indicator";
+        div.id = "oTypingIndicator";
+        div.innerHTML =
+          '<div class="otyping-dot"></div><div class="otyping-dot"></div><div class="otyping-dot"></div>';
+        orderChatMessages.appendChild(div);
+        orderChatMessages.scrollTop = orderChatMessages.scrollHeight;
+      }
+
+      function hideOTyping() {
+        const el = document.getElementById("oTypingIndicator");
+        if (el) el.remove();
+      }
+
+      async function handleOrderChat() {
+        const message = orderChatInput.value.trim();
+        if (!message || orderIsTyping) return;
+
+        orderChatInput.value = "";
+        addOChatMsg(message, "user");
+        orderIsTyping = true;
+        sendOrderChatBtn.disabled = true;
+        showOTyping();
+
+        try {
+          const resp = await fetch("/api/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message, history: orderChatHistory }),
+          });
+          const data = await resp.json();
+          hideOTyping();
+
+          if (data.success) {
+            addOChatMsg(data.message, "bot");
+            orderChatHistory.push({ role: "user", content: message });
+            orderChatHistory.push({ role: "assistant", content: data.message });
+            if (orderChatHistory.length > 10)
+              orderChatHistory = orderChatHistory.slice(-10);
+          } else {
+            addOChatMsg(
+              data.message ||
+                "Sorry, I'm experiencing a technical issue. Please try again later!",
+              "bot"
+            );
+          }
+        } catch (err) {
+          console.error("Chat Error:", err);
+          hideOTyping();
+          addOChatMsg(
+            "Cannot connect to the server. Please check your network.",
+            "bot"
+          );
+        } finally {
+          orderIsTyping = false;
+          sendOrderChatBtn.disabled = false;
+          orderChatInput.focus();
+        }
+      }
+
+      sendOrderChatBtn.addEventListener("click", handleOrderChat);
+      orderChatInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") handleOrderChat();
+      });
+
+      // ===== Return Policy Modal =====
+      const returnPolicyOverlay = document.getElementById(
+        "returnPolicyOverlay"
+      );
+      const openReturnPolicyBtn = document.getElementById(
+        "openReturnPolicyBtn"
+      );
+      const closeReturnPolicyBtn = document.getElementById(
+        "closeReturnPolicyBtn"
+      );
+      const closeReturnPolicyBtn2 = document.getElementById(
+        "closeReturnPolicyBtn2"
+      );
+
+      openReturnPolicyBtn.addEventListener("click", () => {
+        returnPolicyOverlay.classList.add("open");
+      });
+
+      function closeReturnPolicy() {
+        returnPolicyOverlay.classList.remove("open");
+      }
+
+      closeReturnPolicyBtn.addEventListener("click", closeReturnPolicy);
+      closeReturnPolicyBtn2.addEventListener("click", closeReturnPolicy);
+      returnPolicyOverlay.addEventListener("click", (e) => {
+        if (e.target === returnPolicyOverlay) closeReturnPolicy();
+      });
+
+      initNav();
+      loadOrders().catch((error) => {
+        document.getElementById("mainContent").classList.add("hidden");
+        document.getElementById("emptyState").classList.remove("hidden");
+        document.getElementById("emptyState").innerHTML =
+          `<h2 class="font-headline-md text-headline-md mb-sm">Unable to load order</h2><p class="text-on-surface-variant mb-lg">${error.message}</p>`;
+      });
+    </script>
+    <script src="../js/animations.js"></script>
+  </body>
+</html>

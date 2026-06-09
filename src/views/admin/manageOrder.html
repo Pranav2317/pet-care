@@ -1,0 +1,1687 @@
+﻿<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../js/animations.css" />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #d6c3b0;
+        border-radius: 10px;
+      }
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-container": "#686554",
+              error: "#ba1a1a",
+              "tertiary-fixed-dim": "#58d5fe",
+              "surface-container-high": "#f3e6da",
+              "primary-fixed-dim": "#ffb95a",
+              "surface-container-lowest": "#ffffff",
+              "on-error": "#ffffff",
+              "surface-tint": "#845400",
+              secondary: "#625f4e",
+              "on-tertiary": "#ffffff",
+              "primary-container": "#ffb347",
+              "tertiary-container": "#52d0f9",
+              outline: "#847463",
+              "on-surface-variant": "#524535",
+              "on-secondary-fixed": "#1e1c0f",
+              "on-primary-container": "#704700",
+              "surface-dim": "#e5d8cc",
+              "inverse-surface": "#372f27",
+              "on-tertiary-fixed-variant": "#004d61",
+              "on-background": "#211a13",
+              "on-primary": "#ffffff",
+              "surface-bright": "#fff8f4",
+              "inverse-primary": "#ffb95a",
+              "outline-variant": "#d6c3b0",
+              "secondary-container": "#e8e3cd",
+              "on-primary-fixed-variant": "#643f00",
+              tertiary: "#006780",
+              "error-container": "#ffdad6",
+              "surface-variant": "#eee0d4",
+              "secondary-fixed": "#e8e3cd",
+              "on-error-container": "#93000a",
+              primary: "#845400",
+              "on-surface": "#211a13",
+              "on-primary-fixed": "#2a1800",
+              "primary-fixed": "#ffddb6",
+              surface: "#fff8f4",
+              "tertiary-fixed": "#b8eaff",
+              "surface-container-low": "#fff1e5",
+              background: "#fff8f4",
+              "inverse-on-surface": "#fceee2",
+              "surface-container-highest": "#eee0d4",
+              "secondary-fixed-dim": "#ccc7b2",
+              "on-tertiary-container": "#00576d",
+              "on-secondary": "#ffffff",
+              "on-secondary-fixed-variant": "#4a4737",
+              "on-tertiary-fixed": "#001f28",
+              "surface-container": "#f9ecdf",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              lg: "24px",
+              xs: "4px",
+              xl: "40px",
+              "margin-mobile": "16px",
+              "container-max": "1200px",
+              unit: "4px",
+              gutter: "24px",
+              sm: "8px",
+              md: "16px",
+            },
+            fontFamily: {
+              "label-md": ["Plus Jakarta Sans"],
+              "headline-lg": ["Quicksand"],
+              "headline-md": ["Quicksand"],
+              "body-md": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Quicksand"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "label-sm": ["Plus Jakarta Sans"],
+              "headline-xl": ["Quicksand"],
+            },
+            fontSize: {
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "700" },
+              ],
+              "headline-md": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "headline-lg-mobile": [
+                "28px",
+                { lineHeight: "36px", fontWeight: "700" },
+              ],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "label-sm": ["12px", { lineHeight: "16px", fontWeight: "700" }],
+              "headline-xl": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-surface-bright text-on-surface font-body-md antialiased">
+    <!-- SideNavBar (The Anchor) -->
+    <aside
+      class="flex flex-col h-screen fixed left-0 top-0 border-r border-outline-variant bg-surface-container-low dark:bg-surface-container-lowest docked left-0 h-full w-64 shadow-md z-50"
+    >
+      <div class="px-lg py-xl">
+        <div class="flex items-center gap-3 mb-sm">
+          <img src="../images/logo.png" alt="Gray Pet Shop logo" class="w-10 h-10 rounded-full object-cover border-2 border-primary-container shadow-sm" />
+          <h1 class="font-headline-sm text-headline-sm text-primary">
+            Admin Panel
+          </h1>
+        </div>
+        <p class="text-label-sm text-on-surface-variant opacity-70">
+          Gray Pet Shop Management
+        </p>
+        <div
+          class="mt-md pt-md border-t border-outline-variant/30 flex items-center gap-sm"
+        >
+          <div
+            id="adminAvatarSidebar"
+            class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-label-sm flex-shrink-0"
+          >
+            A
+          </div>
+          <span
+            id="adminDisplayName"
+            class="text-label-sm text-on-surface font-semibold truncate max-w-[130px]"
+            >Admin</span
+          >
+        </div>
+      </div>
+      <nav class="flex-1 space-y-2 mt-md">
+        <!-- Dashboard -->
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-surface-container-highest translate-x-1 duration-150"
+          href="/admin"
+        >
+          <span class="material-symbols-outlined" data-icon="dashboard"
+            >dashboard</span
+          >
+          <span class="font-label-md text-label-md">Dashboard</span>
+        </a>
+        <!-- Orders (ACTIVE) -->
+        <a
+          class="bg-primary-container text-on-primary-container rounded-xl mx-2 px-4 py-3 flex items-center gap-3 shadow-sm"
+          href="/admin/manageOrder"
+        >
+          <span class="material-symbols-outlined" data-icon="shopping_bag"
+            >shopping_bag</span
+          >
+          <span class="font-label-md text-label-md">Orders</span>
+        </a>
+        <!-- Products -->
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-surface-container-highest"
+          href="/admin/manageProduct"
+        >
+          <span class="material-symbols-outlined" data-icon="inventory_2"
+            >inventory_2</span
+          >
+          <span class="font-label-md text-label-md">Products</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-surface-container-highest"
+          href="/admin/manageCategory"
+        >
+          <span class="material-symbols-outlined">category</span>
+          <span class="font-label-md text-label-md">Categories</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-surface-container-highest"
+          href="/admin/manageBrand"
+        >
+          <span class="material-symbols-outlined">verified</span>
+          <span class="font-label-md text-label-md">Brands</span>
+        </a>
+        <!-- Users -->
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-surface-container-highest"
+          href="/admin/manageCustomer"
+        >
+          <span class="material-symbols-outlined" data-icon="group">group</span>
+          <span class="font-label-md text-label-md">Users</span>
+        </a>
+        <!-- Reports -->
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-surface-container-highest"
+          href="/admin/report"
+        >
+          <span class="material-symbols-outlined" data-icon="assessment"
+            >assessment</span
+          >
+          <span class="font-label-md text-label-md">Reports</span>
+        </a>
+      </nav>
+      <div class="p-lg border-t border-outline-variant">
+        <button
+          id="logoutBtn"
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl w-full px-4 py-3 flex items-center gap-3 transition-colors cursor-pointer"
+        >
+          <span class="material-symbols-outlined">logout</span>
+          <span class="font-label-md text-label-md">Logout</span>
+        </button>
+      </div>
+    </aside>
+    <!-- Main Content Area -->
+    <main class="ml-64 min-h-screen bg-surface p-xl">
+      <!-- Header & Stats Row -->
+      <header class="mb-xl flex justify-between items-end">
+        <div>
+          <h2
+            class="font-headline-lg text-headline-lg text-on-surface section-heading reveal"
+          >
+            Order Management
+          </h2>
+        </div>
+        <div class="flex gap-md">
+          <button
+            id="openCreateOrderBtn"
+            class="flex items-center gap-xs px-lg py-sm bg-primary text-on-primary rounded-full hover:scale-105 transition-transform shadow-md font-label-md"
+          >
+            <span class="material-symbols-outlined text-[20px]" data-icon="add"
+              >add</span
+            >
+            Create new order
+          </button>
+        </div>
+      </header>
+      <!-- Stats Overview (Asymmetric/Bento Style) -->
+      <div class="grid grid-cols-12 gap-lg mb-xl">
+        <div
+          class="col-span-12 md:col-span-4 bg-surface-container-lowest p-lg rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between"
+        >
+          <div>
+            <span
+              class="material-symbols-outlined text-primary mb-md"
+              data-icon="shopping_cart"
+              >shopping_cart</span
+            >
+            <h3 class="text-on-surface-variant font-label-md">Total orders</h3>
+          </div>
+          <div class="mt-md">
+            <p
+              class="text-headline-md font-bold text-on-surface"
+              id="statTotalOrders"
+            >
+              —
+            </p>
+          </div>
+        </div>
+        <div
+          class="col-span-12 md:col-span-3 bg-surface-container-lowest p-lg rounded-xl border border-outline-variant shadow-sm"
+        >
+          <span
+            class="material-symbols-outlined text-tertiary mb-md"
+            data-icon="pending"
+            >pending</span
+          >
+          <h3 class="text-on-surface-variant font-label-md">Processing</h3>
+          <p
+            class="text-headline-md font-bold text-on-surface mt-md"
+            id="statPendingOrders"
+          >
+            —
+          </p>
+        </div>
+        <div
+          class="col-span-12 md:col-span-5 bg-primary-container p-lg rounded-xl shadow-sm relative overflow-hidden flex items-center"
+        >
+          <div class="z-10">
+            <h3 class="text-on-primary-container font-headline-md font-bold">
+              Today's revenue
+            </h3>
+            <p
+              class="text-headline-lg font-bold text-on-primary-fixed mt-sm"
+              id="statDailyRevenue"
+            >
+              —
+            </p>
+          </div>
+          <!-- Decorative Graphic -->
+          <div class="absolute -right-8 -bottom-8 opacity-20">
+            <span
+              class="material-symbols-outlined text-[120px]"
+              data-icon="pets"
+              >pets</span
+            >
+          </div>
+        </div>
+      </div>
+      <!-- Filter & Search Controls -->
+      <div
+        class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm mb-lg flex flex-wrap items-center justify-between gap-md reveal delay-1"
+      >
+        <div class="flex items-center gap-md flex-1">
+          <div class="relative w-full max-w-md">
+            <span
+              class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline"
+              data-icon="search"
+              >search</span
+            >
+            <input
+              id="orderSearchInput"
+              class="w-full pl-xl pr-md py-sm bg-surface-container-low border-none rounded-full focus:ring-2 focus:ring-primary-container font-body-md placeholder:text-outline text-on-surface"
+              placeholder="Search by order ID, customer name..."
+              type="text"
+            />
+          </div>
+          <div class="flex items-center gap-xs overflow-x-auto pb-xs">
+            <button
+              id="filterAll"
+              onclick="window.filterOrders('')"
+              class="px-lg py-xs bg-primary text-on-primary rounded-full text-label-sm shadow-sm hover:shadow-md transition-all"
+            >
+              All
+            </button>
+            <button
+              id="filterPending"
+              onclick="window.filterOrders('pending')"
+              class="px-lg py-xs bg-surface-container-high text-on-surface-variant hover:bg-primary-container/20 rounded-full text-label-sm transition-colors"
+            >
+              Processing
+            </button>
+            <button
+              id="filterShipped"
+              onclick="window.filterOrders('shipped')"
+              class="px-lg py-xs bg-surface-container-high text-on-surface-variant hover:bg-primary-container/20 rounded-full text-label-sm transition-colors"
+            >
+              Delivered
+            </button>
+            <button
+              id="filterCancelled"
+              onclick="window.filterOrders('cancelled')"
+              class="px-lg py-xs bg-surface-container-high text-on-surface-variant hover:bg-primary-container/20 rounded-full text-label-sm transition-colors"
+            >
+              Cancelled
+            </button>
+          </div>
+        </div>
+        <div class="flex items-center gap-md">
+          <button
+            class="p-sm text-outline hover:bg-surface-container-high rounded-full transition-colors"
+          >
+            <span class="material-symbols-outlined" data-icon="filter_list"
+              >filter_list</span
+            >
+          </button>
+          <button
+            class="p-sm text-outline hover:bg-surface-container-high rounded-full transition-colors"
+          >
+            <span class="material-symbols-outlined" data-icon="download"
+              >download</span
+            >
+          </button>
+        </div>
+      </div>
+      <!-- Data Table Section -->
+      <div
+        class="bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-sm overflow-hidden reveal delay-2"
+      >
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr
+              class="bg-surface-container-low border-b border-outline-variant"
+            >
+              <th
+                class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider"
+              >
+                Order ID
+              </th>
+              <th
+                class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider"
+              >
+                Customer
+              </th>
+              <th
+                class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider"
+              >
+                Products
+              </th>
+              <th
+                class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider"
+              >
+                Status
+              </th>
+              <th
+                class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider"
+              >
+                Total
+              </th>
+              <th
+                class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider text-right"
+              >
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-outline-variant" id="orderTableBody">
+            <tr class="hover:bg-surface-bright transition-colors group">
+              <td
+                colspan="6"
+                class="px-lg py-md text-center text-on-surface-variant"
+              >
+                Loading data...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- Pagination -->
+        <div
+          class="px-lg py-md bg-surface-container-low border-t border-outline-variant flex items-center justify-between"
+        >
+          <p id="paginationInfo" class="text-label-sm text-on-surface-variant">
+            Loading data...
+          </p>
+          <div id="paginationControls" class="flex items-center gap-sm">
+            <!-- Dynamic controls here -->
+          </div>
+        </div>
+      </div>
+      <!-- Secondary Info Cards (Bento) -->
+      <div class="grid grid-cols-12 gap-lg mt-xl">
+        <div
+          class="col-span-12 bg-surface-container-lowest p-lg rounded-xl border border-outline-variant shadow-sm"
+        >
+          <div class="flex items-center justify-between mb-lg">
+            <h3 class="font-headline-sm text-headline-sm">
+              Latest order history
+            </h3>
+            <a
+              class="text-primary font-label-md hover:underline"
+              href="/admin/report"
+              >View detailed report</a
+            >
+          </div>
+          <div class="space-y-md" id="manageOrderRecentHistory">
+            <p class="text-on-surface-variant text-center p-md">Loading...</p>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <footer
+        class="w-full py-xl px-lg grid grid-cols-1 md:grid-cols-5 gap-lg bg-surface-container-highest dark:bg-surface-container mt-xl rounded-[24px]"
+      >
+        <div class="col-span-1 md:col-span-1">
+          <span class="font-headline-sm text-headline-sm text-on-surface"
+            >Gray Pet Shop</span
+          >
+          <p class="mt-md text-on-surface-variant text-label-sm">
+            A premium pet care store, bringing warmth and trust to your four-legged friend.
+          </p>
+        </div>
+        <div class="flex flex-col gap-sm">
+          <span class="font-label-md text-label-md text-primary">Contact</span>
+          <span class="text-on-surface-variant text-label-sm"
+            >Address: Bac Tu Liem, Hanoi</span
+          >
+          <span class="text-on-surface-variant text-label-sm"
+            >Phone: 038.339.2903</span
+          >
+          <span class="text-on-surface-variant text-label-sm"
+            >Email: nampham050723@gmail.com</span
+          >
+        </div>
+        <div class="flex flex-col gap-sm">
+          <span class="font-label-md text-label-md text-primary"
+            >Policies</span
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+            href="#"
+            >Privacy Policy</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+            href="#"
+            >Terms of Service</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+            href="#"
+            >Shipping &amp; Returns</a
+          >
+        </div>
+        <div class="flex flex-col gap-sm">
+          <span class="font-label-md text-label-md text-primary"
+            >Social Media</span
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity flex items-center gap-2"
+            href="https://www.facebook.com/pdn.0507"
+            target="_blank"
+          >
+            <span class="material-symbols-outlined text-sm">public</span>
+            Facebook
+          </a>
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity flex items-center gap-2"
+            href="https://www.instagram.com/dinhnam.ph"
+            target="_blank"
+          >
+            <span class="material-symbols-outlined text-sm">camera_alt</span>
+            Instagram
+          </a>
+          <p class="mt-4 text-on-surface-variant text-[10px]">
+            © 2026 Gray Pet Shop. All rights reserved.
+          </p>
+        </div>
+      <div class="flex flex-col gap-sm">
+        <span class="font-label-md text-label-md text-primary">Map</span>
+        <div class="w-full h-32 rounded-lg overflow-hidden border border-outline-variant/30">
+          <iframe src="https://maps.google.com/maps?q=273%20%C4%91%C6%B0%E1%BB%9Dng%20C%E1%BB%95%20Nhu%E1%BA%BF%2C%20B%E1%BA%AFc%20T%E1%BB%AB%20Li%C3%AAm%2C%20H%C3%A0%20N%E1%BB%99i&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </footer>
+    </main>
+      <!-- Order Detail Modal -->
+      <div
+        id="orderDetailModal"
+        class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4"
+      >
+        <div
+          class="absolute inset-0 bg-black/40 backdrop-blur-sm"
+          onclick="window.closeOrderDetail()"
+        ></div>
+        <div
+          class="relative bg-surface rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl"
+        >
+          <div
+            class="p-lg border-b border-outline-variant flex items-center justify-between"
+          >
+            <h3 class="font-headline-md text-headline-md text-on-surface">
+              Order details
+              <span id="modalOrderNumber" class="text-primary"></span>
+            </h3>
+            <button
+              onclick="window.closeOrderDetail()"
+              class="p-xs hover:bg-surface-variant rounded-full text-on-surface-variant transition-colors flex items-center"
+            >
+              <span class="material-symbols-outlined">close</span>
+            </button>
+          </div>
+          <div class="p-lg overflow-y-auto space-y-lg flex-1">
+            <div class="grid grid-cols-2 gap-lg">
+              <div>
+                <p class="text-label-sm text-on-surface-variant mb-1">
+                  Customer
+                </p>
+                <p
+                  id="modalCustomerName"
+                  class="font-label-md text-on-surface"
+                ></p>
+                <p
+                  id="modalCustomerPhone"
+                  class="text-body-md text-on-surface mt-1"
+                ></p>
+              </div>
+              <div>
+                <p class="text-label-sm text-on-surface-variant mb-1">
+                  Status
+                </p>
+                <span
+                  id="modalOrderStatus"
+                  class="px-2 py-1 rounded-full text-xs font-bold mt-1 inline-block"
+                ></span>
+              </div>
+              <div class="col-span-2">
+                <p class="text-label-sm text-on-surface-variant mb-1">
+                  Shipping address
+                </p>
+                <p
+                  id="modalCustomerAddress"
+                  class="text-body-md text-on-surface"
+                ></p>
+              </div>
+            </div>
+
+            <div>
+              <p class="font-label-md text-on-surface mb-md">Products</p>
+              <div
+                class="border border-outline-variant rounded-xl overflow-hidden"
+              >
+                <table class="w-full text-left">
+                  <thead
+                    class="bg-surface-container-low border-b border-outline-variant"
+                  >
+                    <tr>
+                      <th
+                        class="px-md py-sm text-label-sm text-on-surface-variant uppercase"
+                      >
+                        Products
+                      </th>
+                      <th
+                        class="px-md py-sm text-label-sm text-on-surface-variant uppercase text-right"
+                      >
+                        SL
+                      </th>
+                      <th
+                        class="px-md py-sm text-label-sm text-on-surface-variant uppercase text-right"
+                      >
+                        Subtotal
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    id="modalOrderProducts"
+                    class="divide-y divide-outline-variant"
+                  ></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div
+              class="flex justify-end gap-md mt-lg pt-md border-t border-outline-variant"
+            >
+              <div class="text-right">
+                <p class="text-label-sm text-on-surface-variant">Total</p>
+                <p
+                  id="modalOrderTotal"
+                  class="font-headline-md text-primary mt-1"
+                ></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script type="module">
+      import {
+        getAdminOrders,
+        updateOrderStatus,
+        deleteOrder,
+        getOrderStats,
+        getDashboardStats,
+        createAdminOrder,
+        getAllUsers,
+        getAdminProducts,
+      } from "../js/admin.js";
+      import { isAuthenticated, getUserInfo } from "../js/auth.js";
+
+      // Check auth
+      if (!isAuthenticated() || getUserInfo()?.role !== "admin") {
+        window.location.href = "/auth/login";
+      }
+
+      // Load dashboard stats
+      (async () => {
+        const result = await getDashboardStats();
+        if (result.success) {
+          const d = result.dashboard;
+          document.getElementById("statTotalOrders").textContent =
+            d.orders?.total?.toLocaleString("en-US") || "—";
+          document.getElementById("statPendingOrders").textContent =
+            d.orders?.pending || "—";
+
+          // Get today's revenue from revenueByDay
+          const today = new Date();
+          const todayKey = {
+            year: today.getFullYear(),
+            month: today.getMonth() + 1,
+            day: today.getDate(),
+          };
+
+          let dailyRevenue = 0;
+          if (d.revenueByDay && Array.isArray(d.revenueByDay)) {
+            const todayData = d.revenueByDay.find(
+              (item) =>
+                item._id.year === todayKey.year &&
+                item._id.month === todayKey.month &&
+                item._id.day === todayKey.day
+            );
+            dailyRevenue = todayData?.revenue || 0;
+          }
+
+          document.getElementById("statDailyRevenue").textContent =
+            new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "VND",
+            }).format(dailyRevenue);
+        }
+      })();
+
+      let currentPage = 1;
+      const pageSize = 10;
+
+      function renderRecentHistory(orders) {
+        const container = document.getElementById("manageOrderRecentHistory");
+        if (!container) return;
+        if (!orders || orders.length === 0) {
+          container.innerHTML =
+            '<p class="text-on-surface-variant text-center p-md">No data</p>';
+          return;
+        }
+
+        const recent = orders.slice(0, 4);
+        container.innerHTML = recent
+          .map((order) => {
+            const customerName =
+              order.user?.fullName ||
+              order.user?.email ||
+              order.shippingAddress?.phone ||
+              "Anonymous customer";
+            const formattedPrice = new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "VND",
+            }).format(order.totalPrice);
+            const dateStr = order.createdAt
+              ? new Date(order.createdAt).toLocaleDateString("en-US")
+              : "Just now";
+
+            return `
+            <div class="flex items-center justify-between p-sm hover:bg-surface-container-low rounded-lg transition-colors">
+              <div class="flex items-center gap-md">
+                <div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold">
+                  <span class="material-symbols-outlined text-[20px]">receipt_long</span>
+                </div>
+                <div>
+                  <p class="font-label-md text-on-surface">${order.orderNumber}</p>
+                  <p class="text-xs text-on-surface-variant">${customerName} • ${dateStr}</p>
+                </div>
+              </div>
+              <div class="text-right">
+                <p class="font-label-md text-primary">${formattedPrice}</p>
+                <p class="text-[10px] text-on-surface-variant uppercase font-bold">${order.status}</p>
+              </div>
+            </div>
+          `;
+          })
+          .join("");
+      }
+
+      let currentFilter = "";
+      window.currentOrders = [];
+
+      window.loadOrders = async function (page = 1, status = "") {
+        currentPage = page;
+        const orderTableBody = document.getElementById("orderTableBody");
+        const paginationInfo = document.getElementById("paginationInfo");
+        const paginationControls =
+          document.getElementById("paginationControls");
+
+        const queryStatus =
+          status !== undefined && status !== "" ? status : currentFilter;
+        const result = await getAdminOrders({
+          page,
+          limit: pageSize,
+          status: queryStatus,
+        });
+        if (result.success) {
+          const orders = result.orders;
+          window.currentOrders = orders;
+          const totalOrders =
+            result.pagination?.total ||
+            result.total ||
+            (orders.length < pageSize && page === 1
+              ? orders.length
+              : page * pageSize + 1);
+          const totalPages =
+            result.pagination?.pages ||
+            result.totalPages ||
+            Math.ceil(totalOrders / pageSize) ||
+            1;
+
+          if (page === 1) renderRecentHistory(orders);
+
+          if (!orders || orders.length === 0) {
+            orderTableBody.innerHTML =
+              '<tr><td colspan="6" class="px-lg py-md text-center text-on-surface-variant">No orders found.</td></tr>';
+            if (paginationInfo) paginationInfo.textContent = "No data";
+            if (paginationControls) paginationControls.innerHTML = "";
+            return;
+          }
+
+          orderTableBody.innerHTML = orders
+            .map((order) => {
+              const customerName =
+                order.user?.fullName ||
+                order.user?.email ||
+                order.shippingAddress?.phone ||
+                "Anonymous customer";
+              const productCount = order.products?.length || 0;
+              const statusMap = {
+                pending: {
+                  label: "Pending",
+                  class: "bg-primary-container text-on-primary-container",
+                },
+                confirmed: {
+                  label: "Confirmed",
+                  class: "bg-tertiary-container text-on-tertiary-container",
+                },
+                shipped: {
+                  label: "Shipping",
+                  class: "bg-blue-100 text-blue-800",
+                },
+                delivered: {
+                  label: "Delivered",
+                  class: "bg-green-100 text-green-800",
+                },
+                cancelled: {
+                  label: "Cancelled",
+                  class: "bg-error-container text-on-error-container",
+                },
+              };
+              const statusInfo = statusMap[order.status] || {
+                label: order.status,
+                class: "bg-surface-variant text-on-surface-variant",
+              };
+
+              const formattedPrice = new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "VND",
+              }).format(order.totalPrice);
+
+              return `
+              <tr class="hover:bg-surface-bright transition-colors group border-b border-outline-variant/30">
+                <td class="px-lg py-md text-label-md font-bold text-primary">${order.orderNumber}</td>
+                <td class="px-lg py-md text-body-md text-on-surface">${customerName}</td>
+                <td class="px-lg py-md text-body-md text-on-surface-variant">${productCount} products</td>
+                <td class="px-lg py-md">
+                  <span class="px-2 py-1 rounded-full text-xs font-bold ${statusInfo.class}">${statusInfo.label}</span>
+                </td>
+                <td class="px-lg py-md text-label-md text-on-surface">${formattedPrice}</td>
+                <td class="px-lg py-md">
+                   <div class="flex items-center justify-end gap-2">
+                     <select onchange="window.updateOrder('${order._id}', this.value)" class="text-sm border-outline-variant rounded-md bg-surface-container text-on-surface py-1 pl-3 pr-8 focus:ring-primary focus:border-primary">
+                       <option value="pending" ${order.status === "pending" ? "selected" : ""}>Pending</option>
+                       <option value="confirmed" ${order.status === "confirmed" ? "selected" : ""}>Confirm</option>
+                       <option value="shipped" ${order.status === "shipped" ? "selected" : ""}>Ship</option>
+                       <option value="delivered" ${order.status === "delivered" ? "selected" : ""}>Delivered</option>
+                       <option value="cancelled" ${order.status === "cancelled" ? "selected" : ""}>Cancel</option>
+                     </select>
+                     <button type="button" onclick="window.openOrderDetail('${order._id}')" class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-high text-on-surface hover:text-primary transition-colors hover:bg-primary-container/20" title="View details">
+                       <span class="material-symbols-outlined text-[18px]">visibility</span>
+                     </button>
+                     <button type="button" onclick="window.deleteOrder('${order._id}')" class="w-8 h-8 flex items-center justify-center rounded-full bg-error-container text-on-error-container hover:bg-error/90 transition-colors" title="Delete order">
+                       <span class="material-symbols-outlined text-[18px]">delete</span>
+                     </button>
+                   </div>
+                </td>
+              </tr>
+             `;
+            })
+            .join("");
+
+          if (paginationInfo) {
+            const start = (page - 1) * pageSize + 1;
+            const end = Math.min(page * pageSize, totalOrders);
+            paginationInfo.textContent = `Showing ${start} - ${end} of ${totalOrders} orders`;
+          }
+
+          if (paginationControls) {
+            let controlsHTML = `
+                <button onclick="window.loadOrders(${page - 1})" class="p-xs text-outline hover:bg-surface-variant rounded-md disabled:opacity-30" ${page <= 1 ? "disabled" : ""}>
+                  <span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+                </button>
+             `;
+
+            for (let i = 1; i <= totalPages; i++) {
+              if (i === page) {
+                controlsHTML += `<button class="w-8 h-8 rounded-md bg-primary text-on-primary font-bold text-label-sm">${i}</button>`;
+              } else {
+                controlsHTML += `<button onclick="window.loadOrders(${i})" class="w-8 h-8 rounded-md hover:bg-surface-variant text-on-surface text-label-sm transition-colors">${i}</button>`;
+              }
+            }
+
+            controlsHTML += `
+                <button onclick="window.loadOrders(${page + 1})" class="p-xs text-outline hover:bg-surface-variant rounded-md disabled:opacity-30" ${page >= totalPages ? "disabled" : ""}>
+                  <span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+                </button>
+             `;
+            paginationControls.innerHTML = controlsHTML;
+          }
+        } else {
+          orderTableBody.innerHTML =
+            '<tr><td colspan="6" class="px-lg py-md text-center text-error">Error loading data.</td></tr>';
+        }
+
+        // Re-trigger scroll reveal and other animations on newly loaded order table rows
+        if (window.XamAnimations) {
+          window.XamAnimations.init();
+        }
+      };
+
+      window.loadOrders();
+
+      window.filterOrders = function (status) {
+        currentFilter = status;
+
+        // Update button styles
+        const buttons = {
+          "": "filterAll",
+          pending: "filterPending",
+          shipped: "filterShipped",
+          cancelled: "filterCancelled",
+        };
+
+        Object.entries(buttons).forEach(([key, btnId]) => {
+          const btn = document.getElementById(btnId);
+          if (btn) {
+            if (key === status) {
+              btn.className =
+                "px-lg py-xs bg-primary text-on-primary rounded-full text-label-sm shadow-sm hover:shadow-md transition-all";
+            } else {
+              btn.className =
+                "px-lg py-xs bg-surface-container-high text-on-surface-variant hover:bg-primary-container/20 rounded-full text-label-sm transition-colors";
+            }
+          }
+        });
+
+        currentPage = 1;
+        window.loadOrders(1, status);
+      };
+
+      // Search functionality
+      const searchInput = document.getElementById("orderSearchInput");
+      if (searchInput) {
+        searchInput.addEventListener("input", function () {
+          const searchTerm = this.value.toLowerCase();
+          if (window.currentOrders.length === 0) return;
+
+          const orderTableBody = document.getElementById("orderTableBody");
+          const filtered = window.currentOrders.filter((order) => {
+            const orderNumber = (order.orderNumber || "").toLowerCase();
+            const customerName = (
+              order.user?.fullName ||
+              order.user?.email ||
+              order.shippingAddress?.fullName ||
+              ""
+            ).toLowerCase();
+            return (
+              orderNumber.includes(searchTerm) ||
+              customerName.includes(searchTerm)
+            );
+          });
+
+          if (filtered.length === 0) {
+            orderTableBody.innerHTML =
+              '<tr><td colspan="6" class="px-lg py-md text-center text-outline-variant">No orders found</td></tr>';
+            return;
+          }
+
+          orderTableBody.innerHTML = filtered
+            .map((order) => {
+              const customerName =
+                order.user?.fullName ||
+                order.user?.email ||
+                order.shippingAddress?.fullName ||
+                "Anonymous customer";
+              const formattedPrice = new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "VND",
+              }).format(order.totalPrice);
+              const statusMap = {
+                pending: {
+                  label: "Pending",
+                  class: "bg-primary-container text-on-primary-container",
+                },
+                confirmed: {
+                  label: "Confirmed",
+                  class: "bg-tertiary-container text-on-tertiary-container",
+                },
+                shipped: {
+                  label: "Shipping",
+                  class: "bg-blue-100 text-blue-800",
+                },
+                delivered: {
+                  label: "Delivered",
+                  class: "bg-green-100 text-green-800",
+                },
+                cancelled: {
+                  label: "Cancelled",
+                  class: "bg-error-container text-on-error-container",
+                },
+              };
+              const statusInfo = statusMap[order.status] || {
+                label: order.status,
+                class: "bg-surface-variant text-on-surface-variant",
+              };
+
+              return `
+              <tr class="hover:bg-surface-container-low transition-colors">
+                <td class="px-lg py-md">
+                  <p class="font-label-md text-on-surface">${order.orderNumber}</p>
+                </td>
+                <td class="px-lg py-md">
+                  <p class="text-body-md text-on-surface">${customerName}</p>
+                </td>
+                <td class="px-lg py-md">
+                  <p class="text-body-md text-on-surface">${formattedPrice}</p>
+                </td>
+                <td class="px-lg py-md">
+                  <span class="px-2 py-1 rounded-full text-xs font-bold ${statusInfo.class}">${statusInfo.label}</span>
+                </td>
+                <td class="px-lg py-md text-center">
+                  <span class="text-label-sm text-on-surface-variant">${new Date(order.createdAt).toLocaleDateString("en-US")}</span>
+                </td>
+                <td class="px-lg py-md">
+                  <div class="flex gap-sm justify-end">
+                    <button type="button" onclick="window.openOrderDetail('${order._id}')" class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-high text-on-surface hover:text-primary transition-colors hover:bg-primary-container/20" title="View details">
+                      <span class="material-symbols-outlined text-[18px]">visibility</span>
+                    </button>
+                    <button type="button" onclick="window.deleteOrder('${order._id}')" class="w-8 h-8 flex items-center justify-center rounded-full bg-error-container text-on-error-container hover:bg-error/90 transition-colors" title="Delete order">
+                      <span class="material-symbols-outlined text-[18px]">delete</span>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            `;
+            })
+            .join("");
+        });
+      }
+
+      window.openOrderDetail = function (orderId) {
+        const order = window.currentOrders.find((o) => o._id === orderId);
+        if (!order) return;
+
+        document.getElementById("modalOrderNumber").textContent =
+          order.orderNumber;
+        document.getElementById("modalCustomerName").textContent =
+          order.user?.fullName ||
+          order.user?.email ||
+          order.shippingAddress?.fullName ||
+          "Anonymous customer";
+        document.getElementById("modalCustomerPhone").textContent =
+          order.shippingAddress?.phone || "";
+
+        const address = order.shippingAddress;
+        const addressParts = [address?.address, address?.city].filter(Boolean);
+        document.getElementById("modalCustomerAddress").textContent =
+          addressParts.length > 0 ? addressParts.join(", ") : "Not updated";
+
+        const statusMap = {
+          pending: {
+            label: "Pending",
+            class: "bg-primary-container text-on-primary-container",
+          },
+          confirmed: {
+            label: "Confirmed",
+            class: "bg-tertiary-container text-on-tertiary-container",
+          },
+          shipped: { label: "Shipping", class: "bg-blue-100 text-blue-800" },
+          delivered: { label: "Delivered", class: "bg-green-100 text-green-800" },
+          cancelled: {
+            label: "Cancelled",
+            class: "bg-error-container text-on-error-container",
+          },
+        };
+        const statusInfo = statusMap[order.status] || {
+          label: order.status,
+          class: "bg-surface-variant text-on-surface-variant",
+        };
+
+        const statusEl = document.getElementById("modalOrderStatus");
+        statusEl.textContent = statusInfo.label;
+        statusEl.className = `px-2 py-1 rounded-full text-xs font-bold mt-1 inline-block ${statusInfo.class}`;
+
+        const productsHtml = (order.products || [])
+          .map((p) => {
+            const price = p.product?.price || 0;
+            const qty = p.quantity || 1;
+            const fmtPrice = new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "VND",
+            }).format(price * qty);
+            return `
+             <tr class="hover:bg-surface-bright transition-colors">
+               <td class="px-md py-sm text-body-md text-on-surface">${p.product?.name || "Products"}</td>
+               <td class="px-md py-sm text-body-md text-on-surface-variant text-right">${qty}</td>
+               <td class="px-md py-sm text-label-md text-on-surface text-right">${fmtPrice}</td>
+             </tr>
+           `;
+          })
+          .join("");
+        document.getElementById("modalOrderProducts").innerHTML =
+          productsHtml ||
+          '<tr><td colspan="3" class="text-center py-2 text-on-surface-variant">No products</td></tr>';
+
+        document.getElementById("modalOrderTotal").textContent =
+          new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "VND",
+          }).format(order.totalPrice);
+
+        const modal = document.getElementById("orderDetailModal");
+        modal.classList.remove("hidden");
+      };
+
+      window.closeOrderDetail = function () {
+        document.getElementById("orderDetailModal").classList.add("hidden");
+      };
+
+      // Update order status
+      window.updateOrder = async (orderId, status) => {
+        const result = await updateOrderStatus(orderId, status);
+        if (result.success) {
+          alert("Status updated successfully");
+          loadOrders();
+        }
+      };
+
+      // Delete order
+      window.deleteOrder = async (orderId) => {
+        if (!confirm("Are you sure you want to delete this order?")) {
+          return;
+        }
+
+        const result = await deleteOrder(orderId);
+        if (result.success) {
+          alert("Order deleted successfully");
+          loadOrders();
+        } else {
+          alert(result.message || "Cannot delete order");
+        }
+      };
+
+      // === Create Order Modal Logic ===
+      const createOrderModalHtml = `
+      <div id="createOrderModal" class="hidden fixed inset-0 z-[110] flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="document.getElementById('createOrderModal').classList.add('hidden')"></div>
+        <div class="relative bg-surface rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-auto flex flex-col shadow-2xl p-lg">
+          <div class="flex items-center justify-between mb-md">
+            <h3 class="font-headline-md text-headline-md">Create new order</h3>
+            <button id="closeCreateOrderBtn" class="p-xs hover:bg-surface-variant rounded-full">Close</button>
+          </div>
+          <form id="createOrderForm" class="space-y-md">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+              <div>
+                    <label class="text-label-sm">Customer</label>
+                    <input id="orderUserSearch" placeholder="Search by name or phone" class="w-full bg-surface-container-low rounded-full px-lg py-md mt-sm" autocomplete="off" />
+                    <div id="orderUserResults" class="hidden bg-surface rounded-md mt-sm max-h-40 overflow-auto border border-outline-variant"></div>
+                    <select id="orderUserSelect" class="hidden"></select>
+                    <div class="flex items-center gap-2 mt-sm">
+                      <input type="checkbox" id="guestOrderCheckbox" /> <label for="guestOrderCheckbox" class="text-label-sm">Walk-in customer</label>
+                    </div>
+                  </div>
+              <div>
+                <label class="text-label-sm">Payment method</label>
+                <select id="orderPaymentMethod" class="w-full bg-surface-container-low border-none rounded-full px-lg py-md">
+                  <option value="cod">Cash/COD</option>
+                  <option value="banking">Bank transfer</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="text-label-sm">Products</label>
+              <div id="orderProductsContainer" class="space-y-sm mt-sm"></div>
+              <div class="mt-sm"><button id="addOrderProductBtn" type="button" class="px-md py-xs bg-surface-container-high rounded-full">Add product</button></div>
+            </div>
+
+            <div>
+              <label class="text-label-sm">Shipping address</label>
+              <input id="orderShippingFullName" placeholder="Full name" class="w-full bg-surface-container-low rounded-full px-lg py-md mt-sm" />
+              <input id="orderShippingPhone" placeholder="Phone number" class="w-full bg-surface-container-low rounded-full px-lg py-md mt-sm" />
+              <input id="orderShippingStreet" placeholder="House number, street name" class="w-full bg-surface-container-low rounded-full px-lg py-md mt-sm" />
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-sm mt-sm">
+                <div class="relative">
+                  <input id="admin-province-input" class="w-full bg-surface-container-low border-none rounded-full px-lg py-md focus:ring-2 focus:ring-primary-container outline-none" placeholder="Province / City" type="text" autocomplete="off" />
+                  <div id="admin-province-dropdown" class="hidden absolute z-10 w-full mt-1 bg-surface-container-lowest border border-outline-variant/30 rounded-xl shadow-lg max-h-40 overflow-y-auto"></div>
+                </div>
+                <div class="relative">
+                  <input id="admin-district-input" class="w-full bg-surface-container-low border-none rounded-full px-lg py-md focus:ring-2 focus:ring-primary-container outline-none disabled:opacity-50" placeholder="District" type="text" autocomplete="off" disabled />
+                  <div id="admin-district-dropdown" class="hidden absolute z-10 w-full mt-1 bg-surface-container-lowest border border-outline-variant/30 rounded-xl shadow-lg max-h-40 overflow-y-auto"></div>
+                </div>
+                <div class="relative">
+                  <input id="admin-ward-input" class="w-full bg-surface-container-low border-none rounded-full px-lg py-md focus:ring-2 focus:ring-primary-container outline-none disabled:opacity-50" placeholder="Ward" type="text" autocomplete="off" disabled />
+                  <div id="admin-ward-dropdown" class="hidden absolute z-10 w-full mt-1 bg-surface-container-lowest border border-outline-variant/30 rounded-xl shadow-lg max-h-40 overflow-y-auto"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-md">
+              <label class="flex items-center gap-2">
+                <input id="includeShippingCheckbox" type="checkbox" checked />
+                <span class="text-label-sm">Include 30,000₫ shipping fee</span>
+              </label>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-label-sm text-on-surface-variant">Subtotal</p>
+                <p id="orderSubtotalDisplay" class="font-headline-md text-primary">0 ₫</p>
+                <p id="orderShippingFeeDisplay" class="text-label-sm text-on-surface-variant">Shipping fee: 30.000₫</p>
+              </div>
+              <div class="flex gap-sm">
+                <button id="cancelCreateOrderBtn" type="button" class="px-lg py-sm bg-surface-container-high rounded-full">Cancel</button>
+                <button id="submitCreateOrderBtn" type="button" class="px-lg py-sm bg-primary text-on-primary rounded-full">Create order</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      `;
+
+      document.body.insertAdjacentHTML("beforeend", createOrderModalHtml);
+
+      const openCreateOrderBtn = document.getElementById("openCreateOrderBtn");
+      const createOrderModal = document.getElementById("createOrderModal");
+      const closeCreateOrderBtn = document.getElementById(
+        "closeCreateOrderBtn"
+      );
+      const cancelCreateOrderBtn = document.getElementById(
+        "cancelCreateOrderBtn"
+      );
+      const addOrderProductBtn = document.getElementById("addOrderProductBtn");
+      const orderProductsContainer = document.getElementById(
+        "orderProductsContainer"
+      );
+      const orderUserResults = document.getElementById("orderUserResults");
+      const orderUserSelect = document.getElementById("orderUserSelect");
+      const guestOrderCheckbox = document.getElementById("guestOrderCheckbox");
+      const includeShippingCheckbox = document.getElementById(
+        "includeShippingCheckbox"
+      );
+      const orderShippingFeeDisplay = document.getElementById(
+        "orderShippingFeeDisplay"
+      );
+      const orderSubtotalDisplay = document.getElementById(
+        "orderSubtotalDisplay"
+      );
+      let selectedUserId = null;
+      const submitCreateOrderBtn = document.getElementById(
+        "submitCreateOrderBtn"
+      );
+
+      let availableProducts = [];
+      let customersList = [];
+
+      function createProductRow(productList = []) {
+        const row = document.createElement("div");
+        row.className = "flex items-center gap-2";
+        row.innerHTML = `
+          <select class="order-product-select flex-1 bg-surface-container-low rounded-full px-lg py-md">
+            <option value="">Select product</option>
+            ${productList.map((p) => `<option value="${p._id}" data-price="${p.price}">${p.name} (${new Intl.NumberFormat("en-US").format(p.price)}₫)</option>`).join("")}
+          </select>
+          <input type="number" min="1" value="1" class="order-product-qty w-28 bg-surface-container-low rounded-full px-lg py-md text-center" />
+          <button type="button" class="remove-order-product px-xs py-xs text-error-container">X</button>
+        `;
+        orderProductsContainer.appendChild(row);
+
+        row
+          .querySelector(".remove-order-product")
+          .addEventListener("click", () => {
+            row.remove();
+            recalcSubtotal();
+          });
+        row
+          .querySelector(".order-product-select")
+          .addEventListener("change", recalcSubtotal);
+        row
+          .querySelector(".order-product-qty")
+          .addEventListener("input", recalcSubtotal);
+        return row;
+      }
+
+      function recalcSubtotal() {
+        let subtotal = 0;
+        orderProductsContainer
+          .querySelectorAll(".order-product-select")
+          .forEach((sel) => {
+            const pid = sel.value;
+            const price = parseFloat(
+              sel.selectedOptions[0]?.dataset.price || 0
+            );
+            const qty = parseInt(
+              sel.parentElement.querySelector(".order-product-qty").value || 0,
+              10
+            );
+            if (pid && qty > 0) subtotal += price * qty;
+          });
+        const shippingIncluded = includeShippingCheckbox?.checked ?? true;
+        const shippingFee = shippingIncluded ? 30000 : 0;
+        orderShippingFeeDisplay.textContent = `Shipping fee: ${new Intl.NumberFormat("en-US").format(shippingFee)}₫`;
+        orderSubtotalDisplay.textContent = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "VND",
+        }).format(subtotal + shippingFee);
+      }
+
+      async function loadUsersAndProductsForCreate() {
+        // load users
+        orderUserSelect.innerHTML =
+          '<option value="">-- Select customer --</option>';
+        const usersRes = await getAllUsers({ limit: 200 });
+        customersList = [];
+        if (usersRes.success && Array.isArray(usersRes.customers)) {
+          customersList = usersRes.customers;
+        }
+        // populate select
+        function populateUserOptions(list) {
+          orderUserSelect.innerHTML =
+            '<option value="">-- Select customer --</option>';
+          orderUserResults.innerHTML = "";
+          list.forEach((u) => {
+            const name = u.fullName || u.email || u.phone || u._id;
+            const label = `${name}${u.phone ? " • " + u.phone : ""}`;
+            orderUserSelect.insertAdjacentHTML(
+              "beforeend",
+              `<option value="${u._id}">${label}</option>`
+            );
+            const item = document.createElement("div");
+            item.className =
+              "px-md py-sm hover:bg-surface-container-high cursor-pointer";
+            item.textContent = label;
+            item.dataset.id = u._id;
+            item.addEventListener("click", () => {
+              selectedUserId = u._id;
+              const searchInput = document.getElementById("orderUserSearch");
+              if (searchInput) searchInput.value = label;
+              orderUserResults.classList.add("hidden");
+            });
+            orderUserResults.appendChild(item);
+          });
+        }
+        populateUserOptions(customersList);
+
+        const userSearchInput = document.getElementById("orderUserSearch");
+        if (userSearchInput) {
+          userSearchInput.value = "";
+          userSearchInput.oninput = () => {
+            selectedUserId = null;
+            const q = userSearchInput.value.trim().toLowerCase();
+            if (!q) {
+              orderUserResults.classList.add("hidden");
+              return populateUserOptions(customersList);
+            }
+            const filtered = customersList.filter((u) => {
+              const name = (u.fullName || "").toLowerCase();
+              const phone = (u.phone || "").toLowerCase();
+              const email = (u.email || "").toLowerCase();
+              return name.includes(q) || phone.includes(q) || email.includes(q);
+            });
+            populateUserOptions(filtered);
+            if (filtered.length > 0)
+              orderUserResults.classList.remove("hidden");
+            else orderUserResults.classList.add("hidden");
+          };
+        }
+
+        // hide results when clicking outside
+        document.addEventListener("click", (e) => {
+          const target = e.target;
+          if (
+            !target.closest ||
+            (!target.closest("#orderUserSearch") &&
+              !target.closest("#orderUserResults"))
+          ) {
+            orderUserResults.classList.add("hidden");
+          }
+        });
+
+        // guest checkbox disables search
+        guestOrderCheckbox.addEventListener("change", () => {
+          if (guestOrderCheckbox.checked) {
+            userSearchInput.value = "";
+            selectedUserId = null;
+            orderUserResults.classList.add("hidden");
+            userSearchInput.disabled = true;
+          } else {
+            userSearchInput.disabled = false;
+          }
+        });
+
+        includeShippingCheckbox.addEventListener("change", recalcSubtotal);
+
+        // load products
+        const productsRes = await getAdminProducts({ limit: 200 });
+        availableProducts =
+          (productsRes.success ? productsRes.products || [] : []) || [];
+        // Reset product rows
+        orderProductsContainer.innerHTML = "";
+        createProductRow(availableProducts);
+        recalcSubtotal();
+      }
+
+      openCreateOrderBtn.addEventListener("click", async () => {
+        await loadUsersAndProductsForCreate();
+        createOrderModal.classList.remove("hidden");
+      });
+      closeCreateOrderBtn.addEventListener("click", () =>
+        createOrderModal.classList.add("hidden")
+      );
+      if (cancelCreateOrderBtn)
+        cancelCreateOrderBtn.addEventListener("click", () =>
+          createOrderModal.classList.add("hidden")
+        );
+      addOrderProductBtn.addEventListener("click", () =>
+        createProductRow(availableProducts)
+      );
+
+      // Admin address dropdowns: province / district / ward
+      const adminProvinceInput = document.getElementById(
+        "admin-province-input"
+      );
+      const adminDistrictInput = document.getElementById(
+        "admin-district-input"
+      );
+      const adminWardInput = document.getElementById("admin-ward-input");
+
+      let adminProvincesData = [];
+      let adminDistrictsData = [];
+      let adminWardsData = [];
+
+      function setupDropdown(input, dropdown, dataGetter, onSelect) {
+        function renderOptions() {
+          const list = dataGetter();
+          const val = input.value.trim().toLowerCase();
+          const filtered = val
+            ? list.filter((item) => item.name.toLowerCase().includes(val))
+            : list;
+          if (filtered.length === 0) {
+            dropdown.innerHTML =
+              '<div class="px-4 py-3 text-on-surface-variant text-sm">No results found</div>';
+            return;
+          }
+          dropdown.innerHTML = filtered
+            .map(
+              (item) =>
+                `<div class="px-4 py-3 hover:bg-primary-container/20 cursor-pointer text-on-surface text-sm border-b border-outline-variant/10 last:border-0" data-value="${item.code}">${item.name}</div>`
+            )
+            .join("");
+        }
+
+        input.addEventListener("focus", () => {
+          input.select();
+          dropdown.classList.remove("hidden");
+          renderOptions();
+        });
+        input.addEventListener("input", () => {
+          dropdown.classList.remove("hidden");
+          renderOptions();
+        });
+
+        dropdown.addEventListener("mousedown", (e) => {
+          const div = e.target.closest("div[data-value]");
+          if (div) {
+            input.value = div.textContent;
+            input.dataset.code = div.getAttribute("data-value");
+            dropdown.classList.add("hidden");
+            if (onSelect) onSelect(input.dataset.code);
+          }
+        });
+
+        input.addEventListener("blur", () => {
+          dropdown.classList.add("hidden");
+          const list = dataGetter();
+          const selected = list.find((d) => d.code == input.dataset.code);
+          if (!selected || selected.name !== input.value) {
+            input.value = "";
+            input.dataset.code = "";
+            if (onSelect) onSelect("");
+          }
+        });
+      }
+
+      setupDropdown(
+        adminProvinceInput,
+        document.getElementById("admin-province-dropdown"),
+        () => adminProvincesData,
+        (pCode) => {
+          adminDistrictInput.value = "";
+          adminDistrictInput.dataset.code = "";
+          adminWardInput.value = "";
+          adminWardInput.dataset.code = "";
+          adminDistrictInput.disabled = true;
+          adminWardInput.disabled = true;
+          adminDistrictsData = [];
+          adminWardsData = [];
+          if (pCode) {
+            fetch(`https://provinces.open-api.vn/api/p/${pCode}?depth=2`)
+              .then((res) => res.json())
+              .then((pData) => {
+                adminDistrictsData = pData.districts || [];
+                adminDistrictInput.disabled = false;
+              });
+          }
+        }
+      );
+
+      setupDropdown(
+        adminDistrictInput,
+        document.getElementById("admin-district-dropdown"),
+        () => adminDistrictsData,
+        (dCode) => {
+          adminWardInput.value = "";
+          adminWardInput.dataset.code = "";
+          adminWardInput.disabled = true;
+          adminWardsData = [];
+          if (dCode) {
+            fetch(`https://provinces.open-api.vn/api/d/${dCode}?depth=2`)
+              .then((res) => res.json())
+              .then((dData) => {
+                adminWardsData = dData.wards || [];
+                adminWardInput.disabled = false;
+              });
+          }
+        }
+      );
+
+      setupDropdown(
+        adminWardInput,
+        document.getElementById("admin-ward-dropdown"),
+        () => adminWardsData,
+        () => {}
+      );
+
+      fetch("https://provinces.open-api.vn/api/p/")
+        .then((res) => res.json())
+        .then((data) => {
+          adminProvincesData = data || [];
+        });
+      submitCreateOrderBtn.addEventListener("click", async () => {
+        const fullName = document
+          .getElementById("orderShippingFullName")
+          .value.trim();
+        const phone = document
+          .getElementById("orderShippingPhone")
+          .value.trim();
+        const street = document
+          .getElementById("orderShippingStreet")
+          .value.trim();
+        const province = document
+          .getElementById("admin-province-input")
+          .value.trim();
+        const district = document
+          .getElementById("admin-district-input")
+          .value.trim();
+        const ward = document.getElementById("admin-ward-input").value.trim();
+        const address = [street, ward, district, province]
+          .filter(Boolean)
+          .join(", ");
+
+        const shipping = {
+          fullName,
+          phone,
+          address,
+          city: province || "",
+        };
+
+        if (!shipping.fullName || !shipping.phone || !shipping.address) {
+          alert(
+            "Please enter complete shipping information (house number, ward, district, province)"
+          );
+          return;
+        }
+
+        const productRows = Array.from(
+          orderProductsContainer.querySelectorAll(".order-product-select")
+        );
+        const products = [];
+        for (const sel of productRows) {
+          const pid = sel.value;
+          const qty = parseInt(
+            sel.parentElement.querySelector(".order-product-qty").value || "0",
+            10
+          );
+          if (!pid || qty <= 0) continue;
+          products.push({ product: pid, quantity: qty });
+        }
+        if (products.length === 0) {
+          alert("Please select at least one product");
+          return;
+        }
+
+        const payload = {
+          userId: guestOrderCheckbox.checked ? null : selectedUserId || null,
+          products,
+          shippingAddress: shipping,
+          paymentMethod:
+            document.getElementById("orderPaymentMethod").value || "cod",
+          shippingFee: includeShippingCheckbox?.checked ? 30000 : 0,
+        };
+
+        const res = await createAdminOrder(payload);
+        if (res.success) {
+          alert("Order created successfully");
+          createOrderModal.classList.add("hidden");
+          loadOrders();
+        } else {
+          console.error('createAdminOrder error:', res);
+          alert(res.message || `Cannot create order (${res.status || 'unknown'})`);
+        }
+      });
+    </script>
+    <script type="module">
+      // === THÊM VÀO SCRIPT HIỆN CÓ CỦA MỖI TRANG ADMIN ===
+      import { logoutUser, getUserInfo, isAuthenticated } from "../js/auth.js";
+
+      // Check auth
+      if (!isAuthenticated()) {
+        window.location.href = "/auth/login";
+      }
+
+      const userInfo = getUserInfo();
+      if (userInfo && userInfo.role !== "admin") {
+        window.location.href = "/";
+      }
+
+      // Show admin name in sidebar
+      if (userInfo) {
+        const nameEl = document.getElementById("adminDisplayName");
+        const avatarEl = document.getElementById("adminAvatarSidebar");
+        if (nameEl) nameEl.textContent = userInfo.fullName || userInfo.email;
+        if (avatarEl)
+          avatarEl.textContent = (userInfo.fullName || userInfo.email || "A")
+            .charAt(0)
+            .toUpperCase();
+      }
+
+      // Handle logout
+      const logoutBtn = document.getElementById("logoutBtn");
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", async (e) => {
+          e.preventDefault();
+          if (confirm("Are you sure you want to log out?")) {
+            await logoutUser();
+            window.location.href = "/auth/login";
+          }
+        });
+      }
+    </script>
+    <script src="../js/animations.js"></script>
+  </body>
+</html>

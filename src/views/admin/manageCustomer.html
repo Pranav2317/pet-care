@@ -1,0 +1,979 @@
+﻿<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;family=Quicksand:wght@600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../js/animations.css" />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-container": "#686554",
+              error: "#ba1a1a",
+              "tertiary-fixed-dim": "#58d5fe",
+              "surface-container-high": "#f3e6da",
+              "primary-fixed-dim": "#ffb95a",
+              "surface-container-lowest": "#ffffff",
+              "on-error": "#ffffff",
+              "surface-tint": "#845400",
+              secondary: "#625f4e",
+              "on-tertiary": "#ffffff",
+              "primary-container": "#ffb347",
+              "tertiary-container": "#52d0f9",
+              outline: "#847463",
+              "on-surface-variant": "#524535",
+              "on-secondary-fixed": "#1e1c0f",
+              "on-primary-container": "#704700",
+              "surface-dim": "#e5d8cc",
+              "inverse-surface": "#372f27",
+              "on-tertiary-fixed-variant": "#004d61",
+              "on-background": "#211a13",
+              "on-primary": "#ffffff",
+              "surface-bright": "#fff8f4",
+              "inverse-primary": "#ffb95a",
+              "outline-variant": "#d6c3b0",
+              "secondary-container": "#e8e3cd",
+              "on-primary-fixed-variant": "#643f00",
+              tertiary: "#006780",
+              "error-container": "#ffdad6",
+              "surface-variant": "#eee0d4",
+              "secondary-fixed": "#e8e3cd",
+              "on-error-container": "#93000a",
+              primary: "#845400",
+              "on-surface": "#211a13",
+              "on-primary-fixed": "#2a1800",
+              "primary-fixed": "#ffddb6",
+              surface: "#fff8f4",
+              "tertiary-fixed": "#b8eaff",
+              "surface-container-low": "#fff1e5",
+              background: "#fff8f4",
+              "inverse-on-surface": "#fceee2",
+              "surface-container-highest": "#eee0d4",
+              "secondary-fixed-dim": "#ccc7b2",
+              "on-tertiary-container": "#00576d",
+              "on-secondary": "#ffffff",
+              "on-secondary-fixed-variant": "#4a4737",
+              "on-tertiary-fixed": "#001f28",
+              "surface-container": "#f9ecdf",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              lg: "24px",
+              xs: "4px",
+              xl: "40px",
+              "margin-mobile": "16px",
+              "container-max": "1200px",
+              unit: "4px",
+              gutter: "24px",
+              sm: "8px",
+              md: "16px",
+            },
+            fontFamily: {
+              "label-md": ["Plus Jakarta Sans"],
+              "headline-lg": ["Quicksand"],
+              "headline-md": ["Quicksand"],
+              "body-md": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Quicksand"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "label-sm": ["Plus Jakarta Sans"],
+              "headline-xl": ["Quicksand"],
+            },
+            fontSize: {
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "700" },
+              ],
+              "headline-md": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "headline-lg-mobile": [
+                "28px",
+                { lineHeight: "36px", fontWeight: "700" },
+              ],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "label-sm": ["12px", { lineHeight: "16px", fontWeight: "700" }],
+              "headline-xl": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .active-nav-item {
+        background-color: #ffb347;
+        color: #704700;
+      }
+    </style>
+  </head>
+  <body class="bg-background text-on-surface font-body-md">
+    <!-- SideNavBar (Admin Shell) -->
+    <aside
+      class="flex flex-col h-screen fixed left-0 top-0 border-r border-outline-variant bg-surface-container-low dark:bg-surface-container-lowest w-64 shadow-md z-50"
+    >
+      <div class="px-lg py-xl">
+        <div class="flex items-center gap-3 mb-sm">
+          <img src="../images/logo.png" alt="Gray Pet Shop logo" class="w-10 h-10 rounded-full object-cover border-2 border-primary-container shadow-sm" />
+          <h1 class="font-headline-sm text-headline-sm text-primary">
+            Admin Panel
+          </h1>
+        </div>
+        <p class="text-label-sm text-on-surface-variant opacity-70">
+          Gray Pet Shop Management
+        </p>
+        <div
+          class="mt-md pt-md border-t border-outline-variant/30 flex items-center gap-sm"
+        >
+          <div
+            id="adminAvatarSidebar"
+            class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-label-sm flex-shrink-0"
+          >
+            A
+          </div>
+          <span
+            id="adminDisplayName"
+            class="text-label-sm text-on-surface font-semibold truncate max-w-[130px]"
+            >Admin</span
+          >
+        </div>
+      </div>
+      <nav class="flex-1 space-y-1">
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-surface-container-highest"
+          href="/admin"
+        >
+          <span class="material-symbols-outlined">dashboard</span>
+          <span class="font-label-md text-label-md">Dashboard</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-surface-container-highest"
+          href="/admin/manageOrder"
+        >
+          <span class="material-symbols-outlined">shopping_bag</span>
+          <span class="font-label-md text-label-md">Orders</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-surface-container-highest"
+          href="/admin/manageProduct"
+        >
+          <span class="material-symbols-outlined">inventory_2</span>
+          <span class="font-label-md text-label-md">Products</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-surface-container-highest"
+          href="/admin/manageCategory"
+        >
+          <span class="material-symbols-outlined">category</span>
+          <span class="font-label-md text-label-md">Categories</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-surface-container-highest"
+          href="/admin/manageBrand"
+        >
+          <span class="material-symbols-outlined">verified</span>
+          <span class="font-label-md text-label-md">Brands</span>
+        </a>
+        <a
+          class="bg-primary-container text-on-primary-container rounded-xl mx-2 px-4 py-3 flex items-center gap-3 translate-x-1 duration-150"
+          href="/admin/manageCustomer"
+        >
+          <span
+            class="material-symbols-outlined"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >group</span
+          >
+          <span class="font-label-md text-label-md">Users</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 px-4 py-3 flex items-center gap-3 transition-colors hover:bg-surface-container-highest"
+          href="/admin/report"
+        >
+          <span class="material-symbols-outlined">assessment</span>
+          <span class="font-label-md text-label-md">Reports</span>
+        </a>
+      </nav>
+      <div class="p-lg border-t border-outline-variant">
+        <button
+          id="logoutBtn"
+          class="text-on-surface-variant hover:bg-surface-container-high rounded-xl w-full px-4 py-3 flex items-center gap-3 transition-colors cursor-pointer"
+        >
+          <span class="material-symbols-outlined">logout</span>
+          <span class="font-label-md text-label-md">Logout</span>
+        </button>
+      </div>
+    </aside>
+    <!-- Main Content Area -->
+    <main class="ml-64 min-h-screen">
+      <!-- Header / Top Bar Area -->
+      <header
+        class="bg-surface/80 backdrop-blur-md sticky top-0 z-40 flex justify-between items-center px-lg py-md w-full shadow-sm"
+      >
+        <h2
+          class="font-headline-md text-headline-md font-bold text-primary section-heading"
+        >
+          User Management
+        </h2>
+        <div class="flex items-center gap-md">
+          <div class="relative group reveal delay-1">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant"
+              >search</span
+            >
+            <input
+              class="bg-surface-container-low border-none rounded-full pl-10 pr-lg py-2 focus:ring-2 focus:ring-primary-container w-64 transition-all focus:w-80 font-body-md text-on-surface"
+              placeholder="Search users..."
+              type="text"
+            />
+          </div>
+          <button
+            id="openCreateUserBtn"
+            class="bg-primary text-on-primary px-lg py-2 rounded-full font-label-md hover:scale-105 transition-transform active:scale-95 btn-ripple"
+          >
+            + Add New
+          </button>
+        </div>
+      </header>
+      <!-- Content Canvas -->
+      <section class="p-xl max-w-container-max mx-auto">
+        <!-- Statistics Bento Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-xl">
+          <div
+            class="bg-white border border-outline-variant p-lg rounded-[24px] shadow-sm flex items-center gap-lg reveal delay-1"
+          >
+            <div
+              class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary"
+            >
+              <span class="material-symbols-outlined">group</span>
+            </div>
+            <div>
+              <p
+                class="font-label-sm text-on-surface-variant uppercase tracking-wider"
+              >
+                Total members
+              </p>
+              <h3 class="font-headline-md text-headline-md" id="totalUsersStat">
+                0
+              </h3>
+            </div>
+          </div>
+          <div
+            class="bg-white border border-outline-variant p-lg rounded-[24px] shadow-sm flex items-center gap-lg reveal delay-2"
+          >
+            <div
+              class="w-12 h-12 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary"
+            >
+              <span class="material-symbols-outlined">person_add</span>
+            </div>
+            <div>
+              <p
+                class="font-label-sm text-on-surface-variant uppercase tracking-wider"
+              >
+                Customer
+              </p>
+              <h3 class="font-headline-md text-headline-md" id="customersStat">
+                0
+              </h3>
+            </div>
+          </div>
+          <div
+            class="bg-white border border-outline-variant p-lg rounded-[24px] shadow-sm flex items-center gap-lg reveal delay-3"
+          >
+            <div
+              class="w-12 h-12 rounded-full bg-error-container/20 flex items-center justify-center text-error"
+            >
+              <span class="material-symbols-outlined">verified_user</span>
+            </div>
+            <div>
+              <p
+                class="font-label-sm text-on-surface-variant uppercase tracking-wider"
+              >
+                Admin accounts
+              </p>
+              <h3 class="font-headline-md text-headline-md" id="adminsStat">
+                0
+              </h3>
+            </div>
+          </div>
+        </div>
+        <!-- Main Table Container -->
+        <div
+          class="bg-white rounded-[24px] border border-outline-variant shadow-sm overflow-hidden reveal"
+        >
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr
+                  class="bg-surface-container-low border-b border-outline-variant"
+                >
+                  <th class="px-lg py-md font-label-md text-on-surface-variant">
+                    User
+                  </th>
+                  <th class="px-lg py-md font-label-md text-on-surface-variant">
+                    Email
+                  </th>
+                  <th class="px-lg py-md font-label-md text-on-surface-variant">
+                    Phone number
+                  </th>
+                  <th class="px-lg py-md font-label-md text-on-surface-variant">
+                    Role
+                  </th>
+                  <th
+                    class="px-lg py-md font-label-md text-on-surface-variant text-right"
+                  >
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody
+                class="divide-y divide-outline-variant"
+                id="usersTableBody"
+              >
+                <!-- Users will be rendered here dynamically -->
+              </tbody>
+            </table>
+          </div>
+          <!-- Pagination Footer -->
+          <div
+            class="p-lg flex justify-between items-center bg-surface-container-lowest border-t border-outline-variant"
+          >
+            <p class="font-label-sm text-on-surface-variant">
+              Showing <span id="userCountStart">0</span> -
+              <span id="userCountEnd">0</span> of
+              <span id="totalUsersFooter">0</span> users
+            </p>
+            <div class="flex gap-sm">
+              <button
+                id="prevUserPageBtn"
+                class="w-10 h-10 rounded-full flex items-center justify-center border border-outline-variant hover:bg-surface-container-high transition-colors text-on-surface-variant disabled:opacity-30"
+                disabled
+              >
+                <span class="material-symbols-outlined">chevron_left</span>
+              </button>
+              <div id="userPaginationContainer" class="flex gap-sm">
+                <!-- Page buttons will be rendered here -->
+              </div>
+              <button
+                id="nextUserPageBtn"
+                class="w-10 h-10 rounded-full flex items-center justify-center border border-outline-variant hover:bg-surface-container-high transition-colors text-on-surface-variant"
+              >
+                <span class="material-symbols-outlined">chevron_right</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Footer -->
+      <footer
+        class="w-full py-xl px-lg grid grid-cols-1 md:grid-cols-5 gap-lg bg-surface-container-highest dark:bg-surface-container mt-xl rounded-[24px]"
+      >
+        <div class="col-span-1 md:col-span-1">
+          <span class="font-headline-sm text-headline-sm text-on-surface"
+            >Gray Pet Shop</span
+          >
+          <p class="mt-md text-on-surface-variant text-label-sm">
+            A premium pet care store, bringing warmth and trust to your four-legged friend.
+          </p>
+        </div>
+        <div class="flex flex-col gap-sm">
+          <span class="font-label-md text-label-md text-primary">Contact</span>
+          <span class="text-on-surface-variant text-label-sm"
+            >Address: Bac Tu Liem, Hanoi</span
+          >
+          <span class="text-on-surface-variant text-label-sm"
+            >Phone: 038.339.2903</span
+          >
+          <span class="text-on-surface-variant text-label-sm"
+            >Email: nampham050723@gmail.com</span
+          >
+        </div>
+        <div class="flex flex-col gap-sm">
+          <span class="font-label-md text-label-md text-primary"
+            >Policies</span
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+            href="#"
+            >Privacy Policy</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+            href="#"
+            >Terms of Service</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity"
+            href="#"
+            >Shipping &amp; Returns</a
+          >
+        </div>
+        <div class="flex flex-col gap-sm">
+          <span class="font-label-md text-label-md text-primary"
+            >Social Media</span
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity flex items-center gap-2"
+            href="https://www.facebook.com/pdn.0507"
+            target="_blank"
+          >
+            <span class="material-symbols-outlined text-sm">public</span>
+            Facebook
+          </a>
+          <a
+            class="text-on-surface-variant hover:text-primary text-label-sm transition-opacity flex items-center gap-2"
+            href="https://www.instagram.com/dinhnam.ph"
+            target="_blank"
+          >
+            <span class="material-symbols-outlined text-sm">camera_alt</span>
+            Instagram
+          </a>
+          <p class="mt-4 text-on-surface-variant text-[10px]">
+            © 2026 Gray Pet Shop. All rights reserved.
+          </p>
+        </div>
+      <div class="flex flex-col gap-sm">
+        <span class="font-label-md text-label-md text-primary">Map</span>
+        <div class="w-full h-32 rounded-lg overflow-hidden border border-outline-variant/30">
+          <iframe src="https://maps.google.com/maps?q=273%20%C4%91%C6%B0%E1%BB%9Dng%20C%E1%BB%95%20Nhu%E1%BA%BF%2C%20B%E1%BA%AFc%20T%E1%BB%AB%20Li%C3%AAm%2C%20H%C3%A0%20N%E1%BB%99i&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </footer>
+    </main>
+    <script type="module">
+      import {
+        getAllUsers,
+        getDashboardStats,
+        updateUserRole,
+        deleteUser,
+        createUser,
+        updateUserDetails,
+      } from "../js/admin.js";
+      import { isAuthenticated, getUserInfo } from "../js/auth.js";
+
+      // Check auth
+      if (!isAuthenticated()) {
+        window.location.href = "/auth/login";
+      }
+
+      let allUsers = [];
+      const usersTableBody = document.getElementById("usersTableBody");
+      const searchInput = document.querySelector(
+        "input[placeholder='Search users...']"
+      );
+      const userPaginationContainer = document.getElementById(
+        "userPaginationContainer"
+      );
+      const prevUserPageBtn = document.getElementById("prevUserPageBtn");
+      const nextUserPageBtn = document.getElementById("nextUserPageBtn");
+
+      let currentUserPage = 1;
+      let totalUserPages = 1;
+      let totalUserCount = 0;
+      let userSearchKeyword = "";
+
+      // Get avatar initial
+      function getInitial(name) {
+        return (name || "U").charAt(0).toUpperCase();
+      }
+
+      // Get role badge color
+      function getRoleBadgeClasses(role) {
+        if (role === "admin") {
+          return "bg-primary-container/20 text-primary";
+        }
+        return "bg-secondary-container/50 text-on-secondary-container";
+      }
+
+      // Get role display text
+      function getRoleDisplay(role) {
+        return role === "admin" ? "Admin" : "Customer";
+      }
+
+      // Render table row
+      function renderUserRow(user) {
+        return `
+          <tr class="hover:bg-surface-container-low/50 transition-colors group" data-user-id="${user._id}">
+            <td class="px-lg py-md">
+              <div class="flex items-center gap-md">
+                <div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold">
+                  ${getInitial(user.fullName)}
+                </div>
+                <div>
+                  <p class="font-label-md text-on-surface">${user.fullName || "N/A"}</p>
+                  <span class="font-label-sm text-on-surface-variant opacity-70">ID: #${user._id.substring(0, 8).toUpperCase()}</span>
+                </div>
+              </div>
+            </td>
+            <td class="px-lg py-md font-body-md text-on-surface-variant">${user.email}</td>
+            <td class="px-lg py-md font-body-md text-on-surface-variant">${user.phone || "---"}</td>
+            <td class="px-lg py-md">
+              <select class="role-select inline-flex items-center px-3 pr-8 py-1 rounded-full font-label-sm border-none bg-transparent cursor-pointer appearance-none" data-user-id="${user._id}">
+                <option value="customer" ${user.role === "customer" ? "selected" : ""}>Customer</option>
+                <option value="admin" ${user.role === "admin" ? "selected" : ""}>Admin</option>
+              </select>
+            </td>
+            <td class="px-lg py-md text-right">
+              <button class="edit-btn text-on-surface-variant hover:text-primary transition-colors p-2 mr-2" data-user-id="${user._id}" title="Edit user">
+                <span class="material-symbols-outlined">edit</span>
+              </button>
+              <button class="delete-btn text-on-surface-variant hover:text-error transition-colors p-2" data-user-id="${user._id}" title="Delete user">
+                <span class="material-symbols-outlined">delete</span>
+              </button>
+            </td>
+          </tr>
+        `;
+      }
+
+      // Update user pagination UI
+      function updateUserPaginationUI(pagination) {
+        if (!pagination) return;
+
+        totalUserPages = pagination.pages;
+        totalUserCount = pagination.total;
+
+        // Update display text
+        const startNum = (pagination.page - 1) * pagination.limit + 1;
+        const endNum = Math.min(
+          pagination.page * pagination.limit,
+          pagination.total
+        );
+
+        document.getElementById("userCountStart").textContent = startNum;
+        document.getElementById("userCountEnd").textContent = endNum;
+        document.getElementById("totalUsersFooter").textContent =
+          pagination.total;
+
+        // Render page buttons
+        userPaginationContainer.innerHTML = "";
+        for (let i = 1; i <= totalUserPages; i++) {
+          const btn = document.createElement("button");
+          btn.className =
+            i === currentUserPage
+              ? "w-10 h-10 rounded-full bg-primary text-on-primary font-label-md flex items-center justify-center"
+              : "w-10 h-10 rounded-full border border-outline-variant hover:bg-surface-container-high text-on-surface-variant font-label-md flex items-center justify-center";
+          btn.textContent = i;
+          btn.addEventListener("click", () => goToUserPage(i));
+          userPaginationContainer.appendChild(btn);
+        }
+
+        // Update prev/next button states
+        prevUserPageBtn.disabled = currentUserPage === 1;
+        nextUserPageBtn.disabled = currentUserPage === totalUserPages;
+      }
+
+      // Go to specific user page
+      function goToUserPage(page) {
+        if (page < 1 || page > totalUserPages) return;
+        currentUserPage = page;
+        loadUsers();
+      }
+
+      // Update statistics (pagination info only)
+      function updateStats() {
+        // Stats already loaded from dashboard
+        // Only update pagination footer
+      }
+
+      // Render all users
+      function renderUsers(users = allUsers) {
+        usersTableBody.innerHTML =
+          users.length === 0
+            ? '<tr><td colspan="5" class="px-lg py-lg text-center text-on-surface-variant">No users found</td></tr>'
+            : users.map((user) => renderUserRow(user)).join("");
+
+        // Add event listeners
+        document.querySelectorAll(".role-select").forEach((select) => {
+          select.addEventListener("change", handleRoleChange);
+          // Apply styling based on role
+          updateRoleSelectStyle(select);
+        });
+
+        document.querySelectorAll(".edit-btn").forEach((btn) => {
+          btn.addEventListener("click", handleEditUser);
+        });
+
+        document.querySelectorAll(".delete-btn").forEach((btn) => {
+          btn.addEventListener("click", handleDeleteUser);
+        });
+      }
+
+      // Update role select styling
+      function updateRoleSelectStyle(select) {
+        const role = select.value;
+        select.className = `role-select inline-flex items-center px-3 pr-8 py-1 rounded-full font-label-sm border-none cursor-pointer appearance-none ${getRoleBadgeClasses(role)}`;
+      }
+
+      // Handle role change
+      async function handleRoleChange(e) {
+        const select = e.target;
+        const userId = select.dataset.userId;
+        const newRole = select.value;
+        const oldRole =
+          select.options[select.selectedIndex === 0 ? 1 : 0].value;
+
+        if (
+          !confirm(
+            `Are you sure you want to change the role to ${getRoleDisplay(newRole)}?`
+          )
+        ) {
+          select.value = oldRole;
+          return;
+        }
+
+        const result = await updateUserRole(userId, newRole);
+        if (result.success) {
+          // Update local data
+          const userIdx = allUsers.findIndex((u) => u._id === userId);
+          if (userIdx > -1) {
+            allUsers[userIdx].role = newRole;
+          }
+          updateStats();
+          updateRoleSelectStyle(select);
+          alert("Role updated successfully");
+        } else {
+          select.value = oldRole;
+          alert("Error updating role: " + result.message);
+        }
+      }
+
+      // Handle delete user
+      async function handleDeleteUser(e) {
+        const userId = e.currentTarget.dataset.userId;
+        const user = allUsers.find((u) => u._id === userId);
+
+        if (
+          !confirm(
+            `Are you sure you want to delete user ${user.fullName || user.email}?`
+          )
+        ) {
+          return;
+        }
+
+        const result = await deleteUser(userId);
+        if (result.success) {
+          allUsers = allUsers.filter((u) => u._id !== userId);
+          renderUsers();
+          updateStats();
+          alert("User deleted successfully");
+        } else {
+          alert("Error deleting user: " + result.message);
+        }
+      }
+
+      // Load users
+      async function loadUsers() {
+        console.log("Loading users...");
+        const result = await getAllUsers({
+          page: currentUserPage,
+          limit: 10,
+          search: userSearchKeyword,
+        });
+        console.log("API Response:", result);
+
+        // Parse response correctly
+        if (
+          result &&
+          result.success &&
+          result.customers &&
+          Array.isArray(result.customers)
+        ) {
+          allUsers = result.customers;
+          console.log("Users loaded:", allUsers);
+          renderUsers(allUsers);
+          updateStats();
+          updateUserPaginationUI(result.pagination);
+        } else {
+          console.error("Invalid response structure:", result);
+          allUsers = [];
+          renderUsers();
+          updateStats();
+        }
+
+        // Re-trigger scroll reveal and hover lift animations on dynamic customer records
+        if (window.XamAnimations) {
+          window.XamAnimations.init();
+        }
+      }
+
+      // Search functionality
+      if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+          userSearchKeyword = e.target.value.toLowerCase();
+          currentUserPage = 1;
+          loadUsers();
+        });
+      }
+
+      // Pagination handlers
+      prevUserPageBtn?.addEventListener("click", () =>
+        goToUserPage(currentUserPage - 1)
+      );
+      nextUserPageBtn?.addEventListener("click", () =>
+        goToUserPage(currentUserPage + 1)
+      );
+
+      // ... existing code unchanged ...
+
+      // Load initial data
+      async function loadInitialData() {
+        // Load users with pagination
+        await loadUsers();
+
+        // Load dashboard stats for total counts
+        const dashResult = await getDashboardStats();
+        if (dashResult.success && dashResult.dashboard) {
+          const dashData = dashResult.dashboard;
+          document.getElementById("totalUsersStat").textContent =
+            dashData.users?.total || "—";
+          document.getElementById("customersStat").textContent =
+            dashData.users?.customers || "—";
+          document.getElementById("adminsStat").textContent =
+            dashData.users?.admins || "—";
+        }
+      }
+      loadInitialData();
+
+      // --- Create user modal handling ---
+      const openCreateUserBtn = document.getElementById("openCreateUserBtn");
+      const modalHtml = `
+        <div id="createUserModal" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 hidden">
+          <div class="bg-white rounded-xl p-lg w-full max-w-md">
+            <h3 class="font-headline-md mb-md">Add new account</h3>
+            <form id="createUserForm" class="space-y-md">
+              <div>
+                <label class="font-label-sm">Full name</label>
+                <input id="newFullName" required class="w-full mt-2 p-3 border rounded" />
+              </div>
+              <div>
+                <label class="font-label-sm">Email</label>
+                <input id="newEmail" type="email" required class="w-full mt-2 p-3 border rounded" />
+              </div>
+              <div>
+                <label class="font-label-sm">Password</label>
+                <input id="newPassword" type="password" required minlength="6" class="w-full mt-2 p-3 border rounded" />
+              </div>
+              <div>
+                <label class="font-label-sm">Role</label>
+                <select id="newRole" class="w-full mt-2 p-3 border rounded">
+                  <option value="customer">Customer</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+              <div class="flex justify-end gap-sm mt-md">
+                <button type="button" id="closeCreateModal" class="px-4 py-2 rounded border">Cancel</button>
+                <button type="submit" class="px-4 py-2 rounded bg-primary text-on-primary">Create</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      `;
+
+      // Insert modal into DOM
+      document.body.insertAdjacentHTML("beforeend", modalHtml);
+
+      const createUserModal = document.getElementById("createUserModal");
+      const createUserForm = document.getElementById("createUserForm");
+      const closeCreateModal = document.getElementById("closeCreateModal");
+
+      function showCreateModal() {
+        createUserModal.classList.remove("hidden");
+      }
+
+      function hideCreateModal() {
+        createUserModal.classList.add("hidden");
+      }
+
+      if (openCreateUserBtn)
+        openCreateUserBtn.addEventListener("click", showCreateModal);
+      if (closeCreateModal)
+        closeCreateModal.addEventListener("click", hideCreateModal);
+
+      createUserForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const fullName = document.getElementById("newFullName").value.trim();
+        const email = document.getElementById("newEmail").value.trim();
+        const password = document.getElementById("newPassword").value;
+        const role = document.getElementById("newRole").value;
+
+        if (!fullName || !email || !password) {
+          alert("Please fill in all required fields");
+          return;
+        }
+
+        const result = await createUser({ fullName, email, password, role });
+        if (result && result.success) {
+          alert(result.message || "Account created successfully");
+          // Reload the whole page to ensure UI and data are in sync
+          window.location.reload();
+        } else {
+          alert(
+            "Error creating account: " +
+              (result.message ||
+                (result.errors && result.errors.map((e) => e.msg).join(", ")))
+          );
+        }
+      });
+
+      // --- Edit user modal handling ---
+      const editModalHtml = `
+        <div id="editUserModal" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 hidden">
+          <div class="bg-white rounded-xl p-lg w-full max-w-md">
+            <h3 class="font-headline-md mb-md">Edit user details</h3>
+            <form id="editUserForm" class="space-y-md">
+              <input type="hidden" id="editUserId" />
+              <div>
+                <label class="font-label-sm">Full name</label>
+                <input id="editFullName" required class="w-full mt-2 p-3 border rounded" />
+              </div>
+              <div>
+                <label class="font-label-sm">Email</label>
+                <input id="editEmail" type="email" required class="w-full mt-2 p-3 border rounded" />
+              </div>
+              <div>
+                <label class="font-label-sm">Phone number</label>
+                <input id="editPhone" type="text" class="w-full mt-2 p-3 border rounded" />
+              </div>
+              <div>
+                <label class="font-label-sm">Role</label>
+                <select id="editRole" class="w-full mt-2 p-3 border rounded">
+                  <option value="customer">Customer</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+              <div class="flex justify-end gap-sm mt-md">
+                <button type="button" id="closeEditModal" class="px-4 py-2 rounded border">Cancel</button>
+                <button type="submit" class="px-4 py-2 rounded bg-primary text-on-primary">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      `;
+      document.body.insertAdjacentHTML("beforeend", editModalHtml);
+
+      const editUserModal = document.getElementById("editUserModal");
+      const editUserForm = document.getElementById("editUserForm");
+      const closeEditModal = document.getElementById("closeEditModal");
+
+      closeEditModal.addEventListener("click", () => {
+        editUserModal.classList.add("hidden");
+      });
+
+      function handleEditUser(e) {
+        const userId = e.currentTarget.dataset.userId;
+        const user = allUsers.find((u) => u._id === userId);
+        if (!user) return;
+
+        document.getElementById("editUserId").value = user._id;
+        document.getElementById("editFullName").value = user.fullName || "";
+        document.getElementById("editEmail").value = user.email || "";
+        document.getElementById("editPhone").value = user.phone || "";
+        document.getElementById("editRole").value = user.role || "customer";
+
+        editUserModal.classList.remove("hidden");
+      }
+
+      editUserForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const userId = document.getElementById("editUserId").value;
+        const fullName = document.getElementById("editFullName").value;
+        const email = document.getElementById("editEmail").value;
+        const phone = document.getElementById("editPhone").value;
+        const role = document.getElementById("editRole").value;
+
+        const result = await updateUserDetails(userId, { fullName, email, phone, role });
+        if (result.success) {
+          alert("Details updated successfully");
+          editUserModal.classList.add("hidden");
+          loadUsers();
+        } else {
+          alert("Error: " + result.message);
+        }
+      });
+    </script>
+    <script type="module">
+      // === THÊM VÀO SCRIPT HIỆN CÓ CỦA MỖI TRANG ADMIN ===
+      import { logoutUser, getUserInfo, isAuthenticated } from "../js/auth.js";
+
+      // Check auth
+      if (!isAuthenticated()) {
+        window.location.href = "/auth/login";
+      }
+
+      const userInfo = getUserInfo();
+      if (userInfo && userInfo.role !== "admin") {
+        window.location.href = "/";
+      }
+
+      // Show admin name in sidebar
+      if (userInfo) {
+        const nameEl = document.getElementById("adminDisplayName");
+        const avatarEl = document.getElementById("adminAvatarSidebar");
+        if (nameEl) nameEl.textContent = userInfo.fullName || userInfo.email;
+        if (avatarEl)
+          avatarEl.textContent = (userInfo.fullName || userInfo.email || "A")
+            .charAt(0)
+            .toUpperCase();
+      }
+
+      // Handle logout
+      const logoutBtn = document.getElementById("logoutBtn");
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", async (e) => {
+          e.preventDefault();
+          if (confirm("Are you sure you want to log out?")) {
+            await logoutUser();
+            window.location.href = "/auth/login";
+          }
+        });
+      }
+    </script>
+    <script src="../js/animations.js"></script>
+  </body>
+</html>
