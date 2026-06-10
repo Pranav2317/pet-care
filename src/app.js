@@ -17,7 +17,11 @@ app.use(
     secret: process.env.SESSION_SECRET || "your-secret-key",
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false, httpOnly: true, maxAge: 24 * 60 * 60 * 1000 }, // 24 hours
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    },
   })
 );
 
@@ -27,6 +31,10 @@ app.use(passport.session());
 
 // Serve static files from views folder
 app.use(express.static(path.join(__dirname, "views")));
+
+app.get("/favicon.ico", (req, res) => {
+  res.sendFile(path.join(__dirname, "views/images/favicon.ico"));
+});
 
 // Test route
 app.get("/api/test", (req, res) => {

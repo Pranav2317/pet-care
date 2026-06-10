@@ -4,7 +4,6 @@ node_modules/
 src/views/images/
 src/views/uploads/
 package-lock.json
-package.json
 .DS_Store
 ADMIN_API.md
 GOOGLE_OAUTH_SETUP.md
