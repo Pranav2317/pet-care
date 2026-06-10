@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400" role="img" aria-label="Pet product placeholder">
+  <rect width="400" height="400" fill="#FFF1E5"/>
+  <circle cx="200" cy="155" r="70" fill="#FFB347"/>
+  <ellipse cx="200" cy="290" rx="110" ry="75" fill="#FFB347"/>
+  <circle cx="175" cy="145" r="8" fill="#704700"/>
+  <circle cx="225" cy="145" r="8" fill="#704700"/>
+  <path d="M185 175 Q200 190 215 175" stroke="#704700" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <text x="200" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#845400">Pet Product</text>
+</svg>

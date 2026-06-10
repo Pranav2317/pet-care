@@ -1,13 +1,10 @@
 node_modules/
 .env
-.env.example
-src/views/images/
-src/views/uploads/
 package-lock.json
 .DS_Store
 ADMIN_API.md
 GOOGLE_OAUTH_SETUP.md
 .eslintrc.json
 .prettierignore
-src/vnpay_nodejs
+src/vnpay_nodejs/config/default.json
 .claude

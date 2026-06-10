@@ -9,14 +9,35 @@ const Product = require("../models/Product");
 // =============================================
 
 /**
- * Load VNPAY configuration from JSON file
+ * Load VNPAY configuration from environment variables or JSON file
  */
 function loadVnpayConfig() {
+  if (process.env.VNP_TMNCODE && process.env.VNP_HASHSECRET) {
+    return {
+      vnp_TmnCode: process.env.VNP_TMNCODE,
+      vnp_HashSecret: process.env.VNP_HASHSECRET,
+      vnp_Url:
+        process.env.VNP_URL ||
+        "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html",
+      vnp_ReturnUrl:
+        process.env.VNPAY_RETURN_URL ||
+        process.env.VNP_RETURNURL ||
+        `http://localhost:${process.env.PORT || 5000}/api/payments/vnpay/return`,
+    };
+  }
+
   const configPath = path.resolve(
     __dirname,
     "../vnpay_nodejs/config/default.json"
   );
-  return JSON.parse(fs.readFileSync(configPath, "utf8"));
+
+  if (fs.existsSync(configPath)) {
+    return JSON.parse(fs.readFileSync(configPath, "utf8"));
+  }
+
+  throw new Error(
+    "VNPay is not configured. Set VNP_TMNCODE and VNP_HASHSECRET in .env or create src/vnpay_nodejs/config/default.json"
+  );
 }
 
 /**
